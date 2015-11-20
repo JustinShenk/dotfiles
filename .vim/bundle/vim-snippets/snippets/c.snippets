@@ -41,7 +41,7 @@ snippet #if
 	#endif
 # header include guard
 snippet once
-	#ifndef ${1:`toupper(vim_snippets#Filename('$1_H', 'UNTITLED_H'))`}
+	#ifndef ${1:`toupper(vim_snippets#Filename('$1_H', 'UNTITLED'))`}
 
 	#define $1
 
@@ -52,11 +52,13 @@ snippet once
 ## Control Statements
 # if
 snippet if
-	if (${1:true}) {
+	if (${1:true})
+	{
 		${0}
 	}
 snippet ife
-	if (${1:true}) {
+	if (${1:true})
+	{
 		${2}
 	} else {
 		${0}
@@ -68,7 +70,8 @@ snippet el
 	}
 # else if
 snippet elif
-	else if (${1:true}) {
+	else if (${1:true})
+	{
 		${0}
 	}
 # ifi
@@ -79,7 +82,8 @@ snippet t
 	${1:/* condition */} ? ${2:a} : ${3:b}
 # switch
 snippet switch
-	switch (${1:/* variable */}) {
+	switch (${1:/* variable */})
+	{
 		case ${2:/* variable case */}:
 			${3}
 			${4:break;}${5}
@@ -88,7 +92,8 @@ snippet switch
 	}
 # switch without default
 snippet switchndef
-	switch (${1:/* variable */}) {
+	switch (${1:/* variable */})
+	{
 		case ${2:/* variable case */}:
 			${3}
 			${4:break;}${5}
@@ -104,17 +109,20 @@ snippet ret
 ## Loops
 # for
 snippet for
-	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+	for (${2:i} = 0; $2 < ${1:count}; $2${3:++})
+	{
 		${4}
 	}
 # for (custom)
 snippet forr
-	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
+	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++})
+	{
 		${5}
 	}
 # while
 snippet wh
-	while (${1:/* condition */}) {
+	while (${1:/* condition */})
+	{
 		${2}
 	}
 # do... while

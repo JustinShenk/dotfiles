@@ -9,6 +9,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
@@ -18,6 +19,7 @@ Plugin 'bling/vim-airline'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
+" Plugin 'lervag/vimtex'
 
 call vundle#end()
 
@@ -74,8 +76,8 @@ let fortran_free_source=1
 " hi Visual ctermbg=105
 " hi MatchParen cterm=bold ctermbg=125 ctermfg=0
 " hi Normal ctermfg=253
-" set background=light " not  working wtf
-" set bg=light
+
+colo sweater
 
 " Enable mouse with option key press (not needed in iTerm)
 set mouse=a
@@ -174,12 +176,6 @@ map <leader>p :bprevious<CR>
 
 " Capitalise each word in selection
 vmap gw :s/\%V\<./\u&/g<CR>
-
-
-set bg=light
-colo zellner
-hi SpellBad ctermbg=219
-hi SpellBad ctermfg=232
 
 
 " for YouCompleteMe

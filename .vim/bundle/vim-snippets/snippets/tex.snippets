@@ -1,10 +1,12 @@
 #PREAMBLE
 #newcommand
-snippet nc \newcommand
-	\newcommand{\\${1:cmd}}[${2:opt}]{${3:realcmd}} ${0}
+snippet new \newcommand
+	\newcommand{\\${1:cmd}}${2:[opt]}{${3:realcmd}} ${0}
+snippet renew \renewcommand
+	\renewcommand{\\${1:cmd}}${2:[opt]}{${3:realcmd}} ${0}
 #usepackage
-snippet up \usepackage
-	\usepackage[${1:options}]{${2:package}} ${0}
+snippet use \usepackage
+	\usepackage${1:[options]}{${2:package}} ${0}
 #newunicodechar
 snippet nuc \newunicodechar
 	\newunicodechar{${1}}{${2:\ensuremath}${3:tex-substitute}}} ${0}
@@ -224,22 +226,16 @@ snippet ft \footnote
 snippet fig figure environment (includegraphics)
 	\begin{figure}
 	\begin{center}
-		\includegraphics[scale=${1}]{Figures/${2}}
+		${1}
 	\end{center}
 	\caption{${3}}
 	\label{fig:${4}}
 	\end{figure}
 	${0}
 snippet tikz figure environment (tikzpicture)
-	\begin{figure}
-	\begin{center}
-	\begin{tikzpicture}[scale=${1:1}]
-		${2}
+	\begin{tikzpicture}
+		${1}
 	\end{tikzpicture}
-	\end{center}
-	\caption{${3}}
-	\label{fig:${4}}
-	\end{figure}
 	${0}
 #math
 snippet stackrel \stackrel{}{}
@@ -304,3 +300,8 @@ snippet urlc
 	\url{`@+`} ${0}
 snippet hrefc
 	\href{`@+`}{${1}} ${0}
+
+snippet include 
+	\includegraphics${1:[opts]}{${2}}
+snippet mcal 
+	\mathcal{${1}}

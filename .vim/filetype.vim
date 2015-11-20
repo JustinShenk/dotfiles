@@ -4,4 +4,5 @@ endif
 augroup filetypedetect
     au! BufRead,BufNewFile *.py        setfiletype python
     au! BufRead,BufNewFile *.tpp       setfiletype cpp
+    au! BufRead,BufNewFile *.tex       setfiletype tex
 augroup END
