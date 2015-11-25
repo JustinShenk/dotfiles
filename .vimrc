@@ -20,6 +20,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 " Plugin 'lervag/vimtex'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 
@@ -63,21 +64,18 @@ set incsearch
 " shortcut to paste code from system clipboard
 map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
 
-" For fortran
-let fortran_free_source=1
-
 
 " Solarized colorscheme
-" if !has('gui_running')
-"    let g:solarized_termcolors=256
-" endif
-" set background=dark
-" colorscheme solarized
-" hi Visual ctermbg=105
-" hi MatchParen cterm=bold ctermbg=125 ctermfg=0
-" hi Normal ctermfg=253
+if !has('gui_running')
+   let g:solarized_termcolors=256
+endif
+set background=dark
+colorscheme solarized
+hi Visual ctermbg=105
+hi MatchParen cterm=bold ctermbg=125 ctermfg=0
+hi Normal ctermfg=253
 
-colo sweater
+" colo sweater
 
 " Enable mouse with option key press (not needed in iTerm)
 set mouse=a

@@ -1,0 +1,102 @@
+clear;pwd;ls
+
+stty werase undef
+bind '"\C-w": backward-kill-word'
+# bind '"\C-j": unix-word-rubout' # causes iTerm+Go2Shell fuckups
+
+# Lang env variable
+export LANG=en_US.UTF-8
+#
+# Add own shell scripts to path
+export PATH=$PATH:$HOME/Documents/Programming/Bash
+
+# First part because one line is too long.. [21.4.13: Moved /usr/bin to front,
+# was after /opt/local/bin. I did this because the wish binary there should be
+# the default (it has a symbol). For whatever reason there are multiple wishes
+# on my system. 22.4.13: Undid change because - unbelievably - python cannot
+# import cv2 if /usr/bin is at that position]
+export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin:$PATH:/opt/local//libexec/qt4/bin/
+# second part
+#
+# Default env variable $LANG
+# LANG=de_DE.UTF-8
+
+# Shortcut for not having to type -a flag always. -F flag for marking
+# directories and executables
+alias ls='ls -F'
+
+# Since I installed a new version of vim in /opt/local/bin, the vi command must
+# needs be associated with that one, not the old one.
+# Delete if newly installed version is ever removed.
+alias vi='vim'
+
+# Apple's python (or whichever is open when typing "python") displays segfault
+# when cv2 (opencv) is imported, therefore use python2.7 command (which I hope
+# was installed by macports)
+# alias python='python2.7'
+
+# To simply javadoc generation
+alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
+
+export CLASSPATH=/Users/Rasmus/Library/Java/Extensions:.
+
+# Avoid accidental removal, prompt first.
+# alias rmi='rm -i'
+
+# Change command line prompt
+export PS1='`date +%H:%M:%S`: \[\e[1;33m\]8=====o\[\e[m\]:[\[\e[35m\]\W\[\e[m\]] '
+
+export TEX=/users/rasmus/documents/latex/texnisches/
+export DROPBOX='/Volumes/Macintosh HD/Users/Rasmus/Dropbox'
+
+# Quick login at cs university server
+alias ssh-quick="ssh rdiederichse@cip10.informatik.uos.de"
+
+# Include scheme-listings
+export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/scheme-listings/:$TEXINPUTS
+export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/atmega-listings/:$TEXINPUTS
+
+# Bash completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+    . /opt/local/etc/profile.d/bash_completion.sh
+fi
+
+##
+# Your previous /Users/Rasmus/.bash_login file was backed up as /Users/Rasmus/.bash_login.macports-saved_2014-10-29_at_09:40:56
+##
+
+# MacPorts Installer addition on 2014-10-29_at_09:40:56: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+export EDITOR=vim
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
+export CLICOLOR=1
+
+export UNI="/Users/Rasmus/Documents/Uni/"
+
+# Chessus christ, why does pkg-config not know its own fckng standard directory,
+# what the actual fuck.
+PKG_CONFIG_PATH=/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+export PKG_CONFIG_PATH
+
+# Change to current Finder directory
+cdf() {
+    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+    if [ "$target" != "" ]; then
+        cd "$target"; pwd
+    else
+        echo 'No Finder window found' >&2
+    fi
+}
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/Library/Python/2.7/site-packages:$PYTHONPATH
+
+alias make='make -j4'
+alias la='ls -a'
+alias vi=vim
+
+eval "$(thefuck --alias)"
+# You can use whatever you want as an alias, like for Mondays:
+eval "$(thefuck --alias FUCK)"
+
