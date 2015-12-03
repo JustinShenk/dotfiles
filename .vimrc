@@ -186,7 +186,7 @@ let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
 let g:UltiSnipsExpandTrigger="<C-J>"
 " let g:UltiSnipsListSnippets="<C-TAB>"
 let g:UltiSnipsJumpForwardTrigger="<C-J>"
-let g:UltiSnipsJumpBackwardTrigger="<C-K>"
+" let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
 
 " C++ template files; does not work with ftplugin
 " autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
