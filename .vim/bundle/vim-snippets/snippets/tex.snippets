@@ -1,18 +1,18 @@
 #PREAMBLE
 #newcommand
 snippet new \newcommand
-	\newcommand{\\${1:cmd}}${2:[opt]}{${3:realcmd}} ${0}
+	\newcommand{\\${1:cmd}}${2:[opt]}{${3:realcmd}}${4}
 snippet renew \renewcommand
-	\renewcommand{\\${1:cmd}}${2:[opt]}{${3:realcmd}} ${0}
+	\renewcommand{\\${1:cmd}}${2:[opt]}{${3:realcmd}}${4}
 #usepackage
 snippet use \usepackage
-	\usepackage${1:[options]}{${2:package}} ${0}
+	\usepackage${1:[options]}{${2:package}}${4}
 #newunicodechar
 snippet nuc \newunicodechar
-	\newunicodechar{${1}}{${2:\ensuremath}${3:tex-substitute}}} ${0}
+	\newunicodechar{${1}}{${2:\ensuremath}${3:tex-substitute}}}${4}
 #DeclareMathOperator
 snippet dmo \DeclareMathOperator
-	\DeclareMathOperator{${1}}{${2}} ${0}
+	\DeclareMathOperator{${1}}{${2}}${4}
 
 #DOCUMENT
 # \begin{}...\end{}
@@ -197,32 +197,32 @@ snippet fcite \footcite[]{}
 	\footcite[${1}]{${2}}${0}
 #Formating text: italic, bold, underline, small capital, emphase ..
 snippet it italic text
-	\textit{${0:text}}${1}
+	\textit{${1:text}}${2}
 snippet bf bold face text
-	\textbf{${0:text}}${1}
+	\textbf{${1:text}}${2}
 snippet under underline text
-	\underline{${0:text}}${1}
+	\underline{${1:text}}${2}
 snippet emp emphasize text
-	\emph{${0:text}}${1}
+	\emph{${1:text}}${2}
 snippet sc small caps text
-	\textsc{${0:text}}${1}
+	\textsc{${1:text}}${2}
 #Choosing font
 snippet sf sans serife text
-	\textsf{${0:text}}${1}
+	\textsf{${1:text}}${2}
 snippet rm roman font text
-	\textrm{${0:text}}${1}
+	\textrm{${1:text}}${2}
 snippet tt typewriter (monospace) text
-	\texttt{${0:text}}${1}
+	\texttt{${1:text}}${2}
 #Math font
 snippet mf mathfrak
-	\mathfrak{${0:text}}${1}
+	\mathfrak{${1:text}}${2}
 snippet mc mathcal
-	\mathcal{${0:text}}${1}
+	\mathcal{${1:text}}${2}
 snippet ms mathscr
-	\mathscr{${0:text}}${1}
+	\mathscr{${1:text}}${2}
 #misc
 snippet ft \footnote
-	\footnote{${0:text}}
+	\footnote{${1:text}}
 snippet fig figure environment (includegraphics)
 	\begin{figure}
 	\begin{center}

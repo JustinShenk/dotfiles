@@ -10,9 +10,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugin 'junegunn/limelight.vim'
+Plugin 'b4winckler/vim-angry'
 Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
@@ -69,8 +71,8 @@ map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
 if !has('gui_running')
    let g:solarized_termcolors=256
 endif
-set background=dark
 colorscheme solarized
+set background=light
 hi Visual ctermbg=105
 hi MatchParen cterm=bold ctermbg=125 ctermfg=0
 hi Normal ctermfg=253
@@ -184,9 +186,8 @@ let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
 
 " For UltiSnips
 let g:UltiSnipsExpandTrigger="<C-J>"
-" let g:UltiSnipsListSnippets="<C-TAB>"
 let g:UltiSnipsJumpForwardTrigger="<C-J>"
-" let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
+let g:UltiSnipsJumpBackwardTrigger="<C-H>" " not working
 
 " C++ template files; does not work with ftplugin
 " autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
@@ -196,3 +197,5 @@ autocmd BufEnter *.cls :setlocal filetype=tex
 
 " Show hidden stuff in nerdtree
 let NERDTreeShowHidden=1
+
+set cole=2
