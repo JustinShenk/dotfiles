@@ -1,0 +1,245 @@
+\documentclass{article}
+\title{Algorithmen II -- Blatt 6}
+\author{Rasmus Diederichsen}
+\date{\today}
+\usepackage[table]{xcolor}
+\usepackage{microtype, titlesec, enumitem, textcomp, listings,
+   tikz, IEEEtrantools, array, amsmath, amssymb, amsthm, graphicx, subcaption,
+   mathtools, lmodern, tikz, ifthen}
+\usepackage[ngerman]{babel}
+\usepackage{inconsolata}
+\usepackage[math]{iwona}
+\SetMathAlphabet{\mathtt}{iwona}{OT1}{\ttdefault}{m}{n}
+\usepackage[pdftitle={Algorithmen II -- Blatt 6}, 
+   pdfauthor={Rasmus Diederichsen}, 
+   hyperfootnotes=true,
+   colorlinks,
+   bookmarksnumbered = true,
+   linkcolor = lightgray,
+   plainpages = false,
+citecolor = lightgray]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\renewcommand{\rmdefault}{ugm}
+\usepackage[urw-garamond]{mathdesign}
+\usepackage[all]{hypcap}
+
+\titleformat{\section}[hang]{\bf}{Aufgabe 6.\arabic{section}:}{1em}{}[]
+\titleformat{\subsection}[hang]{\bf}{\alph{subsection})}{1em}{}[]
+\titlespacing{\section}{0pt}{*1}{*1}
+
+% for floor and ceil
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\usetikzlibrary{automata,positioning}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\bigo}[1]{\mathcal{O}\left(#1\right)}
+\lstset{
+   basicstyle=\footnotesize\ttfamily,
+   comment=[l]{\#},
+   breaklines=true,
+   commentstyle=\color{blue},
+   keywordstyle=\color{purple}\textbf,
+   numberstyle=\tiny\color{gray},
+   numbers=left,
+   stringstyle=\color{olive},
+  literate={ö}{{\"o}}1
+           {ä}{{\"a}}1
+           {ü}{{\"u}}1
+}
+
+\begin{document}
+
+\maketitle
+
+\section{Karp-Rabin / Hash}
+\begin{enumerate}[label=\textbf{(\alph{*})}]
+   \item $h(S) := \sum_{i=0}^{m-1}S[i]$ funktioniert zwar, jedoch kann eine Summe
+      je nach Alphabet von vielen Summanden generiert werden. Insbesondere
+      Strings, die dieselben Zeichen enthalten, werden auf den selben Hash
+      abgebildet, was zu vielen Kollisionen führt
+   \item $h(S) := \prod_{i=0}^{m-1}S[i]$. Es gilt die selbe Argumentation wie
+      für (a), allerdings muss man jeden Wert um 1 verschieben, um die
+      Nullteilung zu verhindern. Es gäbe sonst sogar noch mehr Kollisionen,
+      sobald ein $S[i] = 0$ ist.
+   \item $h(S) := \sum_{i=0}^{m-1}(-1)^i\cdot S[i]$ ist brauchbar,
+      man könnte $h(S^\prime) = -1 \cdot (h(S) - S[0] + (-1)^m S[m])$ rechnen.
+   \item $h(S) := S[0]^{{S[1]}^{\iddots^{S[m-1]}}}$ ließe sich verwenden, da man
+      durch Logarithmieren zur Basis $S[0]$ und Potenzieren mit dem ``neuen''
+      $S[m-1]$ zum richtigen Hashwert käme. Allerdings ist dies weder
+      effizient, noch dürften die entstehenden Zahlen in 64 Bits darstellbar
+      sein, was die Anwendung unpraktikabel macht.
+
+      Interpretiert man die Funktion so, dass die Exponenten geklammert sind,
+      ist dies nicht möglich, weil man, um den obersten Exponenten
+      zu potenzieren, $m-1$ mal mit verschiedenen Basen logarithmieren muss und
+      dann das Ganze wieder potenzieren muss. Außerdem wären diese Werte erste
+      recht nicht mehr darstellbar.
+
+      Würde man den Text rückwärts durchgehen und so auch das Pattern umdrehen
+      würde, könnte man die $S[m-1]$-te Wurzel ziehen und das Ergebnis als
+      Exponent für das ``neue'' $S[0]$ verwenden.
+\end{enumerate}
+
+\section{Karp-Rabin / Rolling Hash effizient berechnen}
+
+\begin{lstlisting}[language=Ruby]
+def compute_zs pattern, base
+   hash = pattern[pattern.size]
+   (pattern.size - 1).downto 1 do |i|
+      hash += pattern[i].to_i
+      hash *= base
+   end
+end
+\end{lstlisting}
+
+In der naiven Variante würden $m + m-1 + \ldots + 1 + 0 = \sum_{i=0}^m i =
+\frac{m(m+1)}{2}$ Multiplikationen und $m-1$ Additionen durchgeführt.
+
+\bigskip % the fuck do i need this for? jesus christ, latex.
+
+\section{Karp-Rabin / Mehrfach-Suche}
+
+\begin{lstlisting}[language=Ruby,mathescape=true]
+l = minimum pattern length
+m = maximum pattern length
+H = HashTable.new
+patterns.each { |p| H.add p }
+h$\mathtt{_T}$ = hash(T[0,l])
+for i = 0,...,n - l {
+   tmp = h$\mathtt{_T}$ # for rolling hash when i increases
+   k = 0 # addend to iterate all pattern lengths
+   if ((l+k) <= (n-i)) # might be too long at the end
+   {
+      do {
+         forall P$\mathtt{_j}$ in H mit hash(P$\mathtt{_j}$) = h$\mathtt{_T}$ {
+            if P$\mathtt{_j}$ == T[i,l+k] then "Bingo @i!"
+         }
+         h$\mathtt{_T}$ *= B # append next char for longer patterns
+         h$\mathtt{_T}$ += T[i+l+k]
+         k++
+     } while (k <= l - m)
+     h$\mathtt{_T}$ = (tmp - T[i] * B$\mathtt{^{l-1}}$) * B + T[i+l]
+  }
+}
+Laufzeittechnisch bringt dies nicht viel, da man noch $(n-m-1) \cdot (m -
+l)$ mal iterieren muss, gegenüber dem naiven Ansatz (einfach Algorithmus für
+jedes Pattern starten) spart man Cachemisses, da der Text nur einmal geladen
+wird. Und alle einzeln
+\end{lstlisting}
+\section{Knuth-Morris-Pratt}
+\begin{lstlisting}[language=Ruby,mathescape=true]
+def make_prefix_table P
+   m = P.size # number of chars in pattern
+   $\pi$ = Array.new # $\color{blue}\pi$[k] is length of longest suffix of P[1,...,k] that is also a proper prefix
+   $\pi$[1] = 0 # string of length 1 can have no proper suffix or prefix
+   k = 0  # the number of successfully matched prefix chars in the current suffix pattern
+   (2...m-1) do |q| # iterate over subpatterns of increasing size (case q = 1 handled above)
+      while k > 0 and P[k + 1] != P[q] # if we have found matches but next character mismatches the one we would attach to the prefix, back up. From the already constructed vector we know that $\color{blue}\pi[k]$ already contains the longest suffix of P[1,...,k] that is a prefix, so we set that as the number of matching characters as it is the next longest prefix conforming to the condition
+         k = $\pi$[k]
+      end
+      if P[k + 1] == P[q] # increment prefix length if next character matches the one after the current longest prefix
+         k = k + 1
+      end
+      $\pi$[q] = k 
+   end
+   return $\pi$
+end
+\end{lstlisting}
+\section{Kollisionen beim Hashing}
+Sei $Y = h(x) = y$. Es ist
+\begin{equation*}
+   P(Y) = \frac{1}{m},
+\end{equation*}
+da $h$ gleichverteilt ist. $Y$ ist also eine Bernoulli-Variable mit
+$p=\frac{1}{m}$. Für ein gegebenes Bucket $y$ ist die Anzahl an Treffern ($X$) bei $n$
+Versuchen also binomialverteilt mit
+\begin{equation*}
+   P(X=k) = {n\choose k} p^k (1-p)^{n-k} = {n \choose k} \frac{1}{m^k}
+   \frac{(m-1)^{n-k}}{m^{n-k}} = {n \choose k}\frac{(m-1)^{n-k}}{m^n}
+\end{equation*}
+\subsection{}
+Die erwartete Anzahl Kollisionen für ein festes Bucket ist der Erwartungwert von
+$X$.
+\begin{equation*}
+   \mathbb{E}_{binom}[X] = np = \frac{n}{m}
+\end{equation*}
+\subsection{}
+
+Sei $K$ die Zufallsvariable für die Anzahl an Kollisionen. Die
+Wahrscheinlichkeit, bei $n$ gleichverteilten Zufallszahlen, \emph{keine} Zahl
+zwei- oder mehrmals zu ziehen, ist
+\begin{equation*}
+   P(K=0) = \overbrace{1}^{\frac{m}{m}} \cdot \frac{m-1}{m} \cdot \frac{m-2}{m}\cdot\ldots\cdot
+   \frac{m-n+1}{m} = \frac{m!}{(m-n)!m^n}
+\end{equation*}
+
+Ähnlich, für $k=1$:
+\begin{equation*}
+   P(K=1) = 1 \cdot \frac{1}{m} \cdot \frac{m-1}{m} \cdot \frac{m-2}{m}\cdot\ldots\cdot
+   \frac{m-n+2}{m} = \frac{1}{m}\cdot\frac{(m-1)!}{(m-n+1)!m^{n}}
+\end{equation*}
+
+Hieraus kann man die allgemeine Formel ableiten:
+
+\begin{equation*}
+   P(K=k) = \left(\frac{1}{m}\right)^{k}
+   \prod\limits_{i=1}^{n-1-k}\frac{m-i}{m} =\left(\frac{1}{m}\right)^k \frac{(m-k)!}{(m-n+k)!m^{n}}
+\end{equation*}
+
+Die Wahrscheinlichkeit $\le k$ Kollisionen zu erhalten, ist die kumulierte
+Wahrscheinlichkeit
+\begin{equation*}
+   P(K\le k) = \sum_{i=0}^k P(K=k)= \sum_{i=0}^k\left(\frac{1}{m}\right)^i \frac{(m-i)!}{(m-n+i)!m^{n}}
+\end{equation*}
+
+\subsection{}
+Alternativ sei die Indikatorvariable $X_{ij}$ 1, wenn Schlüssel $i$ und $j$
+kollidieren, 0 sonst. Offensichtlich ist $P(X_{ij}=1) = \frac{1}{m}$ und damit
+$\mathbb{E}[X_{ij}] = \frac{1}{m}$. Sei mit $Y = \sum_{i\neq j} X_{ij}$ die Gesamtzahl an Kollisionen
+bezeichnet.
+\newcommand{\E}{\mathbb{E}}
+\begin{IEEEeqnarray*}{rCl}
+   \E[Y] & = & \E\left[\sum\limits_{i\neq j} X_{ij}\right] \\
+         & = & \sum\limits_{i\neq j}\E[X_{ij}] \\
+         & = & {n \choose 2}\frac{1}{m} \\
+         & = & \frac{n(n-1)}{2}\cdot \frac{1}{m} \\
+         & = & \frac{n(n-1)}{2m}
+\end{IEEEeqnarray*}
+
+Dies ist die erwartete Anzahl an Kollisionen. Die kumulierte Wahrscheinlichkeit,
+dass $\le k$ Kollisionen auftreten ist also
+\begin{equation*}
+   P(K\le k) = \sum\limits_{i=0}^k P\left(\sum\limits_{j\neq l} X_{jl} = k\right)
+\end{equation*}
+
+\subsection{}
+
+\begin{center}
+   \rowcolors{2}{gray!25}{white}
+   \begin{tabular}{cc}
+      \rowcolor{blue!10}
+      $n$ & Erwartete Kollisionen \\
+      100 & 4 \\
+      250 & 31 \\
+      500 & 124 \\
+      750 & 280 \\
+      900 & 404 \\
+   \end{tabular}
+\end{center}
+% m = 1000
+% ns = [100, 250, 500, 750, 900]
+% puts '\begin{center}
+%    \begin{tabular}{ll}
+%       $n$ & Erwartete Kollisionen \\\\'
+% ns.each do |n|
+%    puts "#{n} & #{n*(n-1) / (2*m)} \\\\"
+% end
+
+% puts '
+%    \end{tabular}
+% \end{center}'
+\section{Tabellen-Hashing ist nicht 4-fach unabhängig}
+\end{document}
