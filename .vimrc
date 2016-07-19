@@ -1,3 +1,6 @@
+let g:python3_host_prog='/opt/local/bin/python3.5'
+let g:python_host_prog='/opt/local/bin/python2.7'
+
 " Init Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -8,23 +11,27 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" Plugin 'junegunn/limelight.vim'
+Plugin 'mhinz/vim-signify'
+Plugin 'junegunn/rainbow_parentheses.vim'
+Plugin 'junegunn/vim-peekaboo'
+Plugin 'tpope/vim-commentary'
+Plugin 'junegunn/limelight.vim'
 Plugin 'b4winckler/vim-angry'
 Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
-" Plugin 'lervag/vimtex'
+Plugin 'lervag/vimtex'
 Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
+
 
 " source this file whenever saved
 autocmd BufWritePost .vimrc source %
@@ -71,8 +78,8 @@ map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
 if !has('gui_running')
    let g:solarized_termcolors=256
 endif
-colorscheme solarized
 set background=light
+colorscheme solarized
 hi Visual ctermbg=105
 hi MatchParen cterm=bold ctermbg=125 ctermfg=0
 hi Normal ctermfg=253
@@ -128,10 +135,6 @@ set expandtab
 set dictionary+=/usr/share/dict/words 
 set dictionary+=/usr/share/dict/propernames
 
-" pathogen
-" call pathogen#infect()
-" Helptags
-
 " Enable filetype plugins
 filetype on
 filetype plugin indent on
@@ -183,6 +186,7 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+let g:ycm_complete_in_comments = 1
 
 " For UltiSnips
 let g:UltiSnipsExpandTrigger="<C-J>"
@@ -198,4 +202,18 @@ autocmd BufEnter *.cls :setlocal filetype=tex
 " Show hidden stuff in nerdtree
 let NERDTreeShowHidden=1
 
+" Replace math tex commands with unicode glyphs
 set cole=2
+
+" Fold equally indented lines 
+" set foldmethod=indent
+
+set t_Co=256
+
+hi Comment cterm=bold
+" let g:auto_save = 1  " enable AutoSave on Vim startup
+" let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+
+" let g:limelight_conceal_ctermfg = 240
+" RainbowParentheses
+" Limelight

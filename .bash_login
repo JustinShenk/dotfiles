@@ -5,6 +5,7 @@ bind '"\C-w": backward-kill-word'
 # bind '"\C-j": unix-word-rubout' # causes iTerm+Go2Shell fuckups
 
 # Lang env variable
+export LC_ALL=en_US.UTF-8 # w/o this, can't import e.g. matplotlib? wtf?
 export LANG=en_US.UTF-8
 #
 # Add own shell scripts to path
@@ -15,7 +16,7 @@ export PATH=$PATH:$HOME/Documents/Programming/Bash
 # the default (it has a symbol). For whatever reason there are multiple wishes
 # on my system. 22.4.13: Undid change because - unbelievably - python cannot
 # import cv2 if /usr/bin is at that position]
-export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin:$PATH:/opt/local//libexec/qt4/bin/
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin:/opt/local/libexec/qt4/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/:$PATH
 # second part
 #
 # Default env variable $LANG
@@ -25,10 +26,8 @@ export PATH=/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbi
 # directories and executables
 alias ls='ls -F'
 
-# Since I installed a new version of vim in /opt/local/bin, the vi command must
-# needs be associated with that one, not the old one.
-# Delete if newly installed version is ever removed.
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 
 # Apple's python (or whichever is open when typing "python") displays segfault
 # when cv2 (opencv) is imported, therefore use python2.7 command (which I hope
@@ -69,18 +68,9 @@ alias ssh-quick="ssh rdiederichse@cip10.informatik.uos.de"
 export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/scheme-listings/:$TEXINPUTS
 export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/atmega-listings/:$TEXINPUTS
 
-# Bash completion
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-    . /opt/local/etc/profile.d/bash_completion.sh
-fi
-
 ##
 # Your previous /Users/Rasmus/.bash_login file was backed up as /Users/Rasmus/.bash_login.macports-saved_2014-10-29_at_09:40:56
 ##
-
-# MacPorts Installer addition on 2014-10-29_at_09:40:56: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
 
 export EDITOR=vim
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
@@ -103,13 +93,31 @@ cdf() {
     fi
 }
 
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:/Library/Python/2.7/site-packages:$PYTHONPATH
+# export PYTHONPATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/:/usr/local/lib/python2.7/site-packages:/Library/Python/2.7/site-packages:$PYTHONPATH
 
 alias make='make -j4'
 alias la='ls -a'
-alias vi=vim
 
+export PATH=$PATH:~/Library/Python/2.7/bin/
 eval "$(thefuck --alias)"
 # You can use whatever you want as an alias, like for Mondays:
 eval "$(thefuck --alias FUCK)"
 
+# iTerm shell integration
+source ~/.iterm2_shell_integration.`basename $SHELL`
+
+# Add packagize to PATH 
+export PATH=$PATH:~/Documents/Programming/Ruby/packagize
+
+##
+# Your previous /Users/Rasmus/.bash_login file was backed up as /Users/Rasmus/.bash_login.macports-saved_2016-07-10_at_14:05:24
+##
+
+# MacPorts Installer addition on 2016-07-10_at_14:05:24: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+# bash-completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+    . /opt/local/etc/profile.d/bash_completion.sh
+fi
