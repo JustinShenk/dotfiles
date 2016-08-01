@@ -26,9 +26,6 @@ export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbi
 # directories and executables
 alias ls='ls -F'
 
-alias vi='nvim'
-alias vim='nvim'
-
 # Apple's python (or whichever is open when typing "python") displays segfault
 # when cv2 (opencv) is imported, therefore use python2.7 command (which I hope
 # was installed by macports)
@@ -121,3 +118,5 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
     . /opt/local/etc/profile.d/bash_completion.sh
 fi
+
+alias vi='vim'

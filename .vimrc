@@ -11,11 +11,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'mhinz/vim-signify'
-Plugin 'junegunn/rainbow_parentheses.vim'
-Plugin 'junegunn/vim-peekaboo'
+
 Plugin 'tpope/vim-commentary'
 Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'b4winckler/vim-angry'
 Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdtree'
@@ -32,6 +31,9 @@ Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 
+" Enable filetype plugins
+filetype on
+filetype plugin indent on
 
 " source this file whenever saved
 autocmd BufWritePost .vimrc source %
@@ -135,10 +137,6 @@ set expandtab
 set dictionary+=/usr/share/dict/words 
 set dictionary+=/usr/share/dict/propernames
 
-" Enable filetype plugins
-filetype on
-filetype plugin indent on
-
 " Syntax highlighting
 syntax on
 
@@ -214,6 +212,3 @@ hi Comment cterm=bold
 " let g:auto_save = 1  " enable AutoSave on Vim startup
 " let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
 
-" let g:limelight_conceal_ctermfg = 240
-" RainbowParentheses
-" Limelight
