@@ -1,5 +1,6 @@
 " Compile to pdf
-map <buffer> <C-k> :w<CR>:!pdflatex "%"<CR>
+map <buffer> <C-k> :w<CR>:!pdflatex -synctex=1 "%"<CR>
+map <C-j> :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline <C-r>=line('.')<CR> "%<.pdf"<CR>
 
 " When using makefile
 map <buffer> <C-m> :wa<CR>:!make<CR>

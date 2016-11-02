@@ -1,4 +1,4 @@
-let g:python3_host_prog='/opt/local/bin/python3.5'
+
 let g:python_host_prog='/opt/local/bin/python2.7'
 
 " Init Vundle
@@ -12,6 +12,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/rainbow_parentheses.vim'
@@ -28,11 +29,10 @@ Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'lervag/vimtex'
 Plugin 'altercation/vim-colors-solarized'
-
+Plugin 'rizzatti/dash.vim'
 call vundle#end()
 
 " Enable filetype plugins
-filetype on
 filetype plugin indent on
 
 " source this file whenever saved
@@ -161,7 +161,7 @@ set omnifunc=syntaxcomplete#Complete
 set wildmode=longest,list
 
 " languagetool path for grammar checking
-let g:languagetool_jar='/Applications/LanguageTool-3.0/languagetool-commandline.jar'
+let g:languagetool_jar='/usr/local/share/LanguageTool-3.4/languagetool-commandline.jar'
 
 " select word in normal mode
 nmap <space> viw

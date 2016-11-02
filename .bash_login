@@ -73,7 +73,7 @@ export EDITOR=vim
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
 export CLICOLOR=1
 
-export UNI="/Users/Rasmus/Documents/Uni/"
+export UNI='/Users/Rasmus/Documents/Uni/Master/Semester 3/'
 
 # Chessus christ, why does pkg-config not know its own fckng standard directory,
 # what the actual fuck.
@@ -120,3 +120,12 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 fi
 
 alias vi='vim'
+
+##
+# Your previous /Users/Rasmus/.bash_login file was backed up as /Users/Rasmus/.bash_login.macports-saved_2016-10-24_at_12:00:28
+##
+
+# MacPorts Installer addition on 2016-10-24_at_12:00:28: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
