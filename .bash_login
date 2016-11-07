@@ -39,8 +39,10 @@ export CLASSPATH=/Users/Rasmus/Library/Java/Extensions:.
 # Avoid accidental removal, prompt first.
 # alias rmi='rm -i'
 
+# ================================================================================ 
 # Change command line prompt into a penis with length proportional to the
 # distance from root
+
 # repeat char n times (found on SO)
 repl() { printf "$1"'%.s' $(eval "echo {1.."$(($2))"}"); } 
 
@@ -53,7 +55,8 @@ depth() {
       echo $(echo "$1/" | grep -o "/" | wc -l)
    fi 
 }
-export PS1='`date +%H:%M:%S`: \[\e[1;33m\]8`repl = $(depth "$(pwd)")`o\[\e[m\]:[\[\e[35m\]\W\[\e[m\]] '
+export PS1='`date +%H:%M:%S`: \[\e[1;33m\]8`repl 𝌆 $(depth "$(pwd)")`D\[\e[m\]:[\[\e[35m\]\W\[\e[m\]] '
+# ================================================================================ 
 
 export TEX=/users/rasmus/documents/latex/texnisches/
 export DROPBOX='/Volumes/Macintosh HD/Users/Rasmus/Dropbox'
