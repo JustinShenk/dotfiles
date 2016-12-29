@@ -10,12 +10,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
+" Plugin 'VundleVim/Vundle.vim'
+" Plugin 'klen/python-mode'
 Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'junegunn/limelight.vim'
-Plugin 'junegunn/rainbow_parentheses.vim'
+" Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'b4winckler/vim-angry'
 Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdtree'
@@ -82,11 +82,11 @@ if !has('gui_running')
 endif
 set background=light
 colorscheme solarized
-hi Visual ctermbg=105
-hi MatchParen cterm=bold ctermbg=125 ctermfg=0
-hi Normal ctermfg=253
+" hi Visual ctermbg=105
+" hi MatchParen cterm=bold ctermbg=125 ctermfg=0
+" hi Normal ctermfg=253
 
-" colo sweater
+" colo zenburn
 
 " Enable mouse with option key press (not needed in iTerm)
 set mouse=a
@@ -97,7 +97,6 @@ map <C-l> gt
 
 " Enable automatic indentation
 set autoindent
-set smartindent
 
 " Line numbers
 set number
@@ -183,13 +182,14 @@ vmap gw :s/\%V\<./\u&/g<CR>
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_complete_in_comments = 1
 
 " For UltiSnips
 let g:UltiSnipsExpandTrigger="<C-J>"
 let g:UltiSnipsJumpForwardTrigger="<C-J>"
-let g:UltiSnipsJumpBackwardTrigger="<C-H>" " not working
+let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
+
 
 " C++ template files; does not work with ftplugin
 " autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
@@ -211,4 +211,3 @@ set t_Co=256
 hi Comment cterm=bold
 " let g:auto_save = 1  " enable AutoSave on Vim startup
 " let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
-

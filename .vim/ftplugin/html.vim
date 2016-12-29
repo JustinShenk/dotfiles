@@ -1,4 +1,4 @@
-map <buffer> <C-a> :wa <C-m> :!clear;open "%" <C-m><C-m>
+map <buffer> <C-a> :wa!<C-m>:!clear;open "%"<C-m><C-m>
 
 inoremap <buffer> < <><Esc>i
 
@@ -11,5 +11,3 @@ inoremap <buffer> <Char-214> &Oml;
 inoremap <buffer> <Char-196> &Aml;
 inoremap <buffer> <Char-223> &szlig;
 inoremap <buffer> & &amp;
-
-set textwidth=75

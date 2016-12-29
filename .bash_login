@@ -16,7 +16,7 @@ export PATH=$PATH:$HOME/Documents/Programming/Bash
 # the default (it has a symbol). For whatever reason there are multiple wishes
 # on my system. 22.4.13: Undid change because - unbelievably - python cannot
 # import cv2 if /usr/bin is at that position]
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin:/opt/local/libexec/qt4/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin:/opt/local/libexec/qt4/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/3.5/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/:$PATH
 # second part
 #
 # Default env variable $LANG
@@ -123,12 +123,4 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 fi
 
 alias vi='vim'
-
-##
-# Your previous /Users/Rasmus/.bash_login file was backed up as /Users/Rasmus/.bash_login.macports-saved_2016-10-24_at_12:00:28
-##
-
-# MacPorts Installer addition on 2016-10-24_at_12:00:28: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
+alias pytest='py.test'
