@@ -13,6 +13,8 @@ call vundle#begin()
 " Plugin 'VundleVim/Vundle.vim'
 " Plugin 'klen/python-mode'
 Plugin 'rust-lang/rust.vim'
+Plugin 'skywind3000/asyncrun.vim'
+Plugin 'w0rp/ale'
 Plugin 'tpope/vim-commentary'
 Plugin 'junegunn/limelight.vim'
 " Plugin 'junegunn/rainbow_parentheses.vim'
@@ -81,12 +83,9 @@ if !has('gui_running')
    let g:solarized_termcolors=256
 endif
 set background=light
-colorscheme solarized
-" hi Visual ctermbg=105
-" hi MatchParen cterm=bold ctermbg=125 ctermfg=0
-" hi Normal ctermfg=253
+" colorscheme solarized
 
-" colo zenburn
+colo zenburn
 
 " Enable mouse with option key press (not needed in iTerm)
 set mouse=a
@@ -145,7 +144,7 @@ let g:airline#extensions#tabline#enabled = 1
 " for syntastic
 " error line highlighting for syntastic
 " hi SyntasticErrorLine ctermbg=1
-let g:syntastic_tex_checkers=['']
+let g:syntastic_disabled_filetypes=['html', 'python', 'tex', 'latex']
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_c_include_dirs = [ '../include', 'include', '/opt/local/include', '/usr/local/include']
@@ -211,3 +210,30 @@ set t_Co=256
 hi Comment cterm=bold
 " let g:auto_save = 1  " enable AutoSave on Vim startup
 " let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+
+hi MatchParen ctermbg=190
+let g:ale_python_pylint_executable = 'python3.5'
+
+" Quick run via <F5>
+nnoremap <C-a> :call <SID>compile_and_run()<CR>
+
+augroup SPACEVIM_ASYNCRUN
+    autocmd!
+    " Automatically open the quickfix window
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
+augroup END
+
+function! s:compile_and_run()
+    exec 'w'
+    if &filetype == 'c'
+        exec "AsyncRun! clang % -o %<; time ./%<"
+    elseif &filetype == 'cpp'
+       exec "AsyncRun! clang++ -std=c++11 % -o %<; time ./%<"
+    elseif &filetype == 'java'
+       exec "AsyncRun! javac %; time java %<"
+    elseif &filetype == 'sh'
+       exec "AsyncRun! time bash %"
+    elseif &filetype == 'python'
+       exec "AsyncRun! time python %"
+    endif
+endfunction

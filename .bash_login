@@ -11,11 +11,6 @@ export LANG=en_US.UTF-8
 # Add own shell scripts to path
 export PATH=$PATH:$HOME/Documents/Programming/Bash
 
-# First part because one line is too long.. [21.4.13: Moved /usr/bin to front,
-# was after /opt/local/bin. I did this because the wish binary there should be
-# the default (it has a symbol). For whatever reason there are multiple wishes
-# on my system. 22.4.13: Undid change because - unbelievably - python cannot
-# import cv2 if /usr/bin is at that position]
 export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin:/opt/local/libexec/qt4/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/3.5/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/:$PATH
 # second part
 #
@@ -26,10 +21,6 @@ export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbi
 # directories and executables
 alias ls='ls -F'
 
-# Apple's python (or whichever is open when typing "python") displays segfault
-# when cv2 (opencv) is imported, therefore use python2.7 command (which I hope
-# was installed by macports)
-# alias python='python2.7'
 
 # To simply javadoc generation
 alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
@@ -68,17 +59,13 @@ alias ssh-quick="ssh rdiederichse@cip10.informatik.uos.de"
 export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/scheme-listings/:$TEXINPUTS
 export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/atmega-listings/:$TEXINPUTS
 
-##
-# Your previous /Users/Rasmus/.bash_login file was backed up as /Users/Rasmus/.bash_login.macports-saved_2014-10-29_at_09:40:56
-##
-
 export EDITOR=vim
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
 export CLICOLOR=1
 
 export UNI='/Users/Rasmus/Documents/Uni/Master/Semester 3/'
 
-# Chessus christ, why does pkg-config not know its own fckng standard directory,
+# Cheesus christ, why does pkg-config not know its own fckng standard directory,
 # what the actual fuck.
 PKG_CONFIG_PATH=/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PKG_CONFIG_PATH
@@ -99,6 +86,7 @@ alias make='make -j4'
 alias la='ls -a'
 
 export PATH=$PATH:~/Library/Python/2.7/bin/
+
 eval "$(thefuck --alias)"
 # You can use whatever you want as an alias, like for Mondays:
 eval "$(thefuck --alias FUCK)"
@@ -109,14 +97,6 @@ source ~/.iterm2_shell_integration.`basename $SHELL`
 # Add packagize to PATH 
 export PATH=$PATH:~/Documents/Programming/Ruby/packagize
 
-##
-# Your previous /Users/Rasmus/.bash_login file was backed up as /Users/Rasmus/.bash_login.macports-saved_2016-07-10_at_14:05:24
-##
-
-# MacPorts Installer addition on 2016-07-10_at_14:05:24: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
 # bash-completion
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
     . /opt/local/etc/profile.d/bash_completion.sh
@@ -124,3 +104,10 @@ fi
 
 alias vi='vim'
 alias pytest='py.test'
+
+# enable ctrl-s
+stty -ixon
+
+# dedup history
+export HISTCONTROL=ignoreboth:erasedups
+export MPLBACKEND="module://itermplot"
