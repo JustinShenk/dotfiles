@@ -10,19 +10,17 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
-" Plugin 'klen/python-mode'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-commentary'
 Plugin 'junegunn/limelight.vim'
-" Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'b4winckler/vim-angry'
 Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
-" Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
@@ -31,14 +29,16 @@ Plugin 'honza/vim-snippets'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'lervag/vimtex'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'rizzatti/dash.vim'
+" Plugin 'rizzatti/dash.vim'
+Plugin 'mhartington/oceanic-next'
+Plugin 'mhinz/vim-startify'
 call vundle#end()
 
 " Enable filetype plugins
 filetype plugin indent on
 
 " source this file whenever saved
-autocmd BufWritePost .vimrc source %
+" autocmd BufWritePost .vimrc source %
 
 " when you forget to sudo
 cmap w!! w !sudo tee > /dev/null %
@@ -82,10 +82,7 @@ map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
 if !has('gui_running')
    let g:solarized_termcolors=256
 endif
-set background=light
-" colorscheme solarized
-
-colo zenburn
+colorscheme OceanicNext
 
 " Enable mouse with option key press (not needed in iTerm)
 set mouse=a
