@@ -215,7 +215,7 @@ hi MatchParen ctermbg=190
 let g:ale_python_pylint_executable = 'python3.5'
 
 " Quick run via <F5>
-nnoremap <C-a> :call <SID>compile_and_run()<CR>
+nnoremap <C-s> :call <SID>compile_and_run()<CR>
 
 augroup SPACEVIM_ASYNCRUN
     autocmd!
@@ -237,3 +237,12 @@ function! s:compile_and_run()
        exec "AsyncRun! time python %"
     endif
 endfunction
+
+set formatoptions+=j " Delete comment character when joining commented lines
+
+" scroll wheel moves through time instead of space " <https://xkcd.com/1806/>
+" set mouse=a
+" nnoremap <ScrollWheelUp> u
+" nnoremap <ScrollWheelDown> <C-r>
+" inoremap <ScrollWheelUp> <Esc>ui
+" inoremap <ScrollWheelDown> <Esc><C-r>i
