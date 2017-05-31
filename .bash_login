@@ -1,5 +1,3 @@
-clear;pwd;ls
-
 stty werase undef
 bind '"\C-w": backward-kill-word'
 # bind '"\C-j": unix-word-rubout' # causes iTerm+Go2Shell fuckups
@@ -63,7 +61,8 @@ export EDITOR=vim
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
 export CLICOLOR=1
 
-export UNI='/Users/Rasmus/Documents/Uni/Master/Semester 3/'
+export UNI='/Users/Rasmus/Documents/Uni/Master/Semester 4/'
+alias uni='cd "$UNI"'
 
 # Cheesus christ, why does pkg-config not know its own fckng standard directory,
 # what the actual fuck.
@@ -110,9 +109,7 @@ stty -ixon
 
 # dedup history
 export HISTCONTROL=ignoreboth:erasedups
-export MPLBACKEND="module://itermplot"
-
-alias cat='lolcat'
+# export MPLBACKEND="module://itermplot"
 
 ################################################################################
 #                       Stuff from mrzool/bash-sensible                        #
@@ -173,3 +170,6 @@ shopt -s cdspell 2> /dev/null
 # Add the directories you want to have fast access to, separated by colon
 # Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projects folder
 CDPATH="."
+
+# Webdrivers
+export PATH=$PATH:/usr/local/bin/Webdrivers/

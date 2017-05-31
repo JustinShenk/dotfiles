@@ -21,7 +21,7 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'bling/vim-airline'
 Plugin 'SirVer/ultisnips'
@@ -30,7 +30,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'lervag/vimtex'
 Plugin 'altercation/vim-colors-solarized'
 " Plugin 'rizzatti/dash.vim'
-Plugin 'mhartington/oceanic-next'
+" Plugin 'mhartington/oceanic-next'
 Plugin 'mhinz/vim-startify'
 call vundle#end()
 
@@ -82,7 +82,7 @@ map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
 if !has('gui_running')
    let g:solarized_termcolors=256
 endif
-colorscheme OceanicNext
+colorscheme Solarized
 
 " Enable mouse with option key press (not needed in iTerm)
 set mouse=a
@@ -141,13 +141,13 @@ let g:airline#extensions#tabline#enabled = 1
 " for syntastic
 " error line highlighting for syntastic
 " hi SyntasticErrorLine ctermbg=1
-let g:syntastic_disabled_filetypes=['html', 'python', 'tex', 'latex']
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_c_include_dirs = [ '../include', 'include', '/opt/local/include', '/usr/local/include']
-let g:syntastic_c_check_header = 1
-let g:syntastic_cpp_include_dirs = g:syntastic_c_include_dirs
-let g:syntastic_cpp_check_header = g:syntastic_c_check_header
+" let g:syntastic_disabled_filetypes=['html', 'python', 'tex', 'latex']
+" let g:syntastic_cpp_compiler = 'clang++'
+" let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+" let g:syntastic_c_include_dirs = [ '../include', 'include', '/opt/local/include', '/usr/local/include']
+" let g:syntastic_c_check_header = 1
+" let g:syntastic_cpp_include_dirs = g:syntastic_c_include_dirs
+" let g:syntastic_cpp_check_header = g:syntastic_c_check_header
 
 " not sure anymore what this does
 set omnifunc=syntaxcomplete#Complete
