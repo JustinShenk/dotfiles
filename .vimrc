@@ -1,4 +1,3 @@
-
 let g:python_host_prog='/opt/local/bin/python2.7'
 
 " Init Vundle
@@ -107,7 +106,7 @@ map <F3> :set nospell <CR>
 
 
 " Tabwidth
-set tabstop=3
+set tabstop=4
 
 " Since apparently backspace stopped working as usual in vim 7.3, this is
 " necessary
@@ -119,7 +118,7 @@ set ruler
 " Enforce linebreaking at textwidth although some filteypes disagree
 " autocmd BufNewFile,BufRead * setlocal formatoptions+=croqlt
 
-set shiftwidth=3
+set shiftwidth=4
 
 " easier moving of visually selected lines
 vnoremap < <gv
@@ -180,7 +179,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_complete_in_comments = 1
-
+nmap <C-c> :YcmCompleter GetDoc<CR>
 " For UltiSnips
 let g:UltiSnipsExpandTrigger="<C-J>"
 let g:UltiSnipsJumpForwardTrigger="<C-J>"
@@ -243,3 +242,8 @@ set formatoptions+=j " Delete comment character when joining commented lines
 " nnoremap <ScrollWheelDown> <C-r>
 " inoremap <ScrollWheelUp> <Esc>ui
 " inoremap <ScrollWheelDown> <Esc><C-r>i
+
+set backspace=indent,eol,start
+set smarttab
+set wildmenu
+set scrolloff=5
