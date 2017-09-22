@@ -10,7 +10,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-scripts/github-theme'
+Plugin 'nightsense/night-and-day'
 Plugin 'rust-lang/rust.vim'
+Plugin 'python-mode/python-mode'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'w0rp/ale'
 Plugin 'tpope/vim-commentary'
@@ -76,11 +79,6 @@ set incsearch
 " shortcut to paste code from system clipboard
 map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
 
-
-" Solarized colorscheme
-if !has('gui_running')
-   let g:solarized_termcolors=256
-endif
 colorscheme Solarized
 
 " Enable mouse with option key press (not needed in iTerm)
@@ -198,8 +196,7 @@ let NERDTreeShowHidden=1
 " Replace math tex commands with unicode glyphs
 set cole=2
 
-" Fold equally indented lines 
-" set foldmethod=indent
+set foldopen=jump,hor,undo,percent,block,mark
 
 set t_Co=256
 
@@ -247,3 +244,11 @@ set backspace=indent,eol,start
 set smarttab
 set wildmenu
 set scrolloff=5
+
+nnoremap n nzz
+let g:nd_themes = [
+  \ ['sunrise+0', 'solarized',            'light' ],
+  \ ['sunrise+4/5',    'solarized',            'dark'  ],
+  \ ]
+let g:nd_latitude = '50'
+let g:nd_timeshift = '8'
