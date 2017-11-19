@@ -1,0 +1,21 @@
+[user]
+    name = Rasmus Diederichsen
+    email = rdiederichse@uos.de
+[push]
+    default = matching
+[alias]
+    st = status -s
+    vommit = vomit
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    filelog = log -u
+    difflast = "!git ll -1"
+    diffcommit  = "!f() { git diff "$1"^.."$1"; }; f"
+    cp = cherry-pick
+    cl = clone
+    ci = commit
+    co = checkout
+    br = branch
+    diff = diff --word-diff
+    dc = diff --cached
+    logtree="log --graph --oneline --decorate --all"
+    aliases = "!git config -l | grep alias | cut -c 7-"

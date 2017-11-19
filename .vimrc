@@ -12,15 +12,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'mikewest/vimroom'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'tpope/vim-commentary'
-" Plugin 'junegunn/limelight.vim'
 Plugin 'b4winckler/vim-angry'
 Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
-" Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
-" Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -32,9 +29,7 @@ Plugin 'lervag/vimtex'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mhartington/oceanic-next'
 Plugin 'mhinz/vim-startify'
-" Plugin 'python-mode/python-mode'
-Plugin 'heavenshell/vim-pydocstring'
-" Plugin 'szw/vim-g'
+Plugin 'python-mode/python-mode'
 Plugin 'nightsense/night-and-day'
 call vundle#end()
 
@@ -55,34 +50,95 @@ set bs=2
 " Show current row and column number
 set ruler
 
-" Enforce linebreaking at textwidth although some filteypes disagree
-" autocmd BufNewFile,BufRead * setlocal formatoptions+=croqlt
-
 set shiftwidth=4
 
 " let tabs be spaces
 set expandtab
 
-" specify dictionary
-set dictionary+=/usr/share/dict/words
-set dictionary+=/usr/share/dict/propernames
+" source this file whenever saved
+" autocmd BufWritePost .vimrc source %
+
+" when you forget to sudo
+cmap w!! w !sudo tee > /dev/null %
+
+" set encoding=utf-8
+set fileencoding=utf-8
+
+" jump between angle brackets
+set matchpairs+=<:>
+
+" autocomplete parens
+inoremap ( ()<Esc>i
+
+inoremap { {}<Esc>i
+
+inoremap [ []<Esc>i
+
+inoremap " ""<Esc>i
+
+inoremap ' ''<Esc>i
+
+" make j and k move display lines, not real lines. wrapped (not broken) text is
+" annoying otherwise
+nnoremap k gk
+nnoremap j gj
+nnoremap gk k
+nnoremap gj j
+
+" saving all buffers
+nmap ü :wa<CR>
+
+" shortcut to paste code from system clipboard
+map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
+
+" Enable mouse with option key press (not needed in iTerm)
+set mouse=a
+
+" switch tabs quicker
+nnoremap <C-h> gT
+nnoremap <C-l> gt
+map <C-l> gt
+
+" Enable automatic indentation
+set autoindent
+
+" Line numbers
+set number
+
+" Set column width to 80 characters
+set textwidth=80
+
+" Shortcuts for english and german spellchek
+map <F1> :set spell spelllang=en_gb <CR>
+map <F2> :set spell spelllang=de <CR>
+map <F3> :set nospell <CR>
+
+
+" easier moving of visually selected lines
+vnoremap < <gv
+vnoremap > >gv
+
+" select word in normal mode
+nmap <space> viw
+" ... and then unselect with same key
+vmap <space> <esc>
+
+map <leader>n :bnext<CR>
+map <leader>p :bprevious<CR>
+
+" Capitalise each word in selection
+vmap gw :s/\%V\<./\u&/g<CR>
+
+
+" Quick run via <F5>
+nnoremap <C-s> :call <SID>compile_and_run()<CR>
+
 
 " Syntax highlighting
 syntax on
 
 " for vim-airline
 let g:airline#extensions#tabline#enabled = 1
-
-" for syntastic
-" error line highlighting for syntastic
-" hi SyntasticErrorLine ctermbg=1
-" let g:syntastic_disabled_filetypes=['html', 'python', 'tex', 'latex']
-" let g:syntastic_cpp_compiler = 'clang++'
-" let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-" let g:syntastic_c_include_dirs = [ '../include', 'include', '/opt/local/include', '/usr/local/include']
-" let g:syntastic_c_check_header = 1
-" let g:syntastic_cpp_include_dirs = g:syntastic_c_include_dirs
-" let g:syntastic_cpp_check_header = g:syntastic_c_check_header
 
 " not sure anymore what this does
 set omnifunc=syntaxcomplete#Complete
@@ -114,7 +170,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
 
 
 " C++ template files; does not work with ftplugin
-" autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
+autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
 
 " LaTeX class files
 autocmd BufEnter *.cls :setlocal filetype=tex
@@ -193,4 +249,3 @@ let g:nd_themes = [
 \]
 
 let g:nd_latitude = '50'
-
