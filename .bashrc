@@ -174,7 +174,7 @@ if [ ! -z "$PS1" ]; then
     export PATH=$PATH:~/.local/bin:/home/student/r/rdiederichse/Downloads/Sources/slam6d-code/bin/
 
     alias catkin_make=catkin_boi
-
+    # export TERM=xterm-256color
 fi
 
 # added by Miniconda3 installer
@@ -192,62 +192,62 @@ SECS=1
 rosmux() {
     # why run pg_pluto at start of every session? dunno why, but the sessions
     # don't seem to inherit env vars unless we sleep excessively ¯\_(ツ)_/¯
-    tmux new-session -ds roscore
+    tmux new-session -ds pg-roscore
     sleep $SECS
-    tmux send-keys -t roscore "pg_pluto && roscore" Enter
+    tmux send-keys -t pg-roscore "pg_pluto && roscore" Enter
     echo "Session: roscore started."
     sleep $SECS
-    tmux new-session -ds edit
-    tmux send-keys -t edit "pg_pluto && roscd hyperspectral_calibration" Enter
+    tmux new-session -ds pg-edit
+    tmux send-keys -t pg-edit "pg_pluto && roscd hyperspectral_calibration" Enter
     echo "Session: edit started."
-    tmux new-session -ds rosbag
-    tmux send-keys -t rosbag "pg_pluto" Enter
+    tmux new-session -ds pg-rosbag
+    tmux send-keys -t pg-rosbag "pg_pluto" Enter
     echo "Session: rosbag started."
-    tmux new-session -ds compile
-    tmux send-keys -t compile "pg_pluto && cd $PLUTO_WORKSPACE" Enter
-    tmux send-keys -t compile "catkin_make -DCMAKE_BUILD_TYPE=Debug -j7" Enter
+    tmux new-session -ds pg-compile
+    tmux send-keys -t pg-compile "pg_pluto && cd $PLUTO_WORKSPACE" Enter
+    tmux send-keys -t pg-compile "catkin_make -DCMAKE_BUILD_TYPE=Debug -j7" Enter
     echo "Session: compile started."
-    tmux new-session -ds roslaunch
-    tmux send-keys -t roslaunch "pg_pluto" Enter
+    tmux new-session -ds pg-roslaunch
+    tmux send-keys -t pg-roslaunch "pg_pluto" Enter
     # tmux split-window -v
-    # tmux send-keys -t roslaunch:0.0 "roslaunch hyperspectral_calibration colorize_cloud.launch use_rgb_only:=false start_pylon_driver:=true outdoor:=false"
+    # tmux send-keys -t pg-roslaunch:0.0 "roslaunch hyperspectral_calibration colorize_cloud.launch use_rgb_only:=false start_pylon_driver:=true outdoor:=false"
     echo "Session: roslaunch started."
-    tmux new-session -ds riegl
+    tmux new-session -ds pg-riegl
     tmux split-window -v
-    tmux send-keys -t riegl:0.0 "pg_pluto && roslaunch riegl_driver riegl_vz400i.launch fields:=2" Enter
-    tmux send-keys -t riegl:0.1 "pg_pluto roslaunch riegl_vline_teleop riegl_vz400i.launch phi_min:=270 phi_max:=330 theta_min:=30 theta_max:=150 phi_incr:=1 theta_incr:=1"
+    tmux send-keys -t pg-riegl:0.0 "pg_pluto && roslaunch riegl_driver riegl_vz400i.launch fields:=2" Enter
+    tmux send-keys -t pg-riegl:0.1 "pg_pluto roslaunch riegl_vline_teleop riegl_vz400i.launch phi_min:=270 phi_max:=330 theta_min:=30 theta_max:=150 phi_incr:=1 theta_incr:=1"
     echo "Session: riegl started."
-    tmux new-session -ds rviz
-    tmux send-keys -t rviz "sleep 1" Enter
-    tmux send-keys -t rviz "pg_pluto && rviz" Enter
+    tmux new-session -ds pg-rviz
+    tmux send-keys -t pg-rviz "sleep 1" Enter
+    tmux send-keys -t pg-rviz "pg_pluto && rviz" Enter
     echo "Session: rviz started."
 }
 
 tfmux() {
     cd ~/Documents/TensorBros/ann-tensorflow
-    tmux new-session -ds edit-tf
-    tmux send-keys -t edit-tf "source activate tfenv" Enter
-    tmux new-session -ds run-tf
-    tmux send-keys -t run "source activate tfenv" Enter
-    tmux new-session -ds jupyter-tf
-    tmux send-keys -t jupyter-tf "source activate tfenv" Enter
-    tmux send-keys -t jupyter-tf "jupyter notebook" Enter
-    tmux new-session -ds ipython-tf
-    tmux send-keys -t ipython-tf "source activate tfenv" Enter
-    tmux send-keys -t ipython-tf "ipython" Enter
+    tmux new-session -ds tf-edit
+    tmux send-keys -t tf-edit "source activate tfenv" Enter
+    tmux new-session -ds tf-run
+    tmux send-keys -t tf-run "source activate tfenv" Enter
+    tmux new-session -ds tf-jupyter
+    tmux send-keys -t tf-jupyter "source activate tfenv" Enter
+    tmux send-keys -t tf-jupyter "jupyter notebook" Enter
+    tmux new-session -ds tf-ipython
+    tmux send-keys -t tf-ipython "source activate tfenv" Enter
+    tmux send-keys -t tf-ipython "ipython" Enter
 }
 
 cvmux() {
     sshfs rdiederichse@bias.cv.uos.de:/home/student/r/rdiederichse ~/bias\@cv/
     cd ~/bias@cv/qtpyvis
-    tmux new-session -ds edit
-    tmux send-keys -t edit "source activate rdiederichse-env" Enter
-    tmux new-session -ds install
-    tmux send-keys -t install "source activate rdiederichse-env" Enter
-    tmux new-session -ds monitor
-    tmux send-keys -t monitor "source activate rdiederichse-env" Enter
-    tmux new-session -ds run
-    tmux send-keys -t run "source activate rdiederichse-env" Enter
+    tmux new-session -ds cv-edit
+    tmux send-keys -t cv-edit "source activate rdiederichse-env" Enter
+    tmux new-session -ds cv-install
+    tmux send-keys -t cv-install "source activate rdiederichse-env" Enter
+    tmux new-session -ds cv-monitor
+    tmux send-keys -t cv-monitor "source activate rdiederichse-env" Enter
+    tmux new-session -ds cv-run
+    tmux send-keys -t cv-run "source activate rdiederichse-env" Enter
 }
 
 # lost me graphics card :(
