@@ -5,7 +5,7 @@
     default = matching
 [alias]
     st = status -s
-    vommit = vomit
+    vomit = commit
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     filelog = log -u
