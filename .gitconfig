@@ -16,6 +16,7 @@
     ci = commit
     co = checkout
     br = branch
+    brunch = branch
     diff = diff --word-diff
     dc = diff --cached
     logtree="log --graph --oneline --decorate --all"
