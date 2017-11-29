@@ -13,7 +13,7 @@ setlocal fo-=t fo+=croql
 
 set syntax=cpp.doxygen
 
-map <buffer> <C-k> :!tmux send-keys -t pg-compile "catkin_make -DCMAKE_BUILD_TYPE=Debug -j7" Enter <CR><CR>
+map <buffer> <C-k> :!tmux send-keys -t pg-compile "catkin_make -DCMAKE_BUILD_TYPE=Release -j7" Enter <CR><CR>
 
 set colorcolumn=120
 highlight ColorColumn ctermbg=darkgray
