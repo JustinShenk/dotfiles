@@ -175,6 +175,8 @@ if [ ! -z "$PS1" ]; then
 
     alias catkin_make=catkin_boi
     # export TERM=xterm-256color
+
+    alias mv="mv -n"
 fi
 
 # added by Miniconda3 installer
@@ -215,7 +217,7 @@ rosmux() {
     tmux new-session -ds pg-riegl
     tmux split-window -v
     tmux send-keys -t pg-riegl:0.0 "pg_pluto && roslaunch riegl_driver riegl_vz400i.launch fields:=2" Enter
-    tmux send-keys -t pg-riegl:0.1 "pg_pluto roslaunch riegl_vline_teleop riegl_vz400i.launch phi_min:=270 phi_max:=330 theta_min:=30 theta_max:=150 phi_incr:=1 theta_incr:=1"
+    tmux send-keys -t pg-riegl:0.1 "pg_pluto && roslaunch riegl_vline_teleop riegl_vz400i.launch phi_min:=270 phi_max:=330 theta_min:=30 theta_max:=150 phi_incr:=1 theta_incr:=1"
     echo "Session: riegl started."
     tmux new-session -ds pg-rviz
     tmux send-keys -t pg-rviz "sleep 1" Enter
@@ -250,8 +252,6 @@ cvmux() {
     tmux send-keys -t cv-run "source activate rdiederichse-env" Enter
 }
 
-# lost me graphics card :(
-# export CUDA_HOME=/usr/local/cuda
-# export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
-# export PATH="$CUDA_HOME/bin:$PATH"
-
+export CUDA_HOME=/usr/local/cuda
+export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
+export PATH="$CUDA_HOME/bin:$PATH"
