@@ -249,3 +249,6 @@ let g:nd_themes = [
 \]
 
 let g:nd_latitude = '50'
+
+let g:ultisnips_python_style = 'numpy'
+let g:ultisnips_python_triple_quoting_style = 'single'
