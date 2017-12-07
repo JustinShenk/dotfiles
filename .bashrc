@@ -10,23 +10,6 @@ if [ ! -z "$PS1" ]; then
 	export LANG=en_US.UTF-8
 
 
-	# ================================================================================
-	# Change command line prompt into a penis with length proportional to the
-	# distance from root
-
-	# repeat char n times (found on SO)
-	repl() { printf "$1"'%.s' $(eval "echo {1.."$(($2))"}"); }
-
-	# print distance from root. This works only correctly if there is no slash at
-	# the end of the path given.
-	depth() {
-		if [ "$1" = '/' ]; then
-			echo 1
-		else
-			echo $(echo "$1/" | grep -o "/" | wc -l)
-		fi
-	}
-
 	export EDITOR=vim
 	export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
 	export CLICOLOR=1
