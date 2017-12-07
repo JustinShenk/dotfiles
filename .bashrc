@@ -35,10 +35,60 @@ if [ ! -z "$PS1" ]; then
 
 	alias make='make -j4'
 	alias la='ls -a'
-	alias ls='ls -F'
+	alias ls='ls -F --color=auto'
+	alias ll='ls -ahl'
+    # print large files
+    alias diskspace="du -S | sort -n -r |more"
+    # show size of folders in current dir
+    alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
 
+    alias ..="cd .."
+    alias ...="cd ../.."
+    alias ....="cd ../../.."
+    alias .....="cd ../../../.."
+
+    alias catkin_make=catkin_boi
+
+    alias mv="mv -n"
+	alias dick=git
+	alias open="xdg-open"
 	alias vi='vim'
 	alias pytest='py.test'
+
+
+    # extract any archive. Alternative: `sudo apt install unp`
+    extract () {
+       if [ -f $1 ] ; then
+           case $1 in
+               *.tar.bz2)   tar xvjf $1    ;;
+               *.tar.gz)    tar xvzf $1    ;;
+               *.bz2)       bunzip2 $1     ;;
+               *.rar)       unrar x $1     ;;
+               *.gz)        gunzip $1      ;;
+               *.tar)       tar xvf $1     ;;
+               *.tbz2)      tar xvjf $1    ;;
+               *.tgz)       tar xvzf $1    ;;
+               *.zip)       unzip $1       ;;
+               *.Z)         uncompress $1  ;;
+               *.7z)        7z x $1        ;;
+               *)           echo "don't know how to extract '$1'..." ;;
+           esac
+       else
+           echo "'$1' is not a valid file!"
+       fi
+    }
+
+    # Color for manpages in less makes manpages a little easier to read:
+    export LESS_TERMCAP_mb=$'\E[01;31m'
+    export LESS_TERMCAP_md=$'\E[01;31m'
+    export LESS_TERMCAP_me=$'\E[0m'
+    export LESS_TERMCAP_se=$'\E[0m'
+    export LESS_TERMCAP_so=$'\E[01;44;33m'
+    export LESS_TERMCAP_ue=$'\E[0m'
+    export LESS_TERMCAP_us=$'\E[01;32m'
+
+    # color grep commands
+    export GREP_OPTIONS='--color=auto'
 
 	# enable ctrl-s
 	stty -ixon
@@ -108,58 +158,25 @@ if [ ! -z "$PS1" ]; then
 
 	source ~/git-completion.bash
 
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]'
+    function __setprompt {
+      local BLUE="\[\033[0;34m\]"
+      local NO_COLOUR="\[\033[0m\]"
+      local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
+      local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
+      if [ $SSH2_IP ] || [ $SSH_IP ] ; then
+        local SSH_FLAG="@\h"
+      fi
+      PS1="$BLUE[\$(date +%H:%M)][\u$SSH_FLAG:\w]\\$ $NO_COLOUR"
+      PS2="$BLUE>$NO_COLOUR "
+      PS4='$BLUE+$NO_COLOUR '
+    }
+    __setprompt
 
-	# Own PS1 settings.
-	# Git info in prompt
-	COLOR_RED="\033[01;31m"
-	COLOR_YELLOW="\033[01;33m"
-	COLOR_GREEN="\033[0;32m"
-	COLOR_OCHRE="\033[38;5;95m"
-	COLOR_BLUE="\033[0;34m"
-	COLOR_WHITE="\033[0;37m"
-	COLOR_RESET="\033[0m"
-
-	function git_color {
-		local git_status="$(git status 2> /dev/null)"
-
-		if [[ ! $git_status =~ "working directory clean" ]]; then
-			echo -e $COLOR_RED
-		elif [[ $git_status =~ "Your branch is ahead of" ]]; then
-			echo -e $COLOR_YELLOW
-		elif [[ $git_status =~ "nothing to commit" ]]; then
-			echo -e $COLOR_GREEN
-		else
-			echo -e $COLOR_OCHRE
-		fi
-	}
-
-	function git_branch {
-	local git_status="$(git status 2> /dev/null)"
-	local on_branch="On branch ([^${IFS}]*)"
-	local on_commit="HEAD detached at ([^${IFS}]*)"
-
-	if [[ $git_status =~ $on_branch ]]; then
-		local branch=${BASH_REMATCH[1]}
-		echo "($branch)"
-	elif [[ $git_status =~ $on_commit ]]; then
-		local commit=${BASH_REMATCH[1]}
-		echo "($commit)"
-	fi
-	}
-
-	# PS1+="\[$COLOR_WHITE\][\W]"          # basename of pwd
-	PS1+="\[\$(git_color)\]"        # colors git status
-	PS1+=" \$(git_branch)"           # prints current branch
-	PS1+="\[$COLOR_WHITE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
-	export PS1
 	export CCACHE_DIR=/local/.ccache
-	alias open="xdg-open"
 
 	export PATH=$PATH:$PYTHONPATH
 	export PATH=/usr/local/bin:$PATH # for newly compiled vim
 
-	alias dick=git
 	source ~/tmux.completion.bash
 
     # https://unix.stackexchange.com/a/217223/208945
@@ -173,10 +190,8 @@ if [ ! -z "$PS1" ]; then
 
     export PATH=$PATH:~/.local/bin:/home/student/r/rdiederichse/Downloads/Sources/slam6d-code/bin/
 
-    alias catkin_make=catkin_boi
-    # export TERM=xterm-256color
-
-    alias mv="mv -n"
+    # must press ctrl-D twice to exit
+    export IGNOREEOF="2"
 fi
 
 # added by Miniconda3 installer
