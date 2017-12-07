@@ -26,8 +26,6 @@ if [ ! -z "$PS1" ]; then
 			echo $(echo "$1/" | grep -o "/" | wc -l)
 		fi
 	}
-	# export PS1='\[\e[33m\]\W\[\e[m\] '
-	# ================================================================================
 
 	export EDITOR=vim
 	export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
@@ -40,7 +38,7 @@ if [ ! -z "$PS1" ]; then
     # print large files
     alias diskspace="du -S | sort -n -r |more"
     # show size of folders in current dir
-    alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+    alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -skh | sort -h'
 
     alias ..="cd .."
     alias ...="cd ../.."
@@ -166,7 +164,7 @@ if [ ! -z "$PS1" ]; then
       if [ $SSH2_IP ] || [ $SSH_IP ] ; then
         local SSH_FLAG="@\h"
       fi
-      PS1="$BLUE[\$(date +%H:%M)][\u$SSH_FLAG:\w]\\$ $NO_COLOUR"
+      PS1="$BLUE[\u$SSH_FLAG:\w]\\$ $NO_COLOUR"
       PS2="$BLUE>$NO_COLOUR "
       PS4='$BLUE+$NO_COLOUR '
     }
