@@ -1,7 +1,4 @@
-let g:python_host_prog='/opt/local/bin/python2.7'
-
-
-" Init Vundle
+" Vundle setup
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -10,38 +7,53 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
+" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-scripts/github-theme'
-Plugin 'mbbill/undotree'
-Plugin 'nightsense/night-and-day'
-Plugin 'rust-lang/rust.vim'
-Plugin 'python-mode/python-mode'
+Plugin 'mikewest/vimroom'
 Plugin 'skywind3000/asyncrun.vim'
-Plugin 'w0rp/ale'
 Plugin 'tpope/vim-commentary'
-Plugin 'junegunn/limelight.vim'
 Plugin 'b4winckler/vim-angry'
 Plugin 'junegunn/goyo.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'airblade/vim-gitgutter'
-" Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+if has('python')
+    Plugin 'taketwo/vim-ros'
+endif
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'lervag/vimtex'
 Plugin 'altercation/vim-colors-solarized'
-" Plugin 'rizzatti/dash.vim'
-" Plugin 'mhartington/oceanic-next'
+Plugin 'mhartington/oceanic-next'
 Plugin 'mhinz/vim-startify'
-Plugin 'frankier/neovim-colors-solarized-truecolor-only'
+Plugin 'python-mode/python-mode'
+Plugin 'nightsense/night-and-day'
 call vundle#end()
 
 " Enable filetype plugins
 filetype plugin indent on
+
+" highlight incremental matches while typing (you still need to press enter to get
+" there)
+set incsearch
+
+" Tabwidth
+set tabstop=4
+
+" Since apparently backspace stopped working as usual in vim 7.3, this is
+" necessary
+set bs=2
+
+" Show current row and column number
+set ruler
+
+set shiftwidth=4
+
+" let tabs be spaces
+set expandtab
 
 " source this file whenever saved
 " autocmd BufWritePost .vimrc source %
@@ -70,20 +82,14 @@ inoremap ' ''<Esc>i
 " annoying otherwise
 nnoremap k gk
 nnoremap j gj
-nnoremap gk k 
-nnoremap gj j 
+nnoremap gk k
+nnoremap gj j
 
 " saving all buffers
 nmap ü :wa<CR>
 
-" highlight incremental matches while typing (you still need to press enter to get
-" there)
-set incsearch
-
 " shortcut to paste code from system clipboard
 map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
-
-colorscheme Solarized
 
 " Enable mouse with option key press (not needed in iTerm)
 set mouse=a
@@ -91,6 +97,7 @@ set mouse=a
 " switch tabs quicker
 nnoremap <C-h> gT
 nnoremap <C-l> gt
+map <C-l> gt
 
 " Enable automatic indentation
 set autoindent
@@ -107,68 +114,15 @@ map <F2> :set spell spelllang=de <CR>
 map <F3> :set nospell <CR>
 
 
-" Tabwidth
-set tabstop=4
-
-" Since apparently backspace stopped working as usual in vim 7.3, this is
-" necessary
-set bs=2
-
-" Show current row and column number
-set ruler
-
-" Enforce linebreaking at textwidth although some filteypes disagree
-" autocmd BufNewFile,BufRead * setlocal formatoptions+=croqlt
-
-set shiftwidth=4
-
 " easier moving of visually selected lines
 vnoremap < <gv
 vnoremap > >gv
-
-" let tabs be spaces
-set expandtab
-
-" specify dictionary
-set dictionary+=/usr/share/dict/words 
-set dictionary+=/usr/share/dict/propernames
-
-" Syntax highlighting
-syntax on
-
-" for vim-airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='solarized'
- 
-" for syntastic
-" error line highlighting for syntastic
-" hi SyntasticErrorLine ctermbg=1
-" let g:syntastic_disabled_filetypes=['html', 'python', 'tex', 'latex']
-" let g:syntastic_cpp_compiler = 'clang++'
-" let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-" let g:syntastic_c_include_dirs = [ '../include', 'include', '/opt/local/include', '/usr/local/include']
-" let g:syntastic_c_check_header = 1
-" let g:syntastic_cpp_include_dirs = g:syntastic_c_include_dirs
-" let g:syntastic_cpp_check_header = g:syntastic_c_check_header
-
-" not sure anymore what this does
-set omnifunc=syntaxcomplete#Complete
-
-" not sure anymore what this does
-set wildmode=longest,list
-
-" languagetool path for grammar checking
-let g:languagetool_jar='/usr/local/share/LanguageTool-3.4/languagetool-commandline.jar'
 
 " select word in normal mode
 nmap <space> viw
 " ... and then unselect with same key
 vmap <space> <esc>
 
-" allow to switch buffers when unsaved changes in current buffer
-set hidden
-
-let mapleader="-"
 map <leader>n :bnext<CR>
 map <leader>p :bprevious<CR>
 
@@ -176,14 +130,39 @@ map <leader>p :bprevious<CR>
 vmap gw :s/\%V\<./\u&/g<CR>
 
 
+" Quick run via <F5>
+nnoremap <C-s> :call <SID>compile_and_run()<CR>
+
+
+" Syntax highlighting
+syntax on
+
+" for vim-airline
+let g:airline#extensions#tabline#enabled = 1
+
+" not sure anymore what this does
+set omnifunc=syntaxcomplete#Complete
+
+" not sure anymore what this does
+set wildmode=longest,list
+
+" allow to switch buffers when unsaved changes in current buffer
+set hidden
+
+let mapleader="-"
 " for YouCompleteMe
-let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:ycm_complete_in_comments = 1
+let g:ycm_show_diagnostics_ui = 0
 nmap <C-c> :YcmCompleter GetDoc<CR>
+let g:ycm_semantic_triggers = {
+\   'roslaunch' : ['="', '$(', '/'],
+\   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
+\ }
 " For UltiSnips
 let g:UltiSnipsExpandTrigger="<C-J>"
 let g:UltiSnipsJumpForwardTrigger="<C-J>"
@@ -191,7 +170,7 @@ let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
 
 
 " C++ template files; does not work with ftplugin
-" autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
+autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
 
 " LaTeX class files
 autocmd BufEnter *.cls :setlocal filetype=tex
@@ -202,19 +181,15 @@ let NERDTreeShowHidden=1
 " Replace math tex commands with unicode glyphs
 set cole=2
 
-set foldopen=jump,hor,undo,percent,block,mark
-
-set t_Co=256
+" Fold equally indented lines
+" set foldmethod=indent
 
 hi Comment cterm=bold
 " let g:auto_save = 1  " enable AutoSave on Vim startup
 " let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
 
 hi MatchParen ctermbg=190
-let g:ale_python_pylint_executable = 'python3.5'
-
-" Quick run via <F5>
-nnoremap <C-s> :call <SID>compile_and_run()<CR>
+let g:ale_python_pylint_executable = 'python3.6'
 
 augroup SPACEVIM_ASYNCRUN
     autocmd!
@@ -233,7 +208,7 @@ function! s:compile_and_run()
     elseif &filetype == 'sh'
        exec "AsyncRun! time bash %"
     elseif &filetype == 'python'
-       exec "AsyncRun! time python %"
+       exec "AsyncRun! time python3 %"
     endif
 endfunction
 
@@ -246,17 +221,34 @@ set formatoptions+=j " Delete comment character when joining commented lines
 " inoremap <ScrollWheelUp> <Esc>ui
 " inoremap <ScrollWheelDown> <Esc><C-r>i
 
+autocmd BufWrite * silent! :%s/\s\+$//g
+
+" Solarized colorscheme
+" if !has('gui_running')
+"    let g:solarized_termcolors=256
+" endif
+let g:solarized_termcolors=256
+set t_Co=256
+
 set backspace=indent,eol,start
 set smarttab
 set wildmenu
 set scrolloff=5
 
-nnoremap n nzz
+" python-mode
+" if has('python3')
+"     let g:pymode_python = 'python3'
+" endif
+let g:pymode_options_max_line_length = 100
+let g:pymode_rope = 0
+let g:pymode_rope_lookup_project = 0
 
-" set colorscheme based on time of day
-let g:nd_latitude = '50'
-let g:nd_timeshift = '8'
 let g:nd_themes = [
-  \ ['sunrise+0', 'solarized',            'light' ],
-  \ ['sunset+0',    'solarized',            'dark'  ],
-  \ ]
+    \ ['sunrise+0', 'solarized', 'light'],
+    \ ['sunset+0', 'solarized', 'dark'],
+\]
+
+let g:nd_latitude = '50'
+
+let g:ultisnips_python_style = 'numpy'
+let g:ultisnips_python_triple_quoting_style = 'single'

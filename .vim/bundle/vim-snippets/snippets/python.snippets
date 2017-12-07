@@ -13,17 +13,17 @@ snippet from
 	from ${1:package} import ${0:module}
 # Module Docstring
 snippet docs
-	"""
+	'''
 	File: ${1:`vim_snippets#Filename('$1.py', 'foo.py')`}
 	Author: `g:snips_author`
 	Email: `g:snips_email`
 	Github: `g:snips_github`
 	Description: ${0}
-	"""
+	'''
 
 snippet wh
 	while ${1:condition}:
-		${0}
+		${0:${VISUAL}}
 # dowh - does the same as do...while in other languages
 snippet dowh
 	while True:
@@ -32,33 +32,45 @@ snippet dowh
 			break
 snippet with
 	with ${1:expr} as ${2:var}:
-		${0}
+		${0:${VISUAL}}
+snippet awith
+	async with ${1:expr} as ${2:var}:
+		${0:${VISUAL}}
 # New Class
 snippet cl
 	class ${1:ClassName}(${2:object}):
-		"""${3:docstring for $1}"""
+		'''${3:docstring for $1}'''
 		def __init__(self, ${4:arg}):
 			${5:super($1, self).__init__()}
 			self.$4 = $4
 			${0}
 # New Function
-# def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 snippet def
-	def ${1:fname}(${2:self}${3:,params}):
-		"""${4:docstring for $1}"""
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		'''${3:docstring for $1}'''
 		${0}
-# def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 snippet deff
-	def ${1:fname}(${2:self}${3:,params}):
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		${0}
+snippet adef
+	async def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		'''${3:docstring for $1}'''
+		${0}
+snippet adeff
+	async def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 		${0}
 # New Method
 snippet defm
 	def ${1:mname}(self, ${2:arg}):
 		${0}
+snippet adefm
+	async def ${1:mname}(self, ${2:arg}):
+		${0}
+
 # New Property
 snippet property
 	def ${1:foo}():
-		doc = "${2:The $1 property.}"
+		doc = '${2:The $1 property.}'
 		def fget(self):
 			${3:return self._$1}
 		def fset(self, value):
@@ -70,13 +82,13 @@ snippet property
 # Ifs
 snippet if
 	if ${1:condition}:
-		${0}
+		${0:${VISUAL}}
 snippet el
 	else:
-		${0}
+		${0:${VISUAL}}
 snippet ei
 	elif ${1:condition}:
-		${0}
+		${0:${VISUAL}}
 # For
 snippet for
 	for ${1:item} in ${2:items}:
@@ -95,27 +107,27 @@ snippet .
 	self.
 snippet try Try/Except
 	try:
-		${1}
-	except ${2:Exception}, ${3:e}:
+		${1:${VISUAL}}
+	except ${2:Exception} as ${3:e}:
 		${0:raise $3}
 snippet try Try/Except/Else
 	try:
-		${1}
-	except ${2:Exception}, ${3:e}:
+		${1:${VISUAL}}
+	except ${2:Exception} as ${3:e}:
 		${4:raise $3}
 	else:
 		${0}
 snippet try Try/Except/Finally
 	try:
-		${1}
-	except ${2:Exception}, ${3:e}:
+		${1:${VISUAL}}
+	except ${2:Exception} as ${3:e}:
 		${4:raise $3}
 	finally:
 		${0}
 snippet try Try/Except/Else/Finally
 	try:
-		${1}
-	except ${2:Exception}, ${3:e}:
+		${1:${VISUAL}}
+	except ${2:Exception} as ${3:e}:
 		${4:raise $3}
 	else:
 		${5}
@@ -130,34 +142,36 @@ snippet _
 	__${1:init}__
 # python debugger (pdb)
 snippet pdb
-	import pdb; pdb.set_trace()
+	__import__('pdb').set_trace()
+# bpython debugger (bpdb)
+snippet bpdb
+	__import__('bpdb').set_trace()
 # ipython debugger (ipdb)
 snippet ipdb
-	import ipdb; ipdb.set_trace()
+	__import__('ipdb').set_trace()
 # embed ipython itself
 snippet iem
-	import IPython; IPython.embed()
-# ipython debugger (pdbbb)
-snippet pdbbb
-	import pdbpp; pdbpp.set_trace()
+	__import__('IPython').embed()
 # remote python debugger (rpdb)
 snippet rpdb
-	import rpdb; rpdb.set_trace()
+	__import__('rpdb').set_trace()
+# web python debugger (wdb)
+snippet wdb
+	__import__('wdb').set_trace()
 # ptpython
 snippet ptpython
-	from ptpython.repl import embed
-	embed(globals(), locals(), vi_mode=${1:False}, history_filename=${2:None})
+	__import__('ptpython.repl', fromlist=('repl')).embed(globals(), locals(), vi_mode=${1:False}, history_filename=${2:None})
 # python console debugger (pudb)
 snippet pudb
-	import pudb; pudb.set_trace()
+	__import__('pudb').set_trace()
 # pdb in nosetests
 snippet nosetrace
-	from nose.tools import set_trace; set_trace()
+	__import__('nose').tools.set_trace()
 snippet pprint
-	import pprint; pprint.pprint(${1})
-snippet "
-	"""${0:doc}
-	"""
+	__import__('pprint').pprint(${1})
+snippet '
+	'''${0:doc}
+	'''
 # assertions
 snippet a=
 	self.assertEqual(${0}, ${1})
@@ -171,14 +185,19 @@ snippet testcase
 
 		def test_${2:description}(self):
 			${0}
+# test given when then
+snippet tgwt
+	# given: ${1}
+	# when: ${2}
+	# then: ${3}
 snippet fut
 	from __future__ import ${0}
 #getopt
 snippet getopt
 	try:
-		# Short option syntax: "hv:"
-		# Long option syntax: "help" or "verbose="
-		opts, args = getopt.getopt(sys.argv[1:], "${1:short_options}", [${2:long_options}])
+		# Short option syntax: 'hv:'
+		# Long option syntax: 'help' or 'verbose='
+		opts, args = getopt.getopt(sys.argv[1:], '${1:short_options}', [${2:long_options}])
 
 	except getopt.GetoptError, err:
 		# Print debug info
@@ -186,28 +205,28 @@ snippet getopt
 		${3:error_action}
 
 	for option, argument in opts:
-		if option in ("-h", "--help"):
+		if option in ('-h', '--help'):
 			${0}
-		elif option in ("-v", "--verbose"):
+		elif option in ('-v', '--verbose'):
 			verbose = argument
 # logging
 # glog = get log
 snippet glog
 	import logging
-	logger = logging.getLogger(${0:__name__})
+	LOGGER = logging.getLogger(${0:__name__})
 snippet le
-	logger.error(${0:msg})
+	LOGGER.error(${0:msg})
 # conflict with lambda=ld, therefor we change into Logger.debuG
 snippet lg
-	logger.debug(${0:msg})
+	LOGGER.debug(${0:msg})
 snippet lw
-	logger.warning(${0:msg})
+	LOGGER.warning(${0:msg})
 snippet lc
-	logger.critical(${0:msg})
+	LOGGER.critical(${0:msg})
 snippet li
-	logger.info(${0:msg})
+	LOGGER.info(${0:msg})
 snippet epydoc
-	"""${1:Description}
+	'''${1:Description}
 
 	@param ${2:param}: ${3: Description}
 	@type  $2: ${4: Type}
@@ -216,7 +235,7 @@ snippet epydoc
 	@rtype : ${6: Type}
 
 	@raise e: ${0: Description}
-	"""
+	'''
 snippet dol
 	def ${1:__init__}(self, *args, **kwargs):
 	    super(${0:ClassName}, self).$1(*args, **kwargs)
@@ -230,3 +249,13 @@ snippet kwargs
 	**kwargs${1:,}${0}
 snippet akw
 	*args, **kwargs${1:,}${0}
+
+# comprehensions
+snippet lcp list comprehension
+	[${1} for ${2} in ${3:${VISUAL}}]${0}
+
+snippet dcp dict comprehension
+	{${1}: ${2} for ${3} in ${4:${VISUAL}}}${0}
+
+snippet scp set comprehension
+	{${1} for ${2} in ${3:${VISUAL}}}${0}
