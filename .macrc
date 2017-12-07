@@ -1,0 +1,81 @@
+# Add own shell scripts to path
+export PATH=$PATH:$HOME/Documents/Programming/Bash
+
+export PATH=/Library/TeX/texbin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin:/opt/local/libexec/qt4/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/3.5/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/:$PATH
+
+
+# To simply javadoc generation
+alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
+
+export CLASSPATH=/Users/Rasmus/Library/Java/Extensions:.
+
+
+# ================================================================================
+# Change command line prompt into a penis with length proportional to the
+# distance from root
+
+# repeat char n times (found on SO)
+repl() { printf "$1"'%.s' $(eval "echo {1.."$(($2))"}"); }
+
+# print distance from root. This works only correctly if there is no slash at
+# the end of the path given.
+depth() {
+   if [ "$1" = '/' ]; then
+      echo 1
+   else
+      echo $(echo "$1/" | grep -o "/" | wc -l)
+   fi
+}
+export PS1='`date +%H:%M:%S`: \[\e[1;33m\]8`repl 𝌆 $(depth "$(pwd)")`D\[\e[m\]:[\[\e[35m\]\W\[\e[m\]] '
+# ================================================================================
+
+export TEX=/users/rasmus/documents/latex/texnisches/
+export DROPBOX='/Volumes/Macintosh HD/Users/Rasmus/Dropbox'
+
+# Include scheme-listings
+export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/scheme-listings/:$TEXINPUTS
+export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/atmega-listings/:$TEXINPUTS
+
+export UNI='/Users/Rasmus/Documents/Uni/'
+alias uni='cd "$UNI"'
+
+# Cheesus christ, why does pkg-config not know its own fckng standard directory,
+# what the actual fuck.
+PKG_CONFIG_PATH=/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+export PKG_CONFIG_PATH
+
+# Change to current Finder directory
+cdf() {
+    target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+    if [ "$target" != "" ]; then
+        cd "$target"; pwd
+    else
+        echo 'No Finder window found' >&2
+    fi
+}
+
+export PATH=$PATH:~/Library/Python/2.7/bin/
+
+eval "$(thefuck --alias)"
+# You can use whatever you want as an alias, like for Mondays:
+eval "$(thefuck --alias FUCK)"
+
+# iTerm shell integration
+source ~/.iterm2_shell_integration.`basename $SHELL`
+
+# Add packagize to PATH
+export PATH=$PATH:~/Documents/Programming/Ruby/packagize
+
+# bash-completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+    . /opt/local/etc/profile.d/bash_completion.sh
+fi
+
+# Webdrivers
+export PATH=$PATH:/usr/local/bin/Webdrivers/
+
+# Android sdk
+export PATH=$PATH:/opt/local/Android/tools
+
+# added by Miniconda3 installer
+export PATH="$PATH:/Users/Rasmus/miniconda3/bin"
