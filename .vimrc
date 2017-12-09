@@ -30,7 +30,6 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'mhartington/oceanic-next'
 Plugin 'mhinz/vim-startify'
 Plugin 'python-mode/python-mode'
-Plugin 'nightsense/night-and-day'
 call vundle#end()
 
 " Enable filetype plugins
@@ -223,12 +222,9 @@ set formatoptions+=j " Delete comment character when joining commented lines
 
 autocmd BufWrite * silent! :%s/\s\+$//g
 
-" Solarized colorscheme
-" if !has('gui_running')
-"    let g:solarized_termcolors=256
-" endif
 let g:solarized_termcolors=256
 set t_Co=256
+colo solarized
 
 set backspace=indent,eol,start
 set smarttab
@@ -240,15 +236,10 @@ set scrolloff=5
 "     let g:pymode_python = 'python3'
 " endif
 let g:pymode_options_max_line_length = 100
+let g:pymode_folding = 0
 let g:pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
-
-let g:nd_themes = [
-    \ ['sunrise+0', 'solarized', 'light'],
-    \ ['sunset+0', 'solarized', 'dark'],
-\]
-
-let g:nd_latitude = '50'
+let g:pymode_lint = 0
 
 let g:ultisnips_python_style = 'numpy'
 let g:ultisnips_python_triple_quoting_style = 'single'

@@ -16,7 +16,7 @@ if [ ! -z "$PS1" ]; then
 
 	alias make='make -j4'
 	alias la='ls -a'
-	alias ls='ls -F --color=auto'
+	alias ls='ls -FG'
 	alias ll='ls -ahl'
     # print large files
     alias diskspace="du -S | sort -n -r |more"
@@ -32,7 +32,6 @@ if [ ! -z "$PS1" ]; then
 
     alias mv="mv -n"
 	alias dick=git
-	alias open="xdg-open"
 	alias vi='vim'
 	alias pytest='py.test'
 
