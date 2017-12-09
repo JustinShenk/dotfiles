@@ -7,9 +7,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-" Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'mikewest/vimroom'
+if v:version >= 800
+    Plugin 'w0rp/ale'
+endif
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'b4winckler/vim-angry'
@@ -122,6 +124,7 @@ nmap <space> viw
 " ... and then unselect with same key
 vmap <space> <esc>
 
+let mapleader="-"
 map <leader>n :bnext<CR>
 map <leader>p :bprevious<CR>
 
@@ -180,15 +183,26 @@ let NERDTreeShowHidden=1
 " Replace math tex commands with unicode glyphs
 set cole=2
 
-" Fold equally indented lines
-" set foldmethod=indent
-
 hi Comment cterm=bold
 " let g:auto_save = 1  " enable AutoSave on Vim startup
 " let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
 
-hi MatchParen ctermbg=190
 let g:ale_python_pylint_executable = 'python3.6'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+
+let g:ale_linters = {
+            \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
+            \ 'cpp': ['cpplint', 'clang-format'],
+            \}
+
+let g:ale_fixers = {
+            \ 'python': ['add_blank_lines_for_python_control_statements',
+            \            'autopep8', 'isort', 'yapf'],
+            \ 'cpp': ['clang-format']
+            \}
+
+let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
 
 augroup SPACEVIM_ASYNCRUN
     autocmd!
@@ -232,14 +246,22 @@ set wildmenu
 set scrolloff=5
 
 " python-mode
-" if has('python3')
-"     let g:pymode_python = 'python3'
-" endif
+if has('python3')
+    let g:pymode_python = 'python3'
+endif
 let g:pymode_options_max_line_length = 100
 let g:pymode_folding = 0
 let g:pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
 let g:pymode_lint = 0
 
-let g:ultisnips_python_style = 'numpy'
-let g:ultisnips_python_triple_quoting_style = 'single'
+" Solarized colorscheme
+let g:solarized_termcolors=256
+set t_Co=256
+set bg=dark
+colo solarized
+
+let g:ultisnips_python_style = "numpy"
+let g:ultisnips_python_triple_quoting_style = "single"
+
+set laststatus=2

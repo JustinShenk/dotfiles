@@ -175,9 +175,8 @@ if [ ! -z "$PS1" ]; then
 fi
 
 case "$OSTYPE" in
-  solaris*) source ~/.ubunturc ;;
   darwin*)  source ~/.macrc ;;
-  linux*)   echo "LINUX" ;;
+  linux*)   source ~/.ubunturc ;;
   bsd*)     echo "BSD" ;;
   msys*)    echo "WINDOWS" ;;
   *)        echo "unknown: $OSTYPE" ;;
