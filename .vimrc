@@ -12,6 +12,7 @@ Plugin 'mikewest/vimroom'
 if v:version >= 800
     Plugin 'w0rp/ale'
 endif
+Plugin 'sjl/gundo.vim'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'b4winckler/vim-angry'
@@ -253,3 +254,10 @@ let g:ultisnips_python_style = "numpy"
 let g:ultisnips_python_triple_quoting_style = "single"
 
 set laststatus=2
+
+nnoremap B ^
+nnoremap ^ <nop>
+nnoremap E $
+nnoremap $ <nop>
+
+nnoremap gV `[v`]
