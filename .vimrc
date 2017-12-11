@@ -4,101 +4,101 @@ filetype off                  " required
 
 set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('$HOME/.vim/bundle/')
-    call dein#begin('$HOME/.vim/bundle/')
+" if dein#load_state('$HOME/.vim/bundle/')
+call dein#begin('$HOME/.vim/bundle/')
+" Let dein manage dein
+call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
 
-    " Let dein manage dein
-    call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
+" Add or remove your plugins here:
+if v:version >= 800
+    call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
+        let g:ale_python_pylint_executable = 'python3.6'
+        let g:ale_lint_on_text_changed = 'never'
+        let g:ale_lint_on_enter = 0
 
-    " Add or remove your plugins here:
-    if v:version >= 800
-        call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
-            let g:ale_python_pylint_executable = 'python3.6'
-            let g:ale_lint_on_text_changed = 'never'
-            let g:ale_lint_on_enter = 0
+        let g:ale_linters = {
+                    \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
+                    \ 'cpp': ['cpplint', 'clang-format'],
+                    \}
 
-            let g:ale_linters = {
-                        \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
-                        \ 'cpp': ['cpplint', 'clang-format'],
-                        \}
+        let g:ale_fixers = {
+                    \ 'python': ['add_blank_lines_for_python_control_statements',
+                    \            'autopep8', 'isort', 'yapf'],
+                    \ 'cpp': ['clang-format']
+                    \}
 
-            let g:ale_fixers = {
-                        \ 'python': ['add_blank_lines_for_python_control_statements',
-                        \            'autopep8', 'isort', 'yapf'],
-                        \ 'cpp': ['clang-format']
-                        \}
-
-            let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
-            let g:ale_python_pycodestyle_options = '--max-line-length=120'
-            let g:ale_python_flake8_options = '--max-line-length=120'
-            let g:ale_python_autopep8_options = '--max-line-length=120'
-    endif
-    if has('python')
-        call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp']})
-    endif
-    call dein#add('terryma/vim-multiple-cursors')
-        " Default mapping
-        let g:multi_cursor_next_key='<C-n>'
-        let g:multi_cursor_prev_key='<C-p>'
-        let g:multi_cursor_skip_key='<C-x>'
-        let g:multi_cursor_quit_key='<Esc>'
-    call dein#add('mikewest/vimroom')
-    call dein#add('sjl/gundo.vim')
-    call dein#add('skywind3000/asyncrun.vim')
-    call dein#add('tpope/vim-commentary')
-    call dein#add('b4winckler/vim-angry')
-    call dein#add('junegunn/goyo.vim')
-    call dein#add('scrooloose/nerdtree')
-        " Show hidden stuff in nerdtree
-        let NERDTreeShowHidden=1
-    call dein#add('tpope/vim-surround')
-    call dein#add('airblade/vim-gitgutter')
-    call dein#add('godlygeek/tabular')
-    call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp']})
-    call dein#add('SirVer/ultisnips')
-        " For UltiSnips
-        let g:UltiSnipsExpandTrigger="<C-J>"
-        let g:UltiSnipsJumpForwardTrigger="<C-J>"
-        let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
-        let g:ultisnips_python_style = "numpy"
-        let g:ultisnips_python_triple_quoting_style = "single"
-    call dein#add('honza/vim-snippets')
-    call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
-
-        " for YouCompleteMe
-        let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-        let g:ycm_autoclose_preview_window_after_completion = 1
-        let g:ycm_autoclose_preview_window_after_insertion = 1
-        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-        let g:ycm_complete_in_comments = 1
-        let g:ycm_show_diagnostics_ui = 0
-        nmap <C-c> :YcmCompleter GetDoc<CR>
-        let g:ycm_semantic_triggers = {
-        \   'roslaunch' : ['="', '$(', '/'],
-        \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
-        \ }
-    call dein#add('lervag/vimtex', {'on_ft': ['tex']})
-    call dein#add('altercation/vim-colors-solarized')
-        " Solarized colorscheme
-        let g:solarized_termcolors=256
-        set t_Co=256
-        set bg=dark
-        colo solarized
-    call dein#add('mhinz/vim-startify')
-    call dein#add('python-mode/python-mode', {'on_ft': ['python']})
-        " python-mode
-        if has('python3')
-            let g:pymode_python = 'python3'
-        endif
-        let g:pymode_options_max_line_length = 100
-        let g:pymode_folding = 0
-        let g:pymode_rope = 0
-        let g:pymode_rope_lookup_project = 0
-        let g:pymode_lint = 0
-    call dein#end()
-    call dein#save_state()
+        let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
+        let g:ale_python_pycodestyle_options = '--max-line-length=120'
+        let g:ale_python_flake8_options = '--max-line-length=120'
+        let g:ale_python_autopep8_options = '--max-line-length=120'
 endif
+if has('python')
+    call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp']})
+endif
+call dein#add('terryma/vim-multiple-cursors')
+    " Default mapping
+    let g:multi_cursor_next_key='<C-n>'
+    let g:multi_cursor_prev_key='<C-p>'
+    let g:multi_cursor_skip_key='<C-x>'
+    let g:multi_cursor_quit_key='<Esc>'
+call dein#add('mikewest/vimroom')
+call dein#add('sjl/gundo.vim')
+call dein#add('skywind3000/asyncrun.vim')
+call dein#add('tpope/vim-commentary')
+call dein#add('b4winckler/vim-angry')
+call dein#add('junegunn/goyo.vim')
+call dein#add('scrooloose/nerdtree')
+    " Show hidden stuff in nerdtree
+    let NERDTreeShowHidden=1
+call dein#add('tpope/vim-surround')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('godlygeek/tabular')
+call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp']})
+call dein#add('SirVer/ultisnips')
+    " For UltiSnips
+    let g:UltiSnipsExpandTrigger="<C-J>"
+    let g:UltiSnipsJumpForwardTrigger="<C-J>"
+    let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
+    let g:ultisnips_python_style = "numpy"
+    let g:ultisnips_python_triple_quoting_style = "single"
+call dein#add('honza/vim-snippets')
+call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
+
+    " for YouCompleteMe
+    let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:ycm_complete_in_comments = 1
+    let g:ycm_show_diagnostics_ui = 0
+    nmap <C-c> :YcmCompleter GetDoc<CR>
+    let g:ycm_semantic_triggers = {
+    \   'roslaunch' : ['="', '$(', '/'],
+    \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
+    \ }
+call dein#add('lervag/vimtex', {'on_ft': ['tex']})
+call dein#add('altercation/vim-colors-solarized')
+    " Solarized colorscheme
+
+    let g:solarized_termcolors=256
+    set t_Co=256
+    set bg=dark
+    colo solarized
+call dein#add('mhinz/vim-startify')
+call dein#add('python-mode/python-mode', {'on_ft': ['python']})
+    " python-mode
+    if has('python3')
+        let g:pymode_python = 'python3'
+    endif
+    let g:pymode_options_max_line_length = 100
+    let g:pymode_folding = 0
+    let g:pymode_rope = 0
+    let g:pymode_rope_lookup_project = 0
+    let g:pymode_lint = 0
+call dein#end()
+" call dein#save_state()
+" endif
 
 filetype plugin indent on
 syntax enable
