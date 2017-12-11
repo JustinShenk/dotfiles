@@ -2,37 +2,113 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'mikewest/vimroom'
-if v:version >= 800
-    Plugin 'w0rp/ale'
+if dein#load_state('$HOME/.vim/bundle/')
+    call dein#begin('$HOME/.vim/bundle/')
+
+    " Let dein manage dein
+    call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
+
+    " Add or remove your plugins here:
+    if v:version >= 800
+        call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
+            let g:ale_python_pylint_executable = 'python3.6'
+            let g:ale_lint_on_text_changed = 'never'
+            let g:ale_lint_on_enter = 0
+
+            let g:ale_linters = {
+                        \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
+                        \ 'cpp': ['cpplint', 'clang-format'],
+                        \}
+
+            let g:ale_fixers = {
+                        \ 'python': ['add_blank_lines_for_python_control_statements',
+                        \            'autopep8', 'isort', 'yapf'],
+                        \ 'cpp': ['clang-format']
+                        \}
+
+            let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
+            let g:ale_python_pycodestyle_options = '--max-line-length=120'
+            let g:ale_python_flake8_options = '--max-line-length=120'
+            let g:ale_python_autopep8_options = '--max-line-length=120'
+    endif
+    if has('python')
+        call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp']})
+    endif
+    call dein#add('terryma/vim-multiple-cursors')
+        " Default mapping
+        let g:multi_cursor_next_key='<C-n>'
+        let g:multi_cursor_prev_key='<C-p>'
+        let g:multi_cursor_skip_key='<C-x>'
+        let g:multi_cursor_quit_key='<Esc>'
+    call dein#add('mikewest/vimroom')
+    call dein#add('sjl/gundo.vim')
+    call dein#add('skywind3000/asyncrun.vim')
+    call dein#add('tpope/vim-commentary')
+    call dein#add('b4winckler/vim-angry')
+    call dein#add('junegunn/goyo.vim')
+    call dein#add('scrooloose/nerdtree')
+        " Show hidden stuff in nerdtree
+        let NERDTreeShowHidden=1
+    call dein#add('tpope/vim-surround')
+    call dein#add('airblade/vim-gitgutter')
+    call dein#add('godlygeek/tabular')
+    call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp']})
+    call dein#add('SirVer/ultisnips')
+        " For UltiSnips
+        let g:UltiSnipsExpandTrigger="<C-J>"
+        let g:UltiSnipsJumpForwardTrigger="<C-J>"
+        let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
+        let g:ultisnips_python_style = "numpy"
+        let g:ultisnips_python_triple_quoting_style = "single"
+    call dein#add('honza/vim-snippets')
+    call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
+
+        " for YouCompleteMe
+        let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+        let g:ycm_autoclose_preview_window_after_completion = 1
+        let g:ycm_autoclose_preview_window_after_insertion = 1
+        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+        let g:ycm_complete_in_comments = 1
+        let g:ycm_show_diagnostics_ui = 0
+        nmap <C-c> :YcmCompleter GetDoc<CR>
+        let g:ycm_semantic_triggers = {
+        \   'roslaunch' : ['="', '$(', '/'],
+        \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
+        \ }
+    call dein#add('lervag/vimtex', {'on_ft': ['tex']})
+    call dein#add('altercation/vim-colors-solarized')
+        " Solarized colorscheme
+        let g:solarized_termcolors=256
+        set t_Co=256
+        set bg=dark
+        colo solarized
+    call dein#add('mhinz/vim-startify')
+    call dein#add('python-mode/python-mode', {'on_ft': ['python']})
+        " python-mode
+        if has('python3')
+            let g:pymode_python = 'python3'
+        endif
+        let g:pymode_options_max_line_length = 100
+        let g:pymode_folding = 0
+        let g:pymode_rope = 0
+        let g:pymode_rope_lookup_project = 0
+        let g:pymode_lint = 0
+    call dein#end()
+    call dein#save_state()
 endif
-Plugin 'sjl/gundo.vim'
-Plugin 'skywind3000/asyncrun.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'b4winckler/vim-angry'
-Plugin 'junegunn/goyo.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'godlygeek/tabular'
-Plugin 'vim-scripts/DoxygenToolkit.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-if has('python')
-    Plugin 'taketwo/vim-ros'
+
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
 endif
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'lervag/vimtex'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'mhartington/oceanic-next'
-Plugin 'mhinz/vim-startify'
-call vundle#end()
+
+"End dein Scripts-------------------------
 
 " Enable filetype plugins
 filetype plugin indent on
@@ -90,7 +166,7 @@ nnoremap gj j
 nmap ü :wa<CR>
 
 " shortcut to paste code from system clipboard
-map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
+" map <C-p> :set paste<C-m>a<C-r>*<C-m><Esc>:set nopaste<C-m>
 
 " Enable mouse with option key press (not needed in iTerm)
 set mouse=a
@@ -139,9 +215,6 @@ nnoremap <C-s> :call <SID>compile_and_run()<CR>
 " Syntax highlighting
 syntax on
 
-" for vim-airline
-let g:airline#extensions#tabline#enabled = 1
-
 " not sure anymore what this does
 set omnifunc=syntaxcomplete#Complete
 
@@ -151,25 +224,6 @@ set wildmode=longest,list
 " allow to switch buffers when unsaved changes in current buffer
 set hidden
 
-let mapleader="-"
-" for YouCompleteMe
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_complete_in_comments = 1
-let g:ycm_show_diagnostics_ui = 0
-nmap <C-c> :YcmCompleter GetDoc<CR>
-let g:ycm_semantic_triggers = {
-\   'roslaunch' : ['="', '$(', '/'],
-\   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
-\ }
-" For UltiSnips
-let g:UltiSnipsExpandTrigger="<C-J>"
-let g:UltiSnipsJumpForwardTrigger="<C-J>"
-let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
-
 
 " C++ template files; does not work with ftplugin
 autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
@@ -177,35 +231,12 @@ autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
 " LaTeX class files
 autocmd BufEnter *.cls :setlocal filetype=tex
 
-" Show hidden stuff in nerdtree
-let NERDTreeShowHidden=1
-
 " Replace math tex commands with unicode glyphs
 set cole=2
 
 hi Comment cterm=bold
 " let g:auto_save = 1  " enable AutoSave on Vim startup
 " let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
-
-let g:ale_python_pylint_executable = 'python3.6'
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-
-let g:ale_linters = {
-            \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
-            \ 'cpp': ['cpplint', 'clang-format'],
-            \}
-
-let g:ale_fixers = {
-            \ 'python': ['add_blank_lines_for_python_control_statements',
-            \            'autopep8', 'isort', 'yapf'],
-            \ 'cpp': ['clang-format']
-            \}
-
-let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
-let g:ale_python_pycodestyle_options = '--max-line-length=120'
-let g:ale_python_flake8_options = '--max-line-length=120'
-let g:ale_python_autopep8_options = '--max-line-length=120'
 
 augroup SPACEVIM_ASYNCRUN
     autocmd!
@@ -237,21 +268,13 @@ set formatoptions+=j " Delete comment character when joining commented lines
 " inoremap <ScrollWheelUp> <Esc>ui
 " inoremap <ScrollWheelDown> <Esc><C-r>i
 
+" strip trailing space
 autocmd BufWrite * silent! :%s/\s\+$//g
 
 set backspace=indent,eol,start
 set smarttab
 set wildmenu
 set scrolloff=5
-
-" Solarized colorscheme
-let g:solarized_termcolors=256
-set t_Co=256
-set bg=dark
-colo solarized
-
-let g:ultisnips_python_style = "numpy"
-let g:ultisnips_python_triple_quoting_style = "single"
 
 set laststatus=2
 
