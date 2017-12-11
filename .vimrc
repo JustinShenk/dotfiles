@@ -31,7 +31,6 @@ Plugin 'lervag/vimtex'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mhartington/oceanic-next'
 Plugin 'mhinz/vim-startify'
-Plugin 'python-mode/python-mode'
 call vundle#end()
 
 " Enable filetype plugins
@@ -203,6 +202,9 @@ let g:ale_fixers = {
             \}
 
 let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
+let g:ale_python_pycodestyle_options = '--max-line-length=120'
+let g:ale_python_flake8_options = '--max-line-length=120'
+let g:ale_python_autopep8_options = '--max-line-length=120'
 
 augroup SPACEVIM_ASYNCRUN
     autocmd!
@@ -236,24 +238,10 @@ set formatoptions+=j " Delete comment character when joining commented lines
 
 autocmd BufWrite * silent! :%s/\s\+$//g
 
-let g:solarized_termcolors=256
-set t_Co=256
-colo solarized
-
 set backspace=indent,eol,start
 set smarttab
 set wildmenu
 set scrolloff=5
-
-" python-mode
-if has('python3')
-    let g:pymode_python = 'python3'
-endif
-let g:pymode_options_max_line_length = 100
-let g:pymode_folding = 0
-let g:pymode_rope = 0
-let g:pymode_rope_lookup_project = 0
-let g:pymode_lint = 0
 
 " Solarized colorscheme
 let g:solarized_termcolors=256
