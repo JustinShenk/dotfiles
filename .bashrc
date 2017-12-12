@@ -168,8 +168,6 @@ if [ ! -z "$PS1" ]; then
     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
     ssh-add -l > /dev/null || ssh-add
 
-    export PATH=$PATH:~/.local/bin:/home/student/r/rdiederichse/Downloads/Sources/slam6d-code/bin/
-
     # must press ctrl-D twice to exit
     export IGNOREEOF="1"
 fi
