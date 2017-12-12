@@ -171,7 +171,7 @@ if [ ! -z "$PS1" ]; then
     export PATH=$PATH:~/.local/bin:/home/student/r/rdiederichse/Downloads/Sources/slam6d-code/bin/
 
     # must press ctrl-D twice to exit
-    export IGNOREEOF="2"
+    export IGNOREEOF="1"
 fi
 
 case "$OSTYPE" in
