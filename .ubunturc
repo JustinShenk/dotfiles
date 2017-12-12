@@ -16,6 +16,7 @@ export PLUTO_WORKSPACE=/local/pluto_workspace
 pg_pluto()
 {
     source "$PLUTO_WORKSPACE/devel/setup.bash"
+    source "$PLUTO_WORKSPACE/pluto.rc"
 }
 
 SECS=1
