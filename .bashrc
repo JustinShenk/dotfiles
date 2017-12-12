@@ -14,6 +14,8 @@ if [ ! -z "$PS1" ]; then
 	export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
 	export CLICOLOR=1
 
+    # color grep commands
+    alias grep='grep --color=auto'
 	alias make='make -j4'
 	alias la='ls -a'
 	alias ls='ls -FG'
@@ -67,8 +69,6 @@ if [ ! -z "$PS1" ]; then
     export LESS_TERMCAP_ue=$'\E[0m'
     export LESS_TERMCAP_us=$'\E[01;32m'
 
-    # color grep commands
-    export GREP_OPTIONS='--color=auto'
 
 	# enable ctrl-s
 	stty -ixon
