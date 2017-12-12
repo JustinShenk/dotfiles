@@ -33,7 +33,7 @@ if v:version >= 800
         let g:ale_python_autopep8_options = '--max-line-length=120'
 endif
 if has('python')
-    call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp']})
+    call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'launch']})
 endif
 call dein#add('terryma/vim-multiple-cursors')
     " Default mapping
@@ -224,6 +224,8 @@ set wildmode=longest,list
 " allow to switch buffers when unsaved changes in current buffer
 set hidden
 
+" ROS launch files
+autocmd BufEnter *.launch :setlocal filetype=launch syntax=xml
 
 " C++ template files; does not work with ftplugin
 autocmd BufEnter *.tpp :setlocal filetype=cpp syntax=cpp
