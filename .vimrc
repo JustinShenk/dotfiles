@@ -9,6 +9,8 @@ call dein#begin('$HOME/.vim/bundle/')
 " Let dein manage dein
 call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
 
+call dein#add('vim-scripts/LargeFile')
+
 " Add or remove your plugins here:
 if v:version >= 800
     call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
