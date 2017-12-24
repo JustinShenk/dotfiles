@@ -259,7 +259,7 @@ function! s:compile_and_run()
     elseif &filetype == 'sh'
        exec "AsyncRun! time bash %"
     elseif &filetype == 'python'
-       exec "AsyncRun! time python3 %"
+       exec "AsyncRun! time python %"
     endif
 endfunction
 
@@ -281,10 +281,5 @@ set wildmenu
 set scrolloff=5
 
 set laststatus=2
-
-nnoremap B ^
-nnoremap ^ <nop>
-nnoremap E $
-nnoremap $ <nop>
 
 nnoremap gV `[v`]
