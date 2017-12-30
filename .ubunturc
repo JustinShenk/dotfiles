@@ -81,3 +81,4 @@ cvmux() {
     tmux send-keys -t cv-run "source activate rdiederichse-env" Enter
 }
 
+alias open="xdg-open"
