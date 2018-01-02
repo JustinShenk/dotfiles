@@ -283,5 +283,3 @@ set scrolloff=5
 set laststatus=2
 
 nnoremap gV `[v`]
-
-nnoremap <C-w> :q<CR>
