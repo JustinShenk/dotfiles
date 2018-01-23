@@ -94,4 +94,17 @@ tfmux() {
     tmux send-keys -t tf-ipython "ipython" Enter
 }
 
+cvmux() {
+    cd /Users/Rasmus/Documents/Uni/HiWi/CV/qtpyvis
+    tmux new-session -ds cv-edit
+    tmux send-keys -t cv-edit "source activate rdiederichse-env" Enter
+    tmux new-session -ds cv-install
+    tmux send-keys -t cv-install "source activate rdiederichse-env" Enter
+    tmux new-session -ds cv-monitor
+    tmux send-keys -t cv-monitor "source activate rdiederichse-env" Enter
+    tmux new-session -ds cv-run
+    tmux send-keys -t cv-run "source activate rdiederichse-env" Enter
+}
+
 export SHELL=$BASH
+
