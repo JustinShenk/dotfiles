@@ -2,7 +2,7 @@
     name = Rasmus Diederichsen
     email = rdiederichse@uos.de
 [push]
-    default = matching
+    default = current
 [alias]
     st = status -s
     vomit = commit
