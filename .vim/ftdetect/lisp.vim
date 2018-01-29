@@ -1,1 +1,1 @@
-" au BufRead,BufNewFile *.lisp set filetype=lisp
+au BufRead,BufNewFile *.lisp set filetype=lisp

@@ -35,7 +35,7 @@ if v:version >= 800
         let g:ale_python_autopep8_options = '--max-line-length=120'
 endif
 if has('python')
-    call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'launch']})
+    call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'launch', 'rosmsg', 'rosaction']})
 endif
 call dein#add('terryma/vim-multiple-cursors')
     " Default mapping

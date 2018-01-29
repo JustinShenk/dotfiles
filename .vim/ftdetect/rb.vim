@@ -1,1 +1,1 @@
-" au BufRead,BufNewFile *.rb set filetype=rb
+au BufRead,BufNewFile *.rb set filetype=ruby

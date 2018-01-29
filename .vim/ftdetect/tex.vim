@@ -1,1 +1,1 @@
-" au BufRead,BufNewFile *.tex set filetype=tex
+au BufRead,BufNewFile *.tex set filetype=latex
