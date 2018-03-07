@@ -1,25 +1,25 @@
 # test if interactive
 if [ ! -z "$PS1" ]; then
-	stty werase undef
-	bind '"\C-w": backward-kill-word'
-	# bind '"\C-j": unix-word-rubout' # causes iTerm+Go2Shell fuckups and messes
+    stty werase undef
+    bind '"\C-w": backward-kill-word'
+    # bind '"\C-j": unix-word-rubout' # causes iTerm+Go2Shell fuckups and messes
     # up tmux send-keys
 
-	# Lang env variable
-	export LC_ALL=en_US.UTF-8 # w/o this, can't import e.g. matplotlib? wtf?
-	export LANG=en_US.UTF-8
+    # Lang env variable
+    export LC_ALL=en_US.UTF-8 # w/o this, can't import e.g. matplotlib? wtf?
+    export LANG=en_US.UTF-8
 
 
-	export EDITOR=vim
-	export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
-	export CLICOLOR=1
+    export EDITOR=vim
+    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
+    export CLICOLOR=1
 
     # color grep commands
     alias grep='grep --color=auto'
-	alias make='make -j4'
-	alias la='ls -a'
-	alias ls='ls -FG'
-	alias ll='ls -ahl'
+    alias make='make -j4'
+    alias la='ls -a'
+    alias ls='ls -FG'
+    alias ll='ls -ahl'
     # print large files
     alias diskspace="du -S | sort -n -r |more"
     # show size of folders in current dir
@@ -31,9 +31,9 @@ if [ ! -z "$PS1" ]; then
     alias .....="cd ../../../.."
 
     alias mv="mv -n"
-	alias dick=git
-	alias vi='vim'
-	alias pytest='py.test'
+    alias dick=git
+    alias vi='vim'
+    alias pytest='py.test'
 
 
     # extract any archive. Alternative: `sudo apt install unp`
@@ -68,73 +68,73 @@ if [ ! -z "$PS1" ]; then
     export LESS_TERMCAP_us=$'\E[01;32m'
 
 
-	# enable ctrl-s
-	stty -ixon
+    # enable ctrl-s
+    stty -ixon
 
-	# dedup history
-	export HISTCONTROL=ignoreboth:erasedups
+    # dedup history
+    export HISTCONTROL=ignoreboth:erasedups
 
-	################################################################################
-	#                       Stuff from mrzool/bash-sensible                        #
-	################################################################################
-	# Unique Bash version check
-	if ((BASH_VERSINFO[0] < 4))
-	then
-		echo "sensible.bash: Looks like you're running an older version of Bash."
-		echo "sensible.bash: You need at least bash-4.0 or some options will not work correctly."
-		echo "sensible.bash: Keep your software up-to-date!"
-	fi
+    ################################################################################
+    #                       Stuff from mrzool/bash-sensible                        #
+    ################################################################################
+    # Unique Bash version check
+    if ((BASH_VERSINFO[0] < 4))
+    then
+        echo "sensible.bash: Looks like you're running an older version of Bash."
+        echo "sensible.bash: You need at least bash-4.0 or some options will not work correctly."
+        echo "sensible.bash: Keep your software up-to-date!"
+    fi
 
-	# Prevent file overwrite on stdout redirection
-	# Use `>|` to force redirection to an existing file
-	set -o noclobber
+    # Prevent file overwrite on stdout redirection
+    # Use `>|` to force redirection to an existing file
+    set -o noclobber
 
-	# Automatically trim long paths in the prompt (requires Bash 4.x)
-	PROMPT_DIRTRIM=2
-	#
-	# Case-insensitive globbing (used in pathname expansion)
-	shopt -s nocaseglob;
+    # Automatically trim long paths in the prompt (requires Bash 4.x)
+    PROMPT_DIRTRIM=2
+    #
+    # Case-insensitive globbing (used in pathname expansion)
+    shopt -s nocaseglob;
 
-	# Perform file completion in a case insensitive fashion
-	bind "set completion-ignore-case on"
+    # Perform file completion in a case insensitive fashion
+    bind "set completion-ignore-case on"
 
-	# Display matches for ambiguous patterns at first tab press
-	bind "set show-all-if-ambiguous on"
+    # Display matches for ambiguous patterns at first tab press
+    bind "set show-all-if-ambiguous on"
 
-	# Immediately add a trailing slash when autocompleting symlinks to directories
-	bind "set mark-symlinked-directories on"
+    # Immediately add a trailing slash when autocompleting symlinks to directories
+    bind "set mark-symlinked-directories on"
 
-	# Append to the history file, don't overwrite it
-	shopt -s histappend
+    # Append to the history file, don't overwrite it
+    shopt -s histappend
 
-	# Save multi-line commands as one command
-	shopt -s cmdhist
+    # Save multi-line commands as one command
+    shopt -s cmdhist
 
-	# Record each line as it gets issued
-	PROMPT_COMMAND='history -a'
+    # Record each line as it gets issued
+    PROMPT_COMMAND='history -a'
 
-	# Huge history. Doesn't appear to slow things down, so why not?
-	HISTSIZE=500000
-	HISTFILESIZE=100000
+    # Huge history. Doesn't appear to slow things down, so why not?
+    HISTSIZE=500000
+    HISTFILESIZE=100000
 
-	# Avoid duplicate entries
-	HISTCONTROL="erasedups:ignoreboth"
+    # Avoid duplicate entries
+    HISTCONTROL="erasedups:ignoreboth"
 
-	## BETTER DIRECTORY NAVIGATION ##
+    ## BETTER DIRECTORY NAVIGATION ##
 
-	# Prepend cd to directory names automatically
-	shopt -s autocd 2> /dev/null
-	# Correct spelling errors during tab-completion
-	shopt -s dirspell 2> /dev/null
-	# Correct spelling errors in arguments supplied to cd
-	shopt -s cdspell 2> /dev/null
+    # Prepend cd to directory names automatically
+    shopt -s autocd 2> /dev/null
+    # Correct spelling errors during tab-completion
+    shopt -s dirspell 2> /dev/null
+    # Correct spelling errors in arguments supplied to cd
+    shopt -s cdspell 2> /dev/null
 
-	# This defines where cd looks for targets
-	# Add the directories you want to have fast access to, separated by colon
-	# Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projects folder
-	CDPATH="."
+    # This defines where cd looks for targets
+    # Add the directories you want to have fast access to, separated by colon
+    # Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projects folder
+    CDPATH="."
 
-	source ~/git-completion.bash
+    source ~/git-completion.bash
 
     function __setprompt {
       local BLUE="\[\033[0;34m\]"
@@ -150,10 +150,10 @@ if [ ! -z "$PS1" ]; then
     }
     __setprompt
 
-	export PATH=$PATH:$PYTHONPATH
-	export PATH=/usr/local/bin:$PATH # for newly compiled vim
+    export PATH=$PATH:$PYTHONPATH
+    export PATH=/usr/local/bin:$PATH # for newly compiled vim
 
-	source ~/tmux.completion.bash
+    source ~/tmux.completion.bash
 
     # https://unix.stackexchange.com/a/217223/208945
     # Avoid being asked to unlock private key when ssh'ing from this machine when I'm ssh'ed into it
