@@ -83,14 +83,14 @@ export PATH="$PATH:/Users/Rasmus/miniconda3/bin"
 tfmux() {
     cd "$UNI/Master/Semester 5/IANNWTF/ann-tensorflow"
     tmux new-session -ds tf-edit
-    tmux send-keys -t tf-edit "source activate rdiederichse-env" Enter
+    tmux send-keys -t tf-edit "source activate tfenv" Enter
     tmux new-session -ds tf-run
-    tmux send-keys -t tf-run "source activate rdiederichse-env" Enter
+    tmux send-keys -t tf-run "source activate tfenv" Enter
     tmux new-session -ds tf-jupyter
-    tmux send-keys -t tf-jupyter "source activate rdiederichse-env" Enter
+    tmux send-keys -t tf-jupyter "source activate tfenv" Enter
     tmux send-keys -t tf-jupyter "jupyter notebook" Enter
     tmux new-session -ds tf-ipython
-    tmux send-keys -t tf-ipython "source activate rdiederichse-env" Enter
+    tmux send-keys -t tf-ipython "source activate tfenv" Enter
     tmux send-keys -t tf-ipython "ipython" Enter
 }
 

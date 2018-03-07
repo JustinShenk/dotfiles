@@ -30,8 +30,6 @@ if [ ! -z "$PS1" ]; then
     alias ....="cd ../../.."
     alias .....="cd ../../../.."
 
-    alias catkin_make=catkin_boi
-
     alias mv="mv -n"
 	alias dick=git
 	alias vi='vim'
@@ -151,8 +149,6 @@ if [ ! -z "$PS1" ]; then
       PS4='$BLUE+$NO_COLOUR '
     }
     __setprompt
-
-	export CCACHE_DIR=/local/.ccache
 
 	export PATH=$PATH:$PYTHONPATH
 	export PATH=/usr/local/bin:$PATH # for newly compiled vim

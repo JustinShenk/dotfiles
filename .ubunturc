@@ -82,3 +82,8 @@ cvmux() {
 }
 
 alias open="xdg-open"
+
+export CCACHE_DIR=/local/.ccache
+
+alias catkin_make=catkin_boi
+
