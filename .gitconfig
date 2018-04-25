@@ -1,6 +1,6 @@
 [user]
     name = Rasmus Diederichsen
-    email = rdiederichse@uos.de
+    email = rasmus@peltarion.com
 [push]
     default = current
 [alias]
@@ -19,12 +19,6 @@
     brunch = branch
     diff = diff --word-diff --staged
     dc = diff --cached
-    logtree="log --graph --oneline --decorate --all"
+    logtree = "log --graph --oneline --decorate --all"
     yolo = push --force-with-lease
     aliases = "!git config -l | grep alias | cut -c 7-"
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
