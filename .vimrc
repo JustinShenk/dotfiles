@@ -36,6 +36,15 @@ if v:version >= 800
 endif
 if has('python')
     call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'roslaunch', 'rosmsg', 'rosaction']})
+    call dein#add('python-mode/python-mode', {'on_ft': ['python']})
+        let g:pymode_options_max_line_length = 100
+        let g:pymode_folding = 0
+        let g:pymode_rope = 0
+        let g:pymode_rope_lookup_project = 0
+        let g:pymode_lint = 0
+endif
+if has('python3')
+    let g:pymode_python = 'python3'
 endif
 call dein#add('terryma/vim-multiple-cursors')
     " Default mapping
@@ -65,7 +74,6 @@ call dein#add('SirVer/ultisnips')
     let g:ultisnips_python_triple_quoting_style = "single"
 call dein#add('honza/vim-snippets')
 call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
-
     " for YouCompleteMe
     let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
     let g:ycm_autoclose_preview_window_after_completion = 1
@@ -88,16 +96,6 @@ call dein#add('altercation/vim-colors-solarized')
     set bg=dark
     colo solarized
 call dein#add('mhinz/vim-startify')
-call dein#add('python-mode/python-mode', {'on_ft': ['python']})
-    " python-mode
-    if has('python3')
-        let g:pymode_python = 'python3'
-    endif
-    let g:pymode_options_max_line_length = 100
-    let g:pymode_folding = 0
-    let g:pymode_rope = 0
-    let g:pymode_rope_lookup_project = 0
-    let g:pymode_lint = 0
 call dein#end()
 " call dein#save_state()
 " endif

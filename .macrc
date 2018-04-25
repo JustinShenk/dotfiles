@@ -92,6 +92,9 @@ thmux () {
     tmux send-keys -t th-monitor "source activate mthesis-env" Enter
     tmux new-session -ds th-run
     tmux send-keys -t th-run "source activate mthesis-env" Enter
+    tmux new-session -ds th-notebook
+    tmux send-keys -t th-notebook "source activate mthesis-env" Enter
+    tmux send-keys -t th-notebook "jupyter-notebook" Enter
 }
 
 export SHELL=$BASH
