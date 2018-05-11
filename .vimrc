@@ -12,39 +12,41 @@ call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
 call dein#add('vim-scripts/LargeFile')
 
 " Add or remove your plugins here:
-if v:version >= 800
-    call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
-        let g:ale_python_pylint_executable = 'python3.6'
-        let g:ale_lint_on_text_changed = 'never'
-        let g:ale_lint_on_enter = 0
+" if v:version >= 800
+"     call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
+"         let g:ale_python_pylint_executable = 'python'
+"         let g:ale_lint_on_text_changed = 'never'
+"         let g:ale_lint_on_enter = 0
 
-        let g:ale_linters = {
-                    \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
-                    \ 'cpp': ['cpplint', 'clang-format'],
-                    \}
+"         let g:ale_linters = {
+"                     \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
+"                     \ 'cpp': ['cpplint', 'clang-format'],
+"                     \}
 
-        let g:ale_fixers = {
-                    \ 'python': ['add_blank_lines_for_python_control_statements',
-                    \            'autopep8', 'isort', 'yapf'],
-                    \ 'cpp': ['clang-format']
-                    \}
+"         let g:ale_fixers = {
+"                     \ 'python': ['add_blank_lines_for_python_control_statements',
+"                     \            'autopep8', 'isort', 'yapf'],
+"                     \ 'cpp': ['clang-format']
+"                     \}
 
-        let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
-        let g:ale_python_pycodestyle_options = '--max-line-length=120'
-        let g:ale_python_flake8_options = '--max-line-length=120'
-        let g:ale_python_autopep8_options = '--max-line-length=120'
-endif
-if has('python')
+"         let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
+"         let g:ale_python_pycodestyle_options = '--max-line-length=120'
+"         let g:ale_python_flake8_options = '--max-line-length=120'
+"         let g:ale_python_autopep8_options = '--max-line-length=120'
+" endif
+if has('python') || has('python3')
     call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'roslaunch', 'rosmsg', 'rosaction']})
     call dein#add('python-mode/python-mode', {'on_ft': ['python']})
         let g:pymode_options_max_line_length = 100
         let g:pymode_folding = 0
         let g:pymode_rope = 0
         let g:pymode_rope_lookup_project = 0
-        let g:pymode_lint = 0
+        let g:pymode_lint = 1
+        let g:pymode_lint_on_write = 1
+        let g:pymode_lint_ignore = ['E221', 'E222', 'E252']
 endif
 if has('python3')
-    let g:pymode_python = 'python3'
+        let g:pymode_python = 'python3'
 endif
 call dein#add('terryma/vim-multiple-cursors')
     " Default mapping
@@ -72,6 +74,7 @@ call dein#add('SirVer/ultisnips')
     let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
     let g:ultisnips_python_style = "numpy"
     let g:ultisnips_python_triple_quoting_style = "single"
+    let g:ultisnips_python_quoting_style = "single"
 call dein#add('honza/vim-snippets')
 call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
     " for YouCompleteMe
@@ -93,12 +96,11 @@ call dein#add('altercation/vim-colors-solarized')
 
     let g:solarized_termcolors=256
     set t_Co=256
-    set bg=dark
+    set bg=light
     colo solarized
 call dein#add('mhinz/vim-startify')
 call dein#end()
-" call dein#save_state()
-" endif
+call dein#save_state()
 
 filetype plugin indent on
 syntax enable
