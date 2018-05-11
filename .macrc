@@ -56,10 +56,6 @@ cdf() {
 
 export PATH=$PATH:~/Library/Python/2.7/bin/
 
-eval "$(thefuck --alias)"
-# You can use whatever you want as an alias, like for Mondays:
-eval "$(thefuck --alias FUCK)"
-
 # iTerm shell integration
 source ~/.iterm2_shell_integration.`basename $SHELL`
 
@@ -74,8 +70,12 @@ fi
 # Webdrivers
 export PATH=$PATH:/usr/local/bin/Webdrivers/
 
-# Android sdk
-export PATH=$PATH:/opt/local/Android/tools
+# Python3.6 thefuck
+export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin/:$PATH
+eval "$(thefuck --alias)"
+# You can use whatever you want as an alias, like for Mondays:
+eval "$(thefuck --alias FUCK)"
+
 
 # added by Miniconda3 installer
 export PATH="$PATH:/Users/Rasmus/miniconda3/bin"

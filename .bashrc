@@ -51,6 +51,7 @@ if [ ! -z "$PS1" ]; then
                *.zip)       unzip $1       ;;
                *.Z)         uncompress $1  ;;
                *.7z)        7z x $1        ;;
+               *.tar.xz)    tar xvfJ $1    ;;
                *)           echo "don't know how to extract '$1'..." ;;
            esac
        else
