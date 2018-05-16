@@ -3,6 +3,7 @@ export PATH=$PATH:$HOME/Documents/Programming/Bash
 
 export PATH=/Library/TeX/texbin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin:/opt/local/libexec/qt4/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/3.5/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/:$PATH
 
+export PATH=/opt/local/lib/postgresql10/bin:$PATH
 
 # To simply javadoc generation
 alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
@@ -58,9 +59,6 @@ export PATH=$PATH:~/Library/Python/2.7/bin/
 
 # iTerm shell integration
 source ~/.iterm2_shell_integration.`basename $SHELL`
-
-# Add packagize to PATH
-export PATH=$PATH:~/Documents/Programming/Ruby/packagize
 
 # bash-completion
 if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
