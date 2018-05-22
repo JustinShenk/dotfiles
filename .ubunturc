@@ -6,6 +6,8 @@ export PATH="$CUDA_HOME/bin:$PATH"
 alias open="xdg-open"
 export PATH="$PATH:/home/share/miniconda3/bin"
 
+export PATH="$PATH:/home/rasmus/.local/bin"
+
 torchmux () {
     cd /home/share/software/ai_training_monitor/
     tmux new-session -ds th-edit
@@ -20,7 +22,7 @@ torchmux () {
     tmux send-keys -t th-ipython "ipython" Enter
     tmux new-session -ds th-monitor
     tmux split-window -v
-    tmux send-keys -t th-monitor:0.0 "nvidia-smi -l" Enter
+    tmux send-keys -t th-monitor:0.0 "watch --color -n1.0 gpustat --color" Enter
     tmux send-keys -t th-monitor:0.1 "htop" Enter
 }
 
