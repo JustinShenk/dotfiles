@@ -84,6 +84,7 @@ call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-complete
     let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
     let g:ycm_complete_in_comments = 1
+    let g:ycm_collect_identifiers_from_comments_and_strings = 1
     let g:ycm_show_diagnostics_ui = 0
     nmap <C-c> :YcmCompleter GetDoc<CR>
     let g:ycm_semantic_triggers = {
