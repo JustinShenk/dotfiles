@@ -273,8 +273,10 @@ set formatoptions+=j " Delete comment character when joining commented lines
 " inoremap <ScrollWheelUp> <Esc>ui
 " inoremap <ScrollWheelDown> <Esc><C-r>i
 
-" strip trailing space
+" strip trailing whitespace at the end of any line
 autocmd BufWrite * silent! :%s/\s\+$//g
+" strip trailing newlines
+autocmd BufWrite * silent! :%s#\($\n\s*\)\+\%$##
 
 set backspace=indent,eol,start
 set smarttab
