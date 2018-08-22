@@ -22,3 +22,4 @@
     logtree = "log --graph --oneline --decorate --all"
     yolo = push --force-with-lease
     aliases = "!git config -l | grep alias | cut -c 7-"
+    changes = "!git log --follow -p --"

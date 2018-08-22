@@ -97,7 +97,7 @@ call dein#add('altercation/vim-colors-solarized')
 
     let g:solarized_termcolors=256
     set t_Co=256
-    set bg=light
+    set bg=dark
     colo solarized
 call dein#add('mhinz/vim-startify')
 call dein#end()
@@ -284,3 +284,9 @@ set scrolloff=5
 set laststatus=2
 
 nnoremap gV `[v`]
+
+" open Nerdtree files in new tab
+let NERDTreeMapOpenInTab='<ENTER>'
+" open Nerdtree on the right
+let g:NERDTreeWinPos = "right"
+
