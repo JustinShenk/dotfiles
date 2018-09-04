@@ -31,3 +31,4 @@ torchmux () {
 alias open="xdg-open"
 
 export CCACHE_DIR=/local/.ccache
+export TERM=xterm-256color
