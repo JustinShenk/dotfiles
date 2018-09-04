@@ -94,8 +94,7 @@ call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-complete
 call dein#add('lervag/vimtex', {'on_ft': ['tex']})
 call dein#add('altercation/vim-colors-solarized')
     " Solarized colorscheme
-
-    let g:solarized_termcolors=256
+    " let g:solarized_termcolors=256
     set t_Co=256
     set bg=dark
     colo solarized
@@ -291,4 +290,3 @@ nnoremap gV `[v`]
 let NERDTreeMapOpenInTab='<ENTER>'
 " open Nerdtree on the right
 let g:NERDTreeWinPos = "right"
-
