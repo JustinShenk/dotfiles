@@ -8,8 +8,10 @@ export PATH="$PATH:/home/share/miniconda3/bin"
 
 export PATH="$PATH:/home/rasmus/.local/bin"
 
+REPO=/home/share/software/ai_ikkuna/
+
 torchmux () {
-    cd /home/share/software/ai_training_monitor/
+    cd $REPO
     tmux new-session -ds th-edit
     tmux send-keys -t th-edit "source activate torch" Enter
     tmux new-session -ds th-run

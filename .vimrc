@@ -97,7 +97,7 @@ call dein#add('altercation/vim-colors-solarized')
 
     let g:solarized_termcolors=256
     set t_Co=256
-    set bg=light
+    set bg=dark
     colo solarized
 call dein#add('mhinz/vim-startify')
 call dein#end()
@@ -273,8 +273,10 @@ set formatoptions+=j " Delete comment character when joining commented lines
 " inoremap <ScrollWheelUp> <Esc>ui
 " inoremap <ScrollWheelDown> <Esc><C-r>i
 
-" strip trailing space
+" strip trailing whitespace at the end of any line
 autocmd BufWrite * silent! :%s/\s\+$//g
+" strip trailing newlines
+autocmd BufWrite * silent! :%s#\($\n\s*\)\+\%$##
 
 set backspace=indent,eol,start
 set smarttab
@@ -284,3 +286,9 @@ set scrolloff=5
 set laststatus=2
 
 nnoremap gV `[v`]
+
+" open Nerdtree files in new tab
+let NERDTreeMapOpenInTab='<ENTER>'
+" open Nerdtree on the right
+let g:NERDTreeWinPos = "right"
+
