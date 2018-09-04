@@ -100,6 +100,7 @@ thmux () {
 export SHELL=$BASH
 
 function fuckblue {
+    set +x
     sudo killall coreaudiod
     sudo killall blued
     sudo renice -20 `pgrep bluetoothaudio`
