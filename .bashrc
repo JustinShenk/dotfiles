@@ -156,15 +156,6 @@ if [ ! -z "$PS1" ]; then
 
     source ~/tmux.completion.bash
 
-    # https://unix.stackexchange.com/a/217223/208945
-    # Avoid being asked to unlock private key when ssh'ing from this machine when I'm ssh'ed into it
-    if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-        eval `ssh-agent`
-        ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-    fi
-    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-    ssh-add -l > /dev/null || ssh-add
-
     # must press ctrl-D twice to exit
     export IGNOREEOF="1"
 fi
@@ -176,3 +167,17 @@ case "$OSTYPE" in
   msys*)    echo "WINDOWS" ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
+
+# we do this after sourcing OS-specific files so aborting this prompt does not
+# prevent the other stuff from being executed
+if [ ! -z "$PS1" ]; then
+    # https://unix.stackexchange.com/a/217223/208945
+    # Avoid being asked to unlock private key when ssh'ing from this machine
+    if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+        eval `ssh-agent`
+        ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+    fi
+    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+    ssh-add -l > /dev/null || ssh-add
+    ssh-add $HOME/.ssh/peltarion
+fi
