@@ -297,3 +297,7 @@ let g:goyo_width = 120
 " don't break within words
 " leads to word duplication
 set linebreak
+
+" infinite undo, across restarts
+set undofile
+set undodir=~/.vim/undodir
