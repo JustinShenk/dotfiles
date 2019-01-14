@@ -158,6 +158,16 @@ if [ ! -z "$PS1" ]; then
 
     # must press ctrl-D twice to exit
     export IGNOREEOF="1"
+
+    alias s="git status"
+    alias d="git diff"
+
+    alias weather='curl wttr.in/Osnabrueck'
+
+    pycd () {
+        pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
+    }
+
 fi
 
 case "$OSTYPE" in
