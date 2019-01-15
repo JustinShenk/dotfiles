@@ -12,28 +12,28 @@ call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
 call dein#add('vim-scripts/LargeFile')
 
 " Add or remove your plugins here:
-" if v:version >= 800
-"     call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
-"         let g:ale_python_pylint_executable = 'python'
-"         let g:ale_lint_on_text_changed = 'never'
-"         let g:ale_lint_on_enter = 0
+if v:version >= 800
+    call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
+        let g:ale_python_pylint_executable = 'python'
+        let g:ale_lint_on_text_changed = 'never'
+        let g:ale_lint_on_enter = 0
 
-"         let g:ale_linters = {
-"                     \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
-"                     \ 'cpp': ['cpplint', 'clang-format'],
-"                     \}
+        let g:ale_linters = {
+                    \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
+                    \ 'cpp': ['cpplint', 'clang-format'],
+                    \}
 
-"         let g:ale_fixers = {
-"                     \ 'python': ['add_blank_lines_for_python_control_statements',
-"                     \            'autopep8', 'isort', 'yapf'],
-"                     \ 'cpp': ['clang-format']
-"                     \}
+        let g:ale_fixers = {
+                    \ 'python': ['add_blank_lines_for_python_control_statements',
+                    \            'autopep8', 'isort', 'yapf'],
+                    \ 'cpp': ['clang-format']
+                    \}
 
-"         let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
-"         let g:ale_python_pycodestyle_options = '--max-line-length=120'
-"         let g:ale_python_flake8_options = '--max-line-length=120'
-"         let g:ale_python_autopep8_options = '--max-line-length=120'
-" endif
+        let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
+        let g:ale_python_pycodestyle_options = '--max-line-length=120'
+        let g:ale_python_flake8_options = '--max-line-length=120'
+        let g:ale_python_autopep8_options = '--max-line-length=120'
+endif
 if has('python') || has('python3')
     call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'roslaunch', 'rosmsg', 'rosaction']})
     call dein#add('python-mode/python-mode', {'on_ft': ['python']})
@@ -94,9 +94,8 @@ call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-complete
 call dein#add('lervag/vimtex', {'on_ft': ['tex']})
 call dein#add('altercation/vim-colors-solarized')
     " Solarized colorscheme
-    " let g:solarized_termcolors=256
     set t_Co=256
-    set bg=dark
+    set bg=light
     colo solarized
 call dein#add('mhinz/vim-startify')
 call dein#end()
@@ -290,3 +289,6 @@ nnoremap gV `[v`]
 let NERDTreeMapOpenInTab='<ENTER>'
 " open Nerdtree on the right
 let g:NERDTreeWinPos = "right"
+
+" allow more then few open tabs
+set tabpagemax=100
