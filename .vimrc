@@ -77,7 +77,6 @@ call dein#add('SirVer/ultisnips')
     let g:ultisnips_python_quoting_style = "single"
 call dein#add('honza/vim-snippets')
 call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
-    " for YouCompleteMe
     let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -91,7 +90,10 @@ call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-complete
     \   'roslaunch' : ['="', '$(', '/'],
     \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
     \ }
+call dein#add('andymass/vim-matchup')
+    let g:matchup_matchparen_deferred = 1
 call dein#add('lervag/vimtex', {'on_ft': ['tex']})
+    let g:vimtex_fold_enabled = 0
 call dein#add('altercation/vim-colors-solarized')
     " Solarized colorscheme
     set t_Co=256
@@ -292,3 +294,12 @@ let g:NERDTreeWinPos = "right"
 
 " allow more then few open tabs
 set tabpagemax=100
+let g:goyo_width = 120
+
+" don't break within words
+" leads to word duplication
+set linebreak
+
+" infinite undo, across restarts
+set undofile
+set undodir=~/.vim/undodir

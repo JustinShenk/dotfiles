@@ -7,6 +7,9 @@ export PATH=/opt/local/lib/postgresql10/bin:$PATH
 
 export PATH=$PATH:/Users/Rasmus/Library/Python/3.6/bin  # for PyPDF2 or something
 
+# for pandoc filters installed via cabal
+export PATH=$PATH:/Users/Rasmus/.cabal/bin
+
 # To simply javadoc generation
 alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
 
@@ -70,31 +73,17 @@ fi
 # Webdrivers
 export PATH=$PATH:/usr/local/bin/Webdrivers/
 
-# Python3.6 thefuck
-export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/3.6/bin/:$PATH
-eval "$(thefuck --alias)"
-# You can use whatever you want as an alias, like for Mondays:
-eval "$(thefuck --alias FUCK)"
-
-
 # added by Miniconda3 installer
 export PATH="$PATH:/Users/Rasmus/miniconda3/bin"
 
-export THESIS_DIR='/Users/Rasmus/Documents/Uni/Master/Semester 6/'
+export THESIS_DIR='/Users/Rasmus/Documents/Uni/Master/Semester 6/thesis/thesis_latex'
 
-thmux () {
+thesismux () {
     cd "$THESIS_DIR"
-    tmux new-session -ds th-edit
-    tmux send-keys -t th-edit "source activate mthesis-env" Enter
-    tmux new-session -ds th-install
-    tmux send-keys -t th-install "source activate mthesis-env" Enter
-    tmux new-session -ds th-monitor
-    tmux send-keys -t th-monitor "source activate mthesis-env" Enter
-    tmux new-session -ds th-run
-    tmux send-keys -t th-run "source activate mthesis-env" Enter
-    tmux new-session -ds th-notebook
-    tmux send-keys -t th-notebook "source activate mthesis-env" Enter
-    tmux send-keys -t th-notebook "jupyter-notebook" Enter
+    tmux new-session -ds 1-compile
+    tmux send-keys -t 1-compile "make watch" Enter
+    tmux new-session -ds 2-misc
+    tmux new-session -s 0-edit
 }
 
 export SHELL=$BASH

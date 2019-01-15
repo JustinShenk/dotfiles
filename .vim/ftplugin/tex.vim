@@ -12,12 +12,10 @@ map <buffer> <C-m> :wa<CR>:!make<CR>
 "inoremap <buffer> ß \ss{}
 "inoremap <buffer> <Char-196> \"A
 "inoremap <buffer> <Char-220> \"U
-"inoremap <buffer> <Char-214> \"O 
+"inoremap <buffer> <Char-214> \"O
 
 " Open pdf
-map <buffer> <C-s> :!open -a Skim "%<.pdf" <CR><CR>
+map <buffer> <C-s> :!open "%<.pdf" <CR><CR>
 
 " Autocompletion of dollar sign
 inoremap <buffer> $ $$<Esc>i
-
-set textwidth=120 " for long equations
