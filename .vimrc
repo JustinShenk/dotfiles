@@ -97,7 +97,7 @@ call dein#add('lervag/vimtex', {'on_ft': ['tex']})
 call dein#add('altercation/vim-colors-solarized')
     " Solarized colorscheme
     set t_Co=256
-    set bg=dark
+    set bg=light
     colo solarized
 call dein#add('mhinz/vim-startify')
 call dein#end()
