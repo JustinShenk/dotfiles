@@ -8,26 +8,29 @@ export PATH="$PATH:/home/share/miniconda3/bin"
 
 export PATH="$PATH:/home/rasmus/.local/bin"
 
+export PATH="/usr/local/bin:$PATH"
+
 REPO=/home/share/software/ai_ikkuna/
 
 torchmux () {
     cd $REPO
-    tmux new-session -ds th-edit
-    tmux send-keys -t th-edit "source activate torch" Enter
-    tmux new-session -ds th-run
-    tmux send-keys -t th-run "source activate torch" Enter
-    tmux new-session -ds th-jupyter
-    tmux send-keys -t th-jupyter "source activate torch" Enter
-    tmux send-keys -t th-jupyter "jupyter notebook --no-browser --port 9999" Enter
-    tmux new-session -ds th-ipython
-    tmux send-keys -t th-ipython "source activate torch" Enter
-    tmux send-keys -t th-ipython "ipython" Enter
-    tmux new-session -ds th-monitor
+    tmux new-session -ds th0-edit
+    tmux send-keys -t th0-edit "source activate torch" Enter
+    tmux new-session -ds th4-run
+    tmux send-keys -t th4-run "source activate torch" Enter
+    tmux new-session -ds th2-tensorboard
+    tmux send-keys -t th2-tensorboard "source activate torch" Enter
+    tmux send-keys -t th2-tensorboard "tensorboard --logdir runs --port 9999" Enter
+    tmux new-session -ds th1-ipython
+    tmux send-keys -t th1-ipython "source activate torch" Enter
+    tmux send-keys -t th1-ipython "QT_QPA_PLATFORM=offscreen ipython" Enter
+    tmux new-session -ds th3-monitor
     tmux split-window -v
-    tmux send-keys -t th-monitor:0.0 "watch --color -n1.0 gpustat --color" Enter
-    tmux send-keys -t th-monitor:0.1 "htop" Enter
+    tmux send-keys -t th3-monitor:0.0 "watch --color -n1.0 gpustat --color" Enter
+    tmux send-keys -t th3-monitor:0.1 "htop" Enter
 }
 
 alias open="xdg-open"
 
 export CCACHE_DIR=/local/.ccache
+export TERM=xterm-256color
