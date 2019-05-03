@@ -301,5 +301,15 @@ let g:goyo_width = 120
 set linebreak
 
 " infinite undo, across restarts
-set undofile
-set undodir=~/.vim/undodir
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+    let myUndoDir = expand(vimDir . '/undodir')
+    " Create dirs
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
+    set undofile
+endif

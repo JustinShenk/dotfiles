@@ -1,10 +1,5 @@
 # test if interactive
 if [ ! -z "$PS1" ]; then
-    stty werase undef
-    bind '"\C-w": backward-kill-word'
-    # bind '"\C-j": unix-word-rubout' # causes iTerm+Go2Shell fuckups and messes
-    # up tmux send-keys
-
     # Lang env variable
     export LC_ALL=en_US.UTF-8 # w/o this, can't import e.g. matplotlib? wtf?
     export LANG=en_US.UTF-8
@@ -35,8 +30,12 @@ if [ ! -z "$PS1" ]; then
     alias vi='vim'
     alias pytest='py.test'
 
+    if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+        source /usr/local/etc/bash_completion.d/git-completion.bash
+    elif [ -f  $HOME/git-completion.bash ]; then
+        source source $HOME/git-completion.bash
+    fi
 
-    # extract any archive. Alternative: `sudo apt install unp`
     extract () {
        if [ -f $1 ] ; then
            case $1 in
@@ -135,8 +134,6 @@ if [ ! -z "$PS1" ]; then
     # Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projects folder
     CDPATH="."
 
-    source ~/git-completion.bash
-
     function __setprompt {
       local BLUE="\[\033[0;34m\]"
       local NO_COLOUR="\[\033[0m\]"
@@ -154,7 +151,9 @@ if [ ! -z "$PS1" ]; then
     export PATH=$PATH:$PYTHONPATH
     export PATH=/usr/local/bin:$PATH # for newly compiled vim
 
-    source ~/tmux.completion.bash
+    if [ -f $HOME/tmux.completion.bash ]; then
+        source ~/tmux.completion.bash
+    fi
 
     # must press ctrl-D twice to exit
     export IGNOREEOF="1"
@@ -189,5 +188,5 @@ if [ ! -z "$PS1" ]; then
     fi
     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
     ssh-add -l > /dev/null || ssh-add
-    ssh-add $HOME/.ssh/peltarion
+    ssh-add $HOME/.ssh/rasmus_psiori
 fi
