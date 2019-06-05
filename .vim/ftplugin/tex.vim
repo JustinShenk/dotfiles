@@ -15,7 +15,7 @@ map <buffer> <C-m> :wa<CR>:!make<CR>
 "inoremap <buffer> <Char-214> \"O
 
 " Open pdf
-map <buffer> <C-s> :!open "%<.pdf" <CR><CR>
+map <buffer> <C-s> :!open -a /Applications/Skim.app "%<.pdf" <CR><CR>
 
 " Autocompletion of dollar sign
 inoremap <buffer> $ $$<Esc>i
