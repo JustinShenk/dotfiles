@@ -11,7 +11,6 @@ if [ ! -z "$PS1" ]; then
 
     # color grep commands
     alias grep='grep --color=auto'
-    alias make='make -j4'
     alias la='ls -a'
     alias ls='ls -FG'
     alias ll='ls -ahl'
@@ -25,7 +24,6 @@ if [ ! -z "$PS1" ]; then
     alias ....="cd ../../.."
     alias .....="cd ../../../.."
 
-    alias mv="mv -n"
     alias dick=git
     alias vi='vim'
     alias pytest='py.test'
@@ -166,7 +164,6 @@ if [ ! -z "$PS1" ]; then
     pycd () {
         pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
     }
-
 fi
 
 case "$OSTYPE" in
@@ -188,5 +185,8 @@ if [ ! -z "$PS1" ]; then
     fi
     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
     ssh-add -l > /dev/null || ssh-add
-    ssh-add $HOME/.ssh/rasmus_psiori
+fi
+
+if [ $(command -v fuck) ]; then
+    eval $(thefuck --alias)
 fi
