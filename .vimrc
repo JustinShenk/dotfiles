@@ -17,10 +17,11 @@ if v:version >= 800
         let g:ale_python_pylint_executable = 'python'
         let g:ale_lint_on_text_changed = 'never'
         let g:ale_lint_on_enter = 0
+        let g:ale_c_parse_compile_commands = 1
 
         let g:ale_linters = {
                     \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
-                    \ 'cpp': ['cpplint', 'clang-format'],
+                    \ 'cpp': ['clang', 'clangcheck', 'cpplint', 'clang-format'],
                     \}
 
         let g:ale_fixers = {
@@ -29,7 +30,6 @@ if v:version >= 800
                     \ 'cpp': ['clang-format']
                     \}
 
-        let g:ale_cpp_cpplint_options = '--filter=-whitespace/braces --linelength=120'
         let g:ale_python_pycodestyle_options = '--max-line-length=120'
         let g:ale_python_flake8_options = '--max-line-length=120'
         let g:ale_python_autopep8_options = '--max-line-length=120'
@@ -44,9 +44,6 @@ if has('python') || has('python3')
         let g:pymode_lint = 1
         let g:pymode_lint_on_write = 1
         let g:pymode_lint_ignore = ['E221', 'E222', 'E252']
-endif
-if has('python3')
-        let g:pymode_python = 'python3'
 endif
 call dein#add('terryma/vim-multiple-cursors')
     " Default mapping
@@ -102,6 +99,8 @@ call dein#add('altercation/vim-colors-solarized')
 call dein#add('mhinz/vim-startify')
 call dein#end()
 call dein#save_state()
+call dein#add('editorconfig/editorconfig-vim')
+call dein#add('airblade/vim-matchquote')
 
 filetype plugin indent on
 syntax enable
@@ -204,6 +203,7 @@ nmap <space> viw
 vmap <space> <esc>
 
 let mapleader="-"
+let maplocalleader="-"
 map <leader>n :bnext<CR>
 map <leader>p :bprevious<CR>
 
@@ -313,3 +313,13 @@ if has('persistent_undo')
     let &undodir = myUndoDir
     set undofile
 endif
+
+inoremap <C-C> <Esc>
+
+function! Multiple_cursors_before()
+    call youcompleteme#DisableCursorMovedAutocommands()
+endfunction
+
+function! Multiple_cursors_after()
+    call youcompleteme#EnableCursorMovedAutocommands()
+endfunction
