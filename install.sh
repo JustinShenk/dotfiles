@@ -10,7 +10,7 @@ prompt() {
 
 install_file() {
     local should_link="No"
-    if [ -f $HOME/$1 ]; then
+    if [ -f $HOME/$1 || -d $HOME/$1 ]; then
         if prompt "$HOME/$1"; then
             mv -f $HOME/$1 $HOME/$1.bak
             should_link="Yes"
