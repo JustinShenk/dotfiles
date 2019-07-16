@@ -1,5 +1,5 @@
 prompt() {
-    echo -n "$1 already exists. Overwrite? [Yn]"
+    echo -n "$1 already exists. Overwrite? [yN]"
     read answer
     if [ "$answer" != "${answer#[Yy]}" ] ;then
         return 0
@@ -10,7 +10,7 @@ prompt() {
 
 install_file() {
     local should_link="No"
-    if [ -f $HOME/$1 || -d $HOME/$1 ]; then
+    if [ -f $HOME/$1 ] || [ -d $HOME/$1 ]; then
         if prompt "$HOME/$1"; then
             mv -f $HOME/$1 $HOME/$1.bak
             should_link="Yes"
@@ -39,17 +39,11 @@ fi
 
 
 install_file .gitconfig
-
 install_file .tmux.conf
-
 install_file tmux.completion.bash
-
 install_file git-completion.bash
-
 install_file .vim
-
 # vim_version = $(vim --version | grep "Vi IMproved [0-9]\.[0-9]\+" | cut -d " " -f 5)
-
 if install_file .vimrc; then
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh | \
         sh -s -- $HOME/.vim/bundle
