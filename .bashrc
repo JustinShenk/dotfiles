@@ -31,7 +31,7 @@ if [ ! -z "$PS1" ]; then
     if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
         source /usr/local/etc/bash_completion.d/git-completion.bash
     elif [ -f  $HOME/git-completion.bash ]; then
-        source source $HOME/git-completion.bash
+        source $HOME/git-completion.bash
     fi
 
     extract () {
