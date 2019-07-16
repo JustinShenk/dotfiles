@@ -1,9 +1,10 @@
 [user]
-    name = Rasmus Diederichsen
-    email = rasmus@peltarion.com
+	name = Rasmus Diederichsen
+	email = rasmus@psiori.com
 [push]
     default = current
 [alias]
+    aliases = "!git config -l | grep alias | cut -c 7-"
     st = status -s
     vomit = commit
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
@@ -21,5 +22,6 @@
     dc = diff --cached
     logtree = "log --graph --oneline --decorate --all"
     yolo = push --force-with-lease
-    aliases = "!git config -l | grep alias | cut -c 7-"
     changes = "!git log --follow -p --"
+    conflicting = "!git diff --name-only --diff-filter=U"
+    cleanup = "!git branch --merged | grep -v -P '^\\*|master|develop' | xargs -n1 -r git branch -d"
