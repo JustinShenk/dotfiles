@@ -184,8 +184,7 @@ set autoindent
 " Line numbers
 set number
 
-" Set column width to 80 characters
-set textwidth=80
+set textwidth=88
 
 " Shortcuts for english and german spellchek
 map <F1> :set spell spelllang=en_gb <CR>
@@ -323,3 +322,5 @@ endfunction
 function! Multiple_cursors_after()
     call youcompleteme#EnableCursorMovedAutocommands()
 endfunction
+
+set modeline
