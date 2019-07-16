@@ -43,9 +43,10 @@ install_file .tmux.conf
 install_file tmux.completion.bash
 install_file git-completion.bash
 install_file .vim
+
 # vim_version = $(vim --version | grep "Vi IMproved [0-9]\.[0-9]\+" | cut -d " " -f 5)
 if install_file .vimrc; then
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh | \
         sh -s -- $HOME/.vim/bundle
-            vim -c "if v:version >= 800|call dein#update()|quit"
+    vim -c "if v:version >= 800|call dein#update()|quit|else|quit"
 fi
