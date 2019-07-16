@@ -164,6 +164,28 @@ if [ ! -z "$PS1" ]; then
     pycd () {
         pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
     }
+
+    cranemux() {
+        cd $PROJDIR/autocrane-core
+        tmux new-session -ds 0-edit-core
+        tmux new-session -ds 1-run-core
+        tmux new-session -ds 2-edit-sim
+        tmux new-session -ds 3-run-sim
+        tmux new-session -ds 4-misc
+
+        tmux send-keys -t 1-run-core "cd $PROJDIR/autocrane-core/build" Enter
+        tmux send-keys -t 2-edit-sim "cd $PROJDIR/autocrane-core/third_party/autocrane-bulletsim" Enter
+        tmux send-keys -t 2-edit-sim "source $PROJDIR/autocrane-core/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
+
+        tmux send-keys -t 3-run-sim "cd $PROJDIR/autocrane-core/third_party/autocrane-bulletsim" Enter
+        tmux send-keys -t 3-run-sim "source $PROJDIR/autocrane-core/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
+}
+
+    export PATH=$PATH:$HOME/Library/Python3.7/bin
+
+    if [ $(command -v fuck) ]; then
+        eval $(thefuck --alias)
+    fi
 fi
 
 case "$OSTYPE" in
@@ -174,19 +196,17 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
+## NOT WORKING CURRENTLY
 # we do this after sourcing OS-specific files so aborting this prompt does not
 # prevent the other stuff from being executed
-if [ ! -z "$PS1" ]; then
-    # https://unix.stackexchange.com/a/217223/208945
-    # Avoid being asked to unlock private key when ssh'ing from this machine
-    if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-        eval `ssh-agent`
-        ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-    fi
-    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-    ssh-add -l > /dev/null || ssh-add
-fi
-
-if [ $(command -v fuck) ]; then
-    eval $(thefuck --alias)
-fi
+# if [ ! -z "$PS1" ]; then
+#     # https://unix.stackexchange.com/a/217223/208945
+#     # Avoid being asked to unlock private key when ssh'ing from this machine
+#     if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+#         eval `ssh-agent`
+#         ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+#     fi
+#     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+#     ssh-add ~/.ssh/rasmus_psiori
+#     ssh-add ~/.ssh/id_rsa
+# fi

@@ -28,16 +28,4 @@ if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 fi
 export SHELL=$BASH
 
-PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane
-cranemux() {
-    cd $PROJDIR/autocrane-core
-    tmux new-session -ds 0-edit
-    tmux new-session -ds 1-run
-    tmux new-session -ds 2-simulator
-    tmux new-session -ds 3-misc
-
-    tmux send-keys -t 2-simulator "source $PROJDIR/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
-    tmux send-keys -t 2-simulator "cd $PROJDIR/autocrane-bulletsim" Enter
-}
-
-export PATH=$PATH:$HOME/Library/Python3.7/bin
+export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane
