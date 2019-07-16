@@ -47,5 +47,5 @@ install_file .vim
 if install_file .vimrc; then
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh | \
         sh -s -- $HOME/.vim/bundle
-            vim -c "call dein#update()|quit"
+            vim -c "if v:version >= 800|call dein#update()|quit"
 fi
