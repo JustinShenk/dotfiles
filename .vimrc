@@ -109,7 +109,7 @@ if v:version >= 800
 
     "End dein Scripts-------------------------
 else
-    echo "dein requires vim > 8, please upgrade."
+    echo "dein requires vim > 8, please upgrade and :call dein#update() manually."
 endif
 
 filetype plugin indent on
