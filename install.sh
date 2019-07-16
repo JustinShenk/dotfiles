@@ -29,11 +29,11 @@ install_file() {
 
 os=$(uname)
 
-if [ $os == "Linux"]; then
+if [ $os == "Linux" ]; then
     install_file .ubunturc
 fi
 
-if [ $os == "Darwin"]; then
+if [ $os == "Darwin" ]; then
     install_file .macrc
 fi
 
@@ -47,6 +47,8 @@ install_file tmux.completion.bash
 install_file git-completion.bash
 
 install_file .vim
+
+# vim_version = $(vim --version | grep "Vi IMproved [0-9]\.[0-9]\+" | cut -d " " -f 5)
 
 if install_file .vimrc; then
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh | \
