@@ -95,7 +95,7 @@ if v:version >= 800
     call dein#add('altercation/vim-colors-solarized')
         " Solarized colorscheme
         set t_Co=256
-        set bg=light
+        set bg=dark
         colo solarized
     call dein#add('mhinz/vim-startify')
     call dein#end()

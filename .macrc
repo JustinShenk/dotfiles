@@ -29,3 +29,5 @@ fi
 export SHELL=$BASH
 
 export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane
+
+export HOMEBREW_VERBOSE=true
