@@ -195,3 +195,6 @@ case "$OSTYPE" in
   msys*)    echo "WINDOWS" ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
+
+ssh-add ~/.ssh/rasmus_psiori
+source ~/.iterm2_shell_integration.bash
