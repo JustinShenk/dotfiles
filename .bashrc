@@ -165,6 +165,7 @@ if [ ! -z "$PS1" ]; then
         pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
     }
 
+    export PROJDIR=$HOME
     cranemux() {
         cd $PROJDIR/autocrane-core
         tmux new-session -ds 0-edit-core
