@@ -196,18 +196,3 @@ case "$OSTYPE" in
   msys*)    echo "WINDOWS" ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
-
-## NOT WORKING CURRENTLY
-# we do this after sourcing OS-specific files so aborting this prompt does not
-# prevent the other stuff from being executed
-# if [ ! -z "$PS1" ]; then
-#     # https://unix.stackexchange.com/a/217223/208945
-#     # Avoid being asked to unlock private key when ssh'ing from this machine
-#     if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-#         eval `ssh-agent`
-#         ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-#     fi
-#     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-#     ssh-add ~/.ssh/rasmus_psiori
-#     ssh-add ~/.ssh/id_rsa
-# fi
