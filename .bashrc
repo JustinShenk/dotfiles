@@ -146,9 +146,6 @@ if [ ! -z "$PS1" ]; then
     }
     __setprompt
 
-    export PATH=$PATH:$PYTHONPATH
-    export PATH=/usr/local/bin:$PATH # for newly compiled vim
-
     if [ -f $HOME/tmux.completion.bash ]; then
         source ~/tmux.completion.bash
     fi
@@ -182,7 +179,6 @@ if [ ! -z "$PS1" ]; then
         tmux send-keys -t 3-run-sim "source $PROJDIR/autocrane-core/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
 }
 
-    export PATH=$PATH:$HOME/Library/Python3.7/bin
 
     if [ $(command -v fuck) ]; then
         eval $(thefuck --alias)
@@ -197,5 +193,5 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
-ssh-add ~/.ssh/rasmus_psiori
+ssh-add ~/.ssh/id_rsa
 source ~/.iterm2_shell_integration.bash
