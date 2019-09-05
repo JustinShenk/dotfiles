@@ -140,9 +140,9 @@ if [ ! -z "$PS1" ]; then
       if [ $SSH2_IP ] || [ $SSH_IP ] ; then
         local SSH_FLAG="@\h"
       fi
-      PS1="$BLUE[\u$SSH_FLAG:\w]\\$ $NO_COLOUR"
-      PS2="$BLUE>$NO_COLOUR "
-      PS4='$BLUE+$NO_COLOUR '
+      # PS1="$BLUE[\u$SSH_FLAG:\w]\\$ $NO_COLOUR"
+      # PS2="$BLUE>$NO_COLOUR "
+      # PS4='$BLUE+$NO_COLOUR '
     }
     __setprompt
 
@@ -194,4 +194,3 @@ case "$OSTYPE" in
 esac
 
 ssh-add ~/.ssh/id_rsa
-source ~/.iterm2_shell_integration.bash
