@@ -1,36 +1,7 @@
 export CUDA_HOME=/usr/local/cuda
 export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
-export LD_LIBRARY_PATH="$DYLD_LIBRARY_PATH"
-export PATH="$CUDA_HOME/bin:$PATH"
-
-alias open="xdg-open"
-export PATH="$PATH:/home/share/miniconda3/bin"
-
-export PATH="$PATH:/home/rasmus/.local/bin"
-
-export PATH="/usr/local/bin:$PATH"
-
-REPO=/home/share/software/ai_ikkuna/
-
-torchmux () {
-    cd $REPO
-    tmux new-session -ds th0-edit
-    tmux send-keys -t th0-edit "source activate torch" Enter
-    tmux new-session -ds th4-run
-    tmux send-keys -t th4-run "source activate torch" Enter
-    tmux new-session -ds th2-tensorboard
-    tmux send-keys -t th2-tensorboard "source activate torch" Enter
-    tmux send-keys -t th2-tensorboard "tensorboard --logdir runs --port 9999" Enter
-    tmux new-session -ds th1-ipython
-    tmux send-keys -t th1-ipython "source activate torch" Enter
-    tmux send-keys -t th1-ipython "QT_QPA_PLATFORM=offscreen ipython" Enter
-    tmux new-session -ds th3-monitor
-    tmux split-window -v
-    tmux send-keys -t th3-monitor:0.0 "watch --color -n1.0 gpustat --color" Enter
-    tmux send-keys -t th3-monitor:0.1 "htop" Enter
-}
+export PATH=$PATH:"$CUDA_HOME/bin"
 
 alias open="xdg-open"
 
 export CCACHE_DIR=/local/.ccache
-export TERM=xterm-256color
