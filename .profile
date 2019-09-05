@@ -20,7 +20,6 @@ fi
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 if [ -f /etc/profile ]; then
-    PATH=""
     source /etc/profile
 fi
 
