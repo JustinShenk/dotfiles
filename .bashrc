@@ -140,14 +140,11 @@ if [ ! -z "$PS1" ]; then
       if [ $SSH2_IP ] || [ $SSH_IP ] ; then
         local SSH_FLAG="@\h"
       fi
-      PS1="$BLUE[\u$SSH_FLAG:\w]\\$ $NO_COLOUR"
-      PS2="$BLUE>$NO_COLOUR "
-      PS4='$BLUE+$NO_COLOUR '
+      # PS1="$BLUE[\u$SSH_FLAG:\w]\\$ $NO_COLOUR"
+      # PS2="$BLUE>$NO_COLOUR "
+      # PS4='$BLUE+$NO_COLOUR '
     }
     __setprompt
-
-    export PATH=$PATH:$PYTHONPATH
-    export PATH=/usr/local/bin:$PATH # for newly compiled vim
 
     if [ -f $HOME/tmux.completion.bash ]; then
         source ~/tmux.completion.bash
@@ -165,6 +162,7 @@ if [ ! -z "$PS1" ]; then
         pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
     }
 
+    export PROJDIR=$HOME
     cranemux() {
         cd $PROJDIR/autocrane-core
         tmux new-session -ds 0-edit-core
@@ -181,7 +179,6 @@ if [ ! -z "$PS1" ]; then
         tmux send-keys -t 3-run-sim "source $PROJDIR/autocrane-core/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
 }
 
-    export PATH=$PATH:$HOME/Library/Python3.7/bin
 
     if [ $(command -v fuck) ]; then
         eval $(thefuck --alias)
@@ -196,5 +193,4 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
-ssh-add ~/.ssh/rasmus_psiori
-source ~/.iterm2_shell_integration.bash
+ssh-add ~/.ssh/id_rsa

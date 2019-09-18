@@ -38,6 +38,7 @@ if [ $os == "Darwin" ]; then
 fi
 
 install_file .inputrc
+install_file .profile
 install_file .bashrc
 install_file .bash_login
 install_file .macrc
