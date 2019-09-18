@@ -32,6 +32,6 @@ export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane
 
 export HOMEBREW_VERBOSE=true
 
-if [ -f "$HOME/.iterm2_shell_integration.bash "]; then
+if [ -f "$HOME/.iterm2_shell_integration.bash" ]; then
     . "$HOME/.iterm2_shell_integration.bash"
 fi
