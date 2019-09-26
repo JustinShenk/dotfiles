@@ -133,9 +133,10 @@ if [ ! -z "$PS1" ]; then
     CDPATH="."
 
     function __setprompt {
+        PROMPT_DIRTRIM=2
       local BLUE="\[\033[0;34m\]"
       local NO_COLOUR="\[\033[0m\]"
-      PS1="[$(whoami)@$(hostname):$(pwd)]> "
+      PS1="[\u@\h:\w]> "
       # local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
       # local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
       # if [ $SSH2_IP ] || [ $SSH_IP ] ; then
