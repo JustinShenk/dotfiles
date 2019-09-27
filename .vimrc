@@ -46,12 +46,7 @@ if v:version >= 800
             let g:pymode_lint_on_write = 1
             let g:pymode_lint_ignore = ['E221', 'E222', 'E252']
     endif
-    call dein#add('terryma/vim-multiple-cursors')
-        " Default mapping
-        let g:multi_cursor_next_key='<C-n>'
-        let g:multi_cursor_prev_key='<C-p>'
-        let g:multi_cursor_skip_key='<C-x>'
-        let g:multi_cursor_quit_key='<Esc>'
+    call dein#add('mg979/vim-visual-multi')
     call dein#add('mikewest/vimroom')
     call dein#add('sjl/gundo.vim')
     call dein#add('skywind3000/asyncrun.vim')
@@ -83,7 +78,7 @@ if v:version >= 800
         let g:ycm_complete_in_comments = 1
         let g:ycm_collect_identifiers_from_comments_and_strings = 1
         let g:ycm_show_diagnostics_ui = 0
-        nmap <C-c> :YcmCompleter GetDoc<CR>
+        " nmap <C-c> :YcmCompleter GetDoc<CR>
         let g:ycm_semantic_triggers = {
         \   'roslaunch' : ['="', '$(', '/'],
         \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
@@ -317,13 +312,13 @@ if has('persistent_undo')
     set undofile
 endif
 
-inoremap <C-C> <Esc>
+map <C-c> <Esc>
 
-function! Multiple_cursors_before()
+function! VM_Start()
     call youcompleteme#DisableCursorMovedAutocommands()
 endfunction
 
-function! Multiple_cursors_after()
+function! VM_Exit()
     call youcompleteme#EnableCursorMovedAutocommands()
 endfunction
 
