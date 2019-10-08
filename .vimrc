@@ -46,6 +46,7 @@ if v:version >= 800
             let g:pymode_lint_on_write = 1
             let g:pymode_lint_ignore = ['E221', 'E222', 'E252']
     endif
+    call dein#add('tarekbecker/vim-yaml-formatter')
     call dein#add('mg979/vim-visual-multi')
     call dein#add('mikewest/vimroom')
     call dein#add('sjl/gundo.vim')
