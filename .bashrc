@@ -190,6 +190,8 @@ if [ ! -z "$PS1" ]; then
     if [ $(command -v fuck) ]; then
         eval $(thefuck --alias)
     fi
+    # To simply javadoc generation
+    alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
 fi
 
 case "$OSTYPE" in

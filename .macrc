@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-# Add own shell scripts to path
-export PATH=$PATH:$HOME/Documents/Programming/Bash
-
-export PATH=/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin::$PATH
-
-export PATH=$PATH:/Users/Rasmus/Library/Python/3.6/bin  # for PyPDF2 or something
-
-# for pandoc filters installed via cabal
-export PATH=$PATH:/Users/Rasmus/.cabal/bin
-
-# To simply javadoc generation
-alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
 
 export CLASSPATH=/Users/Rasmus/Library/Java/Extensions:.
 
@@ -46,10 +33,7 @@ alias uni='cd "$UNI"'
 
 # Cheesus christ, why does pkg-config not know its own fckng standard directory,
 # what the actual fuck.
-PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
-export PKG_CONFIG_PATH
-=======
-export PATH=/usr/local/bin:/opt/local/libexec/gnubin/:/opt/local/bin/:$PATH
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PATH="/usr/local/sbin:$PATH "
 # these paths need to be added to the front so that the GNU utilities like find,
 # sed etc can be used with their regular name, without prefixing a g (gfind,
@@ -62,7 +46,6 @@ export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
->>>>>>> b2c73f60c3638767b00a95a395e0b9e9867510d1
 
 # Change to current Finder directory
 cdf() {
@@ -74,35 +57,15 @@ cdf() {
     fi
 }
 
-<<<<<<< HEAD
 # iTerm shell integration
-source ~/.iterm2_shell_integration.`basename $SHELL`
-
-# added by Miniconda3 installer
-export PATH="$PATH:/Users/Rasmus/miniconda3/bin"
-
-export THESIS_DIR='/Users/Rasmus/Documents/Uni/Master/Semester 6/thesis/thesis_latex'
-
-thesismux () {
-    cd "$THESIS_DIR"
-    tmux new-session -ds 1-compile
-    tmux send-keys -t 1-compile "make watch" Enter
-    tmux new-session -ds 2-misc
-    tmux new-session -s 0-edit
-}
-=======
-# bash-completion
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-    . /opt/local/etc/profile.d/bash_completion.sh
+if [ -f $HOME/.iterm2_shell_integration.`basename $SHELL` ]; then
+    source ~/.iterm2_shell_integration.`basename $SHELL`
 fi
-export SHELL=$BASH
 
-export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane
->>>>>>> b2c73f60c3638767b00a95a395e0b9e9867510d1
+export SHELL=$BASH
 
 export HOMEBREW_VERBOSE=true
 
-<<<<<<< HEAD
 function fuckblue {
     set +x
     sudo killall coreaudiod
@@ -121,8 +84,3 @@ function fuckblue {
 }
 
 export PATH=$PATH:/usr/local/platform-tools
-=======
-if [ -f "$HOME/.iterm2_shell_integration.bash" ]; then
-    . "$HOME/.iterm2_shell_integration.bash"
-fi
->>>>>>> b2c73f60c3638767b00a95a395e0b9e9867510d1
