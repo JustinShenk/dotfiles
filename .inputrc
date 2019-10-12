@@ -1,0 +1,3 @@
+set bind-tty-special-chars off
+"\C-u": kill-whole-line
+"\C-w": backward-kill-word

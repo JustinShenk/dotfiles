@@ -1,10 +1,5 @@
 # test if interactive
 if [ ! -z "$PS1" ]; then
-    stty werase undef
-    bind '"\C-w": backward-kill-word'
-    # bind '"\C-j": unix-word-rubout' # causes iTerm+Go2Shell fuckups and messes
-    # up tmux send-keys
-
     # Lang env variable
     export LC_ALL=en_US.UTF-8 # w/o this, can't import e.g. matplotlib? wtf?
     export LANG=en_US.UTF-8
@@ -16,7 +11,6 @@ if [ ! -z "$PS1" ]; then
 
     # color grep commands
     alias grep='grep --color=auto'
-    alias make='make -j4'
     alias la='ls -a'
     alias ls='ls -FG'
     alias ll='ls -ahl'
@@ -30,13 +24,16 @@ if [ ! -z "$PS1" ]; then
     alias ....="cd ../../.."
     alias .....="cd ../../../.."
 
-    alias mv="mv -n"
     alias dick=git
     alias vi='vim'
     alias pytest='py.test'
 
+    if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+        source /usr/local/etc/bash_completion.d/git-completion.bash
+    elif [ -f  $HOME/git-completion.bash ]; then
+        source $HOME/git-completion.bash
+    fi
 
-    # extract any archive. Alternative: `sudo apt install unp`
     extract () {
        if [ -f $1 ] ; then
            case $1 in
@@ -141,23 +138,24 @@ if [ ! -z "$PS1" ]; then
     fi
 
     function __setprompt {
+        PROMPT_DIRTRIM=2
       local BLUE="\[\033[0;34m\]"
       local NO_COLOUR="\[\033[0m\]"
-      local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
-      local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
-      if [ $SSH2_IP ] || [ $SSH_IP ] ; then
-        local SSH_FLAG="@\h"
-      fi
-      PS1="$BLUE[\u$SSH_FLAG:\w]\\$ $NO_COLOUR"
-      PS2="$BLUE>$NO_COLOUR "
-      PS4='$BLUE+$NO_COLOUR '
+      PS1="[\u@\h:\w]> "
+      # local SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
+      # local SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
+      # if [ $SSH2_IP ] || [ $SSH_IP ] ; then
+      #   local SSH_FLAG="@\h"
+      # fi
+      # PS1="$BLUE[\u$SSH_FLAG:\w]\\$ $NO_COLOUR"
+      # PS2="$BLUE>$NO_COLOUR "
+      # PS4='$BLUE+$NO_COLOUR '
     }
     __setprompt
 
-    export PATH=$PATH:$PYTHONPATH
-    export PATH=/usr/local/bin:$PATH # for newly compiled vim
-
-    source ~/tmux.completion.bash
+    if [ -f $HOME/tmux.completion.bash ]; then
+        source ~/tmux.completion.bash
+    fi
 
     # must press ctrl-D twice to exit
     export IGNOREEOF="1"
@@ -171,6 +169,27 @@ if [ ! -z "$PS1" ]; then
         pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
     }
 
+    export PROJDIR=$HOME
+    cranemux() {
+        cd $PROJDIR/autocrane-core
+        tmux new-session -ds 0-edit-core
+        tmux new-session -ds 1-run-core
+        tmux new-session -ds 2-edit-sim
+        tmux new-session -ds 3-run-sim
+        tmux new-session -ds 4-misc
+
+        tmux send-keys -t 1-run-core "cd $PROJDIR/autocrane-core/build" Enter
+        tmux send-keys -t 2-edit-sim "cd $PROJDIR/autocrane-core/third_party/autocrane-bulletsim" Enter
+        tmux send-keys -t 2-edit-sim "source $PROJDIR/autocrane-core/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
+
+        tmux send-keys -t 3-run-sim "cd $PROJDIR/autocrane-core/third_party/autocrane-bulletsim" Enter
+        tmux send-keys -t 3-run-sim "source $PROJDIR/autocrane-core/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
+}
+
+
+    if [ $(command -v fuck) ]; then
+        eval $(thefuck --alias)
+    fi
 fi
 
 case "$OSTYPE" in
@@ -181,15 +200,4 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
-# we do this after sourcing OS-specific files so aborting this prompt does not
-# prevent the other stuff from being executed
-if [ ! -z "$PS1" ]; then
-    # https://unix.stackexchange.com/a/217223/208945
-    # Avoid being asked to unlock private key when ssh'ing from this machine
-    if [ ! -S ~/.ssh/ssh_auth_sock ]; then
-        eval `ssh-agent`
-        ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
-    fi
-    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-    ssh-add -l > /dev/null || ssh-add
-fi
+source ~/.iterm2_shell_integration.bash

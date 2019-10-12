@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Add own shell scripts to path
 export PATH=$PATH:$HOME/Documents/Programming/Bash
 
@@ -47,6 +48,21 @@ alias uni='cd "$UNI"'
 # what the actual fuck.
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PKG_CONFIG_PATH
+=======
+export PATH=/usr/local/bin:/opt/local/libexec/gnubin/:/opt/local/bin/:$PATH
+export PATH="/usr/local/sbin:$PATH "
+# these paths need to be added to the front so that the GNU utilities like find,
+# sed etc can be used with their regular name, without prefixing a g (gfind,
+# gsed...)
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"    # homebrew gnu utils
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/ccache/libexec:$PATH"
+>>>>>>> b2c73f60c3638767b00a95a395e0b9e9867510d1
 
 # Change to current Finder directory
 cdf() {
@@ -58,6 +74,7 @@ cdf() {
     fi
 }
 
+<<<<<<< HEAD
 # iTerm shell integration
 source ~/.iterm2_shell_integration.`basename $SHELL`
 
@@ -73,9 +90,19 @@ thesismux () {
     tmux new-session -ds 2-misc
     tmux new-session -s 0-edit
 }
-
+=======
+# bash-completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+    . /opt/local/etc/profile.d/bash_completion.sh
+fi
 export SHELL=$BASH
 
+export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane
+>>>>>>> b2c73f60c3638767b00a95a395e0b9e9867510d1
+
+export HOMEBREW_VERBOSE=true
+
+<<<<<<< HEAD
 function fuckblue {
     set +x
     sudo killall coreaudiod
@@ -94,3 +121,8 @@ function fuckblue {
 }
 
 export PATH=$PATH:/usr/local/platform-tools
+=======
+if [ -f "$HOME/.iterm2_shell_integration.bash" ]; then
+    . "$HOME/.iterm2_shell_integration.bash"
+fi
+>>>>>>> b2c73f60c3638767b00a95a395e0b9e9867510d1
