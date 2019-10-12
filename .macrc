@@ -1,9 +1,7 @@
 # Add own shell scripts to path
 export PATH=$PATH:$HOME/Documents/Programming/Bash
 
-export PATH=/Library/TeX/texbin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin:/opt/local/libexec/qt4/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/3.5/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/:$PATH
-
-export PATH=/opt/local/lib/postgresql10/bin:$PATH
+export PATH=/Library/TeX/texbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin::$PATH
 
 export PATH=$PATH:/Users/Rasmus/Library/Python/3.6/bin  # for PyPDF2 or something
 
@@ -47,7 +45,7 @@ alias uni='cd "$UNI"'
 
 # Cheesus christ, why does pkg-config not know its own fckng standard directory,
 # what the actual fuck.
-PKG_CONFIG_PATH=/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PKG_CONFIG_PATH
 
 # Change to current Finder directory
@@ -60,18 +58,8 @@ cdf() {
     fi
 }
 
-export PATH=$PATH:~/Library/Python/2.7/bin/
-
 # iTerm shell integration
 source ~/.iterm2_shell_integration.`basename $SHELL`
-
-# bash-completion
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-    . /opt/local/etc/profile.d/bash_completion.sh
-fi
-
-# Webdrivers
-export PATH=$PATH:/usr/local/bin/Webdrivers/
 
 # added by Miniconda3 installer
 export PATH="$PATH:/Users/Rasmus/miniconda3/bin"
@@ -104,3 +92,5 @@ function fuckblue {
     sudo renice -20 `pgrep coreaudiod`
     sudo renice -20 `pgrep blued`
 }
+
+export PATH=$PATH:/usr/local/platform-tools

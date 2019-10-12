@@ -136,6 +136,9 @@ if [ ! -z "$PS1" ]; then
     CDPATH="."
 
     source ~/git-completion.bash
+    if [ -f /usr/local/etc/bash_completion.d/pass ]; then
+        source /usr/local/etc/bash_completion.d/pass
+    fi
 
     function __setprompt {
       local BLUE="\[\033[0;34m\]"
