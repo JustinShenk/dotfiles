@@ -5,13 +5,13 @@ filetype off                  " required
 if v:version >= 800
     set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 
-    " if dein#load_state('$HOME/.vim/bundle/')
     call dein#begin('$HOME/.vim/bundle/')
     " Let dein manage dein
     call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
 
     call dein#add('vim-scripts/LargeFile')
-
+    call dein#add('Konfekt/FastFold')
+    set foldmethod=syntax
     " Add or remove your plugins here:
     if v:version >= 800
         call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
@@ -47,6 +47,7 @@ if v:version >= 800
             let g:pymode_lint_ignore = ['E221', 'E222', 'E252']
     endif
     call dein#add('tarekbecker/vim-yaml-formatter')
+    let g:yaml_formatter_indent_collection=1
     call dein#add('mg979/vim-visual-multi')
     call dein#add('mikewest/vimroom')
     call dein#add('sjl/gundo.vim')
@@ -71,7 +72,7 @@ if v:version >= 800
         let g:ultisnips_python_quoting_style = "single"
     call dein#add('honza/vim-snippets')
     call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
-        let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+        let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
         let g:ycm_autoclose_preview_window_after_completion = 1
         let g:ycm_autoclose_preview_window_after_insertion = 1
         let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -91,7 +92,7 @@ if v:version >= 800
     call dein#add('altercation/vim-colors-solarized')
         " Solarized colorscheme
         set t_Co=256
-        set bg=light
+        set bg=dark
         colo solarized
     call dein#add('mhinz/vim-startify')
     call dein#end()
@@ -218,7 +219,7 @@ nnoremap <C-s> :call <SID>compile_and_run()<CR>
 syntax on
 
 " not sure anymore what this does
-set omnifunc=syntaxcomplete#Complete
+" set omnifunc=syntaxcomplete#Complete
 
 " not sure anymore what this does
 set wildmode=longest,list
@@ -291,7 +292,7 @@ let NERDTreeMapOpenInTab='<ENTER>'
 " open Nerdtree on the right
 let g:NERDTreeWinPos = "right"
 
-" allow more then few open tabs
+" allow more than few open tabs
 set tabpagemax=100
 let g:goyo_width = 120
 
@@ -324,3 +325,7 @@ function! VM_Exit()
 endfunction
 
 set modeline
+let mapleader=","
+
+map <leader><C-d> :set bg=dark<C-m>
+map <leader><C-l> :set bg=light<C-m>
