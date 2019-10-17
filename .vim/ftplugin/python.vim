@@ -67,11 +67,10 @@ unlet s:keepcpo
 
 
 " CUSTOM COMMANDS "
- map <buffer> <C-a> :w!<C-m>:!clear; echo This is Python devouring  % ...; python -i %<C-m>
+ map <buffer> <C-a> :w!<C-m>:!clear; echo This is Python devouring  % ...; python3 -i %<C-m>
 
 " Comment line
 noremap <buffer> - I# <Esc>
 
 " Uncomment line
 noremap <buffer> _ I<Right><Esc>xx
-
