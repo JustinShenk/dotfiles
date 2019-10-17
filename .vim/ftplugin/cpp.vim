@@ -10,3 +10,5 @@ map <buffer> <C-a> :!clear; echo Executing % ...;  ./%< <C-m>
 " Set 'formatoptions' to break comment lines but not other lines,
 " and insert the comment leader when hitting <CR> or using "o".
 setlocal fo-=t fo+=croql
+
+nnoremap <C-f> :%!clang-format -style=file<C-m><C-o>
