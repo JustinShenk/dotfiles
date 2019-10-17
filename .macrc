@@ -1,4 +1,37 @@
-export PATH=/usr/local/bin:/opt/local/libexec/gnubin/:/opt/local/bin/:$PATH
+if [[ `hostname` == rasmus-macbook-pro* ]]; then
+    # ================================================================================
+    # Change command line prompt into a penis with length proportional to the
+    # distance from root
+
+    # repeat char n times (found on SO)
+    repl() { printf "$1"'%.s' $(eval "echo {1.."$(($2))"}"); }
+
+    # print distance from root. This works only correctly if there is no slash at
+    # the end of the path given.
+    depth() {
+        if [ "$1" = '/' ]; then
+            echo 1
+        else
+            echo $(echo "$1/" | grep -o "/" | wc -l)
+                fi
+    }
+    export PS1='`date +%H:%M:%S`: \[\e[1;33m\]8`repl 𝌆 $(depth "$(pwd)")`D\[\e[m\]:[\[\e[35m\]\W\[\e[m\]] '
+    # ================================================================================
+fi
+
+export TEX=/users/rasmus/documents/latex/texnisches/
+export DROPBOX='/Volumes/Macintosh HD/Users/Rasmus/Dropbox'
+
+# Include scheme-listings
+export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/scheme-listings/:$TEXINPUTS
+export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/atmega-listings/:$TEXINPUTS
+
+export UNI='/Users/Rasmus/Documents/Uni/'
+alias uni='cd "$UNI"'
+
+# Cheesus christ, why does pkg-config not know its own fckng standard directory,
+# what the actual fuck.
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PATH="/usr/local/sbin:$PATH "
 # these paths need to be added to the front so that the GNU utilities like find,
 # sed etc can be used with their regular name, without prefixing a g (gfind,
@@ -22,16 +55,30 @@ cdf() {
     fi
 }
 
-# bash-completion
-if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
-    . /opt/local/etc/profile.d/bash_completion.sh
+# iTerm shell integration
+if [ -f $HOME/.iterm2_shell_integration.`basename $SHELL` ]; then
+    source ~/.iterm2_shell_integration.`basename $SHELL`
 fi
-export SHELL=$BASH
 
-export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane
+export SHELL=$BASH
 
 export HOMEBREW_VERBOSE=true
 
-if [ -f "$HOME/.iterm2_shell_integration.bash" ]; then
-    . "$HOME/.iterm2_shell_integration.bash"
-fi
+function fuckblue {
+    set +x
+    sudo killall coreaudiod
+    sudo killall blued
+    sudo renice -20 `pgrep bluetoothaudio`
+    sudo renice -20 `pgrep iTunes`
+    defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Max (editable)" 80
+    defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" 80
+    defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" 80
+    defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool Min (editable)" 80
+    defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool" 80
+    defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Max" 80
+    defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Min" 80
+    sudo renice -20 `pgrep coreaudiod`
+    sudo renice -20 `pgrep blued`
+}
+
+export PATH=$PATH:/usr/local/platform-tools

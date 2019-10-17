@@ -132,6 +132,11 @@ if [ ! -z "$PS1" ]; then
     # Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projects folder
     CDPATH="."
 
+    source ~/git-completion.bash
+    if [ -f /usr/local/etc/bash_completion.d/pass ]; then
+        source /usr/local/etc/bash_completion.d/pass
+    fi
+
     function __setprompt {
         PROMPT_DIRTRIM=2
       local BLUE="\[\033[0;34m\]"
@@ -185,6 +190,8 @@ if [ ! -z "$PS1" ]; then
     if [ $(command -v fuck) ]; then
         eval $(thefuck --alias)
     fi
+    # To simply javadoc generation
+    alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
 fi
 
 case "$OSTYPE" in
