@@ -28,12 +28,6 @@ if [ ! -z "$PS1" ]; then
     alias vi='vim'
     alias pytest='py.test'
 
-    if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-        source /usr/local/etc/bash_completion.d/git-completion.bash
-    elif [ -f  $HOME/git-completion.bash ]; then
-        source $HOME/git-completion.bash
-    fi
-
     extract () {
        if [ -f $1 ] ; then
            case $1 in
@@ -169,21 +163,21 @@ if [ ! -z "$PS1" ]; then
         pushd `python -c "import os.path, $1; print(os.path.dirname($1.__file__))"`;
     }
 
-    export PROJDIR=$HOME
+    export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane/autocrane-core
     cranemux() {
-        cd $PROJDIR/autocrane-core
+        cd $PROJDIR
         tmux new-session -ds 0-edit-core
         tmux new-session -ds 1-run-core
         tmux new-session -ds 2-edit-sim
         tmux new-session -ds 3-run-sim
         tmux new-session -ds 4-misc
 
-        tmux send-keys -t 1-run-core "cd $PROJDIR/autocrane-core/build" Enter
-        tmux send-keys -t 2-edit-sim "cd $PROJDIR/autocrane-core/third_party/autocrane-bulletsim" Enter
-        tmux send-keys -t 2-edit-sim "source $PROJDIR/autocrane-core/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
+        tmux send-keys -t 1-run-core "cd $PROJDIR/build" Enter
+        tmux send-keys -t 2-edit-sim "cd $PROJDIR/third_party/autocrane-bulletsim" Enter
+        tmux send-keys -t 2-edit-sim "source $PROJDIR/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
 
-        tmux send-keys -t 3-run-sim "cd $PROJDIR/autocrane-core/third_party/autocrane-bulletsim" Enter
-        tmux send-keys -t 3-run-sim "source $PROJDIR/autocrane-core/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
+        tmux send-keys -t 3-run-sim "cd $PROJDIR/third_party/autocrane-bulletsim" Enter
+        tmux send-keys -t 3-run-sim "source $PROJDIR/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
 }
 
 
