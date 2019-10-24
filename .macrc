@@ -1,3 +1,5 @@
+# vim: set ft=sh:
+
 if [[ `hostname` == rasmus-macbook-pro* ]]; then
     # ================================================================================
     # Change command line prompt into a penis with length proportional to the
@@ -82,3 +84,7 @@ function fuckblue {
 }
 
 export PATH=$PATH:/usr/local/platform-tools
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
