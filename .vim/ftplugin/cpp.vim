@@ -2,13 +2,16 @@
 let b:did_ftplugin = 1
 
 " Compile current file to UNIX executable
-map <buffer> <C-k> :w!<C-m>:!clear; echo This is clang compiling your shit % to executable ...; clang % -o %< <C-m>
-
-" Execute compiled file
-map <buffer> <C-a> :!clear; echo Executing % ...;  ./%< <C-m>
+map <buffer> <C-k> :!tmux send-keys -t 1-run-core C-u "make -j12" Enter<CR><CR>
 
 " Set 'formatoptions' to break comment lines but not other lines,
 " and insert the comment leader when hitting <CR> or using "o".
 setlocal fo-=t fo+=croql
 
-nnoremap <C-f> :%!clang-format -style=file<C-m><C-o>
+nnoremap <C-f> :call Clang_format()<CR>
+
+func! Clang_format()
+    let save_cursor = getcurpos()
+    exe '%!clang-format -style=file'
+    call setpos('.', save_cursor)
+endfunc
