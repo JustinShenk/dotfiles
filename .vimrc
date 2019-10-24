@@ -80,7 +80,7 @@ if v:version >= 800
         let g:ycm_complete_in_comments = 1
         let g:ycm_collect_identifiers_from_comments_and_strings = 1
         let g:ycm_show_diagnostics_ui = 0
-        " nmap <C-c> :YcmCompleter GetDoc<CR>
+        let g:ycm_confirm_extra_conf = 0
         let g:ycm_semantic_triggers = {
         \   'roslaunch' : ['="', '$(', '/'],
         \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
@@ -314,18 +314,23 @@ if has('persistent_undo')
     set undofile
 endif
 
-map <C-c> <Esc>
-
 function! VM_Start()
+    nmap <buffer> <C-C> <Esc>
+    imap <buffer> <C-C> <Esc>
     call youcompleteme#DisableCursorMovedAutocommands()
 endfunction
 
 function! VM_Exit()
+    nunmap <buffer> <C-C>
+    iunmap <buffer> <C-C>
     call youcompleteme#EnableCursorMovedAutocommands()
 endfunction
 
+let g:VM_debug = 1
+
 set modeline
-let mapleader=","
 
 map <leader><C-d> :set bg=dark<C-m>
 map <leader><C-l> :set bg=light<C-m>
+
+vnoremap <C-c> <Esc>
