@@ -28,7 +28,7 @@ if v:version >= 800
 
             let g:ale_fixers = {
                         \ 'python': ['add_blank_lines_for_python_control_statements',
-                        \            'autopep8', 'isort', 'yapf'],
+                        \            'autopep8', 'isort', 'yapf', 'black'],
                         \ 'cpp': ['clang-format']
                         \}
 
@@ -93,7 +93,7 @@ if v:version >= 800
     call dein#add('altercation/vim-colors-solarized')
         " Solarized colorscheme
         set t_Co=256
-        set bg=dark
+        set bg=light
         colo solarized
     call dein#add('mhinz/vim-startify')
     call dein#end()
@@ -210,10 +210,6 @@ map <leader>p :bprevious<CR>
 
 " Capitalise each word in selection
 vmap gw :s/\%V\<./\u&/g<CR>
-
-
-" Quick run via <F5>
-nnoremap <C-s> :call <SID>compile_and_run()<CR>
 
 
 " Syntax highlighting
