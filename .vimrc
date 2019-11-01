@@ -237,29 +237,9 @@ autocmd BufEnter *.cls :setlocal filetype=tex
 set cole=2
 
 hi Comment cterm=bold
-" let g:auto_save = 1  " enable AutoSave on Vim startup
-" let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
 
-augroup SPACEVIM_ASYNCRUN
-    autocmd!
-    " Automatically open the quickfix window
-    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(15, 1)
-augroup END
-
-function! s:compile_and_run()
-    exec 'w'
-    if &filetype == 'c'
-        exec "AsyncRun! clang % -o %<; time ./%<"
-    elseif &filetype == 'cpp'
-       exec "AsyncRun! clang++ -std=c++11 % -o %<; time ./%<"
-    elseif &filetype == 'java'
-       exec "AsyncRun! javac %; time java %<"
-    elseif &filetype == 'sh'
-       exec "AsyncRun! time bash %"
-    elseif &filetype == 'python'
-       exec "AsyncRun! time python %"
-    endif
-endfunction
 
 set formatoptions+=j " Delete comment character when joining commented lines
 
@@ -323,11 +303,24 @@ function! VM_Exit()
     call youcompleteme#EnableCursorMovedAutocommands()
 endfunction
 
-let g:VM_debug = 1
-
 set modeline
 
 map <leader><C-d> :set bg=dark<C-m>
 map <leader><C-l> :set bg=light<C-m>
+map <leader><C-h> :YcmCompleter GoToDeclaration<CR>
 
-vnoremap <C-c> <Esc>
+vnoremap <C-C> <Esc>
+inoremap <C-C> <Esc>
+
+" for showing length of selection
+set showcmd
+
+" ctags
+nmap <C-I> <C-]>
+set tags+=~/.vim/tags/cpp/tags
+
+function s:build_ctags()
+    exec "AsyncRun! ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q ."
+endfunction
+
+map <leader><C-T> :call <SID>build_ctags()<CR>
