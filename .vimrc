@@ -12,6 +12,7 @@ if v:version >= 800
     call dein#add('vim-scripts/LargeFile')
     call dein#add('Konfekt/FastFold')
     set foldmethod=syntax
+    set foldlevel=2
     " Add or remove your plugins here:
     if v:version >= 800
         call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
