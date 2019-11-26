@@ -17,7 +17,7 @@ if [ ! -z "$PS1" ]; then
     # print large files
     alias diskspace="du -S | sort -n -r |more"
     # show size of folders in current dir
-    alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -skh | sort -h'
+    alias folders='du -a -h --max-depth=1 | sort -hr'
 
     alias ..="cd .."
     alias ...="cd ../.."
@@ -166,10 +166,10 @@ if [ ! -z "$PS1" ]; then
 
         tmux send-keys -t 1-run-core "cd $PROJDIR/build" Enter
         tmux send-keys -t 2-edit-sim "cd $PROJDIR/third_party/autocrane-bulletsim" Enter
-        tmux send-keys -t 2-edit-sim "source $PROJDIR/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
+        tmux send-keys -t 2-edit-sim "source $PROJDIR/autocrane_venv/bin/activate" Enter
 
         tmux send-keys -t 3-run-sim "cd $PROJDIR/third_party/autocrane-bulletsim" Enter
-        tmux send-keys -t 3-run-sim "source $PROJDIR/third_party/autocrane-bulletsim/bulletsim.venv/bin/activate" Enter
+        tmux send-keys -t 3-run-sim "source $PROJDIR/autocrane_venv/bin/activate" Enter
 }
 
 
@@ -178,6 +178,12 @@ if [ ! -z "$PS1" ]; then
     fi
     # To simply javadoc generation
     alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
+
+
+    alias make="make -j$(getconf _NPROCESSORS_ONLN)"
+
+    export PATH=$HOME/Documents/ESP-Toolchain/xtensa-esp32-elf/bin:$PATH
+    export IDF_PATH=$HOME/Downloads/esp-idf
 fi
 
 case "$OSTYPE" in

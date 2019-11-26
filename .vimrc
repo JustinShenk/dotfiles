@@ -1,6 +1,6 @@
-" Vundle setup
-set nocompatible              " be iMproved, required
-filetype off                  " required
+if &compatible
+    set nocompatible
+endif
 
 if v:version >= 800
     set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
@@ -13,96 +13,93 @@ if v:version >= 800
     call dein#add('Konfekt/FastFold')
     set foldmethod=syntax
     set foldlevel=2
-    " Add or remove your plugins here:
-    if v:version >= 800
-        call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
-            let g:ale_python_pylint_executable = 'python'
-            let g:ale_lint_on_text_changed = 'never'
-            let g:ale_lint_on_enter = 0
-            let g:ale_c_parse_compile_commands = 1
+    call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
+    let g:ale_python_pylint_executable = 'python'
+    let g:ale_set_loclist = 0
+    let g:ale_set_quickfix = 1
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_lint_on_insert_leave = 0
+    let g:ale_lint_on_enter = 0
+    let g:ale_c_parse_compile_commands = 1
 
-            let g:ale_linters = {
-                        \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
-                        \ 'cpp': ['clang', 'clangcheck', 'cpplint', 'clang-format'],
-                        \}
+    let g:ale_linters = {
+                \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
+                \ 'cpp': ['clang-format', 'cppcheck'],
+                \}
 
-            let g:ale_fixers = {
-                        \ 'python': ['add_blank_lines_for_python_control_statements',
-                        \            'autopep8', 'isort', 'yapf', 'black'],
-                        \ 'cpp': ['clang-format']
-                        \}
+    let g:ale_fixers = {
+                \ 'python': ['add_blank_lines_for_python_control_statements',
+                \            'autopep8', 'isort', 'yapf', 'black'],
+                \ 'cpp': ['clang-format', 'cppcheck']
+                \}
 
-            let g:ale_python_pycodestyle_options = '--max-line-length=120'
-            let g:ale_python_flake8_options = '--max-line-length=120'
-            let g:ale_python_autopep8_options = '--max-line-length=120'
-    endif
+    let g:ale_linters_explicit=1
+    let g:ale_sign_column_always = 1
+    let g:ale_list_window_size = 15
     if has('python') || has('python3')
-        call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'roslaunch', 'rosmsg', 'rosaction']})
+        " call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'roslaunch', 'rosmsg', 'rosaction']})
         call dein#add('python-mode/python-mode', {'on_ft': ['python']})
-            let g:pymode_options_max_line_length = 100
-            let g:pymode_folding = 0
-            let g:pymode_rope = 0
-            let g:pymode_rope_lookup_project = 0
-            let g:pymode_lint = 1
-            let g:pymode_lint_on_write = 1
-            let g:pymode_lint_ignore = ['E221', 'E222', 'E252']
+        let g:pymode_folding = 0
+        let g:pymode_rope = 0
+        let g:pymode_rope_lookup_project = 0
+        let g:pymode_lint = 0
     endif
-    call dein#add('tarekbecker/vim-yaml-formatter')
+    call dein#add('tarekbecker/vim-yaml-formatter', {'on_ft': ['yaml']})
     let g:yaml_formatter_indent_collection=1
     call dein#add('mg979/vim-visual-multi')
-    call dein#add('mikewest/vimroom')
     call dein#add('sjl/gundo.vim')
     call dein#add('skywind3000/asyncrun.vim')
     call dein#add('tpope/vim-commentary')
     call dein#add('b4winckler/vim-angry')
-    call dein#add('junegunn/goyo.vim')
+
     call dein#add('scrooloose/nerdtree')
-        " Show hidden stuff in nerdtree
-        let NERDTreeShowHidden=1
+    " Show hidden stuff in nerdtree
+    let NERDTreeShowHidden=1
+
     call dein#add('tpope/vim-surround')
-    call dein#add('airblade/vim-gitgutter')
     call dein#add('godlygeek/tabular')
     call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp']})
+
     call dein#add('SirVer/ultisnips')
-        " For UltiSnips
-        let g:UltiSnipsExpandTrigger="<C-J>"
-        let g:UltiSnipsJumpForwardTrigger="<C-J>"
-        let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
-        let g:ultisnips_python_style = "numpy"
-        let g:ultisnips_python_triple_quoting_style = "single"
-        let g:ultisnips_python_quoting_style = "single"
+    " For UltiSnips
+    let g:UltiSnipsExpandTrigger="<C-J>"
+    let g:UltiSnipsJumpForwardTrigger="<C-J>"
+    let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
+    let g:ultisnips_python_style = "numpy"
+    let g:ultisnips_python_triple_quoting_style = "single"
+    let g:ultisnips_python_quoting_style = "single"
     call dein#add('honza/vim-snippets')
+
     call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
-        let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-        let g:ycm_autoclose_preview_window_after_completion = 1
-        let g:ycm_autoclose_preview_window_after_insertion = 1
-        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-        let g:ycm_complete_in_comments = 1
-        let g:ycm_collect_identifiers_from_comments_and_strings = 1
-        let g:ycm_show_diagnostics_ui = 0
-        let g:ycm_confirm_extra_conf = 0
-        let g:ycm_semantic_triggers = {
-        \   'roslaunch' : ['="', '$(', '/'],
-        \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
-        \ }
+    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:ycm_complete_in_comments = 1
+    let g:ycm_collect_identifiers_from_comments_and_strings = 1
+    let g:ycm_show_diagnostics_ui = 0
+    let g:ycm_confirm_extra_conf = 0
+    let g:ycm_semantic_triggers = {
+                \   'roslaunch' : ['="', '$(', '/'],
+                \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
+                \ }
     call dein#add('andymass/vim-matchup')
-        let g:matchup_matchparen_deferred = 1
-    call dein#add('lervag/vimtex', {'on_ft': ['tex']})
-        let g:vimtex_fold_enabled = 0
+    let g:matchup_matchparen_deferred = 1
+    call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
+    let g:vimtex_fold_enabled = 0
     call dein#add('altercation/vim-colors-solarized')
-        " Solarized colorscheme
-        set t_Co=256
-        set bg=light
-        colo solarized
+    " Solarized colorscheme
+    set t_Co=256
+    set bg=light
+    colo solarized
     call dein#add('mhinz/vim-startify')
     call dein#end()
+
     call dein#save_state()
-    call dein#add('editorconfig/editorconfig-vim')
-    call dein#add('airblade/vim-matchquote')
     " If you want to install not installed plugins on startup.
     if dein#check_install()
-      call dein#install()
+        call dein#install()
     endif
 
     "End dein Scripts-------------------------
@@ -113,9 +110,6 @@ endif
 filetype plugin indent on
 syntax enable
 
-
-" Enable filetype plugins
-filetype plugin indent on
 
 " highlight incremental matches while typing (you still need to press enter to get
 " there)
@@ -282,14 +276,12 @@ let vimDir = '$HOME/.vim'
 let &runtimepath.=','.vimDir
 
 " Keep undo history across sessions by storing it in a file
-if has('persistent_undo')
-    let myUndoDir = expand(vimDir . '/undodir')
-    " Create dirs
-    call system('mkdir ' . vimDir)
-    call system('mkdir ' . myUndoDir)
-    let &undodir = myUndoDir
-    set undofile
-endif
+let myUndoDir = expand(vimDir . '/undodir')
+" Create dirs
+call system('mkdir ' . vimDir)
+call system('mkdir ' . myUndoDir)
+let &undodir = myUndoDir
+set undofile
 
 function! VM_Start()
     nmap <buffer> <C-C> <Esc>
@@ -314,13 +306,3 @@ inoremap <C-C> <Esc>
 
 " for showing length of selection
 set showcmd
-
-" ctags
-nmap <C-I> <C-]>
-set tags+=~/.vim/tags/cpp/tags
-
-function s:build_ctags()
-    exec "AsyncRun! ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q ."
-endfunction
-
-map <leader><C-T> :call <SID>build_ctags()<CR>
