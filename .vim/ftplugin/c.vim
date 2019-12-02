@@ -11,7 +11,7 @@ endfunc
 setlocal fo-=t fo+=croql
 
 " ctags
-nmap <C-I> <C-]>
+nmap <leader><C-I> <C-]>
 set tags+=~/.vim/tags/cpp/tags
 
 function s:build_ctags()
