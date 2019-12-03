@@ -2,4 +2,4 @@
 " let b:did_ftplugin = 1
 
 " Compile current file to UNIX executable
-map <buffer> <C-k> :!tmux send-keys -t 1-run-core C-u "make -j12" Enter<CR><CR>
+map <buffer> <C-k> :wa<CR>:!tmux send-keys -t 1-run-core C-u "try_make" Enter<CR><CR>

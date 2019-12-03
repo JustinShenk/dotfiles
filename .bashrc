@@ -176,10 +176,23 @@ if [ ! -z "$PS1" ]; then
     if [ $(command -v fuck) ]; then
         eval $(thefuck --alias)
     fi
-    # To simply javadoc generation
+    # To simplify javadoc generation
     alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
 
 
+    try_make () {
+        say "Start compile"
+        make -j$(getconf _NPROCESSORS_ONLN)
+        res=$?
+        if [[ $res -eq 0 ]]; then
+            say "success"
+        else
+            say "fail"
+        fi
+            # echo -ne '\007'
+        # else
+            # echo -ne '\007' && sleep 0.2 && echo -ne '\007'
+    }
     alias make="make -j$(getconf _NPROCESSORS_ONLN)"
 
     export PATH=$HOME/Documents/ESP-Toolchain/xtensa-esp32-elf/bin:$PATH
