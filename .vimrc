@@ -114,6 +114,7 @@ syntax enable
 " highlight incremental matches while typing (you still need to press enter to get
 " there)
 set incsearch
+set nohlsearch
 
 " Tabwidth
 set tabstop=4
