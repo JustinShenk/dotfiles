@@ -33,7 +33,8 @@ if v:version >= 800
                 \ 'cpp': ['clang-format', 'cppcheck']
                 \}
 
-    let g:ale_linters_explicit=1
+    let g:ale_set_signs = 1
+    let g:ale_linters_explicit = 1
     let g:ale_sign_column_always = 1
     let g:ale_list_window_size = 15
     if has('python') || has('python3')
@@ -89,10 +90,10 @@ if v:version >= 800
     call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
     let g:vimtex_fold_enabled = 0
     call dein#add('altercation/vim-colors-solarized')
-    " Solarized colorscheme
+    call dein#add('NLKNguyen/papercolor-theme')
     set t_Co=256
     set bg=light
-    colo solarized
+    colo PaperColor
     call dein#add('mhinz/vim-startify')
     call dein#end()
 
@@ -213,8 +214,8 @@ syntax on
 " not sure anymore what this does
 " set omnifunc=syntaxcomplete#Complete
 
-" not sure anymore what this does
-set wildmode=longest,list
+set wildmenu
+set wildmode=list:longest,full
 
 " allow to switch buffers when unsaved changes in current buffer
 set hidden
@@ -254,6 +255,9 @@ set backspace=indent,eol,start
 set smarttab
 set wildmenu
 set scrolloff=5
+
+" ignore case in filename tab completion
+set wildignorecase
 
 set laststatus=2
 

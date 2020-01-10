@@ -25,7 +25,10 @@ if [ ! -z "$PS1" ]; then
     alias .....="cd ../../../.."
 
     alias dick=git
-    alias vi='vim'
+    if [ -x "$(command -v nvim)" ]; then
+        alias vi='nvim'
+        alias vim='nvim'
+    fi
     alias pytest='py.test'
 
     extract () {
@@ -187,6 +190,8 @@ if [ ! -z "$PS1" ]; then
 
     export PATH=$HOME/Documents/ESP-Toolchain/xtensa-esp32-elf/bin:$PATH
     export IDF_PATH=$HOME/Downloads/esp-idf
+
+    set -o vi
 fi
 
 case "$OSTYPE" in
