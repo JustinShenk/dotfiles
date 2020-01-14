@@ -1,4 +1,4 @@
-nnoremap <C-f> :call Clang_format()<CR>
+nnoremap <buffer> <C-f> :call Clang_format()<CR>
 
 func! Clang_format()
     let save_cursor = getcurpos()

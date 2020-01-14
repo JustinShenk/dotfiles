@@ -7,4 +7,4 @@ func! Black_format()
     call setpos('.', save_cursor)
 endfunc
 
-nnoremap <C-f> :call Black_format()<CR>
+nnoremap <buffer> <C-f> :call Black_format()<CR>
