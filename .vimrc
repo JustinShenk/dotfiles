@@ -56,6 +56,9 @@ if v:version >= 800
     call dein#add('scrooloose/nerdtree')
     " Show hidden stuff in nerdtree
     let NERDTreeShowHidden=1
+    autocmd VimEnter * NERDTree | wincmd p
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")  && b:NERDTree.isTabTree()) | q | endif
+    let NERDTreeQuitOnOpen=0
 
     call dein#add('tpope/vim-surround')
     call dein#add('godlygeek/tabular')
@@ -92,7 +95,7 @@ if v:version >= 800
     call dein#add('altercation/vim-colors-solarized')
     call dein#add('NLKNguyen/papercolor-theme')
     set t_Co=256
-    set bg=light
+    set bg=dark
     colo PaperColor
     call dein#add('mhinz/vim-startify')
     call dein#end()
