@@ -52,7 +52,8 @@ if v:version >= 800
     call dein#add('skywind3000/asyncrun.vim')
     call dein#add('tpope/vim-commentary')
     call dein#add('b4winckler/vim-angry')
-
+    call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
     call dein#add('scrooloose/nerdtree')
     " Show hidden stuff in nerdtree
     let NERDTreeShowHidden=1
@@ -309,8 +310,20 @@ map <leader><C-d> :set bg=dark<C-m>
 map <leader><C-l> :set bg=light<C-m>
 map <leader><C-h> :YcmCompleter GoToDeclaration<CR>
 
-vnoremap <C-C> <Esc>
-inoremap <C-C> <Esc>
+map <C-c> <Esc>
+nmap <C-c> <Esc>
+vmap <C-c> <Esc>
+omap <C-c> <Esc>
+imap <C-c> <Esc>
+cmap <C-c> <Esc>
+smap <C-c> <Esc>
+xmap <C-c> <Esc>
+lmap <C-c> <Esc>
+tmap <C-c> <Esc>
 
 " for showing length of selection
 set showcmd
+
+set exrc
+set secure
+map <leader><C-f> :Files
