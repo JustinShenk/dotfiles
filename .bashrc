@@ -124,14 +124,6 @@ if [ ! -z "$PS1" ]; then
         source /usr/local/etc/bash_completion.d/pass
     fi
 
-    function __setprompt {
-        PROMPT_DIRTRIM=2
-      local BLUE="\[\033[0;34m\]"
-      local NO_COLOUR="\[\033[0m\]"
-      PS1="[\u@\h:\w]> "
-    }
-    __setprompt
-
     if [ -f $HOME/tmux.completion.bash ]; then
         source ~/tmux.completion.bash
     fi
@@ -192,6 +184,8 @@ if [ ! -z "$PS1" ]; then
     export IDF_PATH=$HOME/Downloads/esp-idf
 
     set -o vi
+
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 fi
 
 case "$OSTYPE" in

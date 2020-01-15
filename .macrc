@@ -1,6 +1,6 @@
 # vim: set ft=sh:
 
-if [[ `hostname` == rasmus-macbook-pro* ]]; then
+if [[ `hostname` == Falcon-9* ]]; then
     # ================================================================================
     # Change command line prompt into a penis with length proportional to the
     # distance from root
@@ -17,7 +17,7 @@ if [[ `hostname` == rasmus-macbook-pro* ]]; then
             echo $(echo "$1/" | grep -o "/" | wc -l)
                 fi
     }
-    export PS1='`date +%H:%M:%S`: \[\e[1;33m\]8`repl 𝌆 $(depth "$(pwd)")`D\[\e[m\]:[\[\e[35m\]\W\[\e[m\]] '
+    export PS1='`date +%H:%M:%S`: `repl 𝌆 $(depth "$(pwd)")`D:\W > '
     # ================================================================================
 fi
 
