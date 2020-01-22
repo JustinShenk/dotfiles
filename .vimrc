@@ -2,17 +2,24 @@ if &compatible
     set nocompatible
 endif
 
+let mapleader="-"
+let maplocalleader="-"
+
 if v:version >= 800
     set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 
     call dein#begin('$HOME/.vim/bundle/')
     " Let dein manage dein
     call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
-
+    call dein#add('vim-scripts/vim-auto-save')
+    let g:auto_save = 1
     call dein#add('vim-scripts/LargeFile')
     call dein#add('Konfekt/FastFold')
     set foldmethod=syntax
     set foldlevel=2
+    call dein#add('mildred/vim-bufmru')
+    map <leader>n :BufMRUPrev<CR>
+    map <leader>p :BufMRUNext<CR>
     call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
     let g:ale_python_pylint_executable = 'python'
     let g:ale_set_loclist = 0
@@ -203,11 +210,6 @@ nmap <space> viw
 " ... and then unselect with same key
 vmap <space> <esc>
 
-let mapleader="-"
-let maplocalleader="-"
-map <leader>n :bnext<CR>
-map <leader>p :bprevious<CR>
-
 " Capitalise each word in selection
 vmap gw :s/\%V\<./\u&/g<CR>
 
@@ -274,7 +276,6 @@ let g:NERDTreeWinPos = "right"
 
 " allow more than few open tabs
 set tabpagemax=100
-let g:goyo_width = 120
 
 " don't break within words
 " leads to word duplication
@@ -326,4 +327,6 @@ set showcmd
 
 set exrc
 set secure
-map <leader><C-f> :Files
+map <leader><C-f> :Files<CR>
+
+map <C-s> :wa<CR>
