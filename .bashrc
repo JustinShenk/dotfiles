@@ -6,11 +6,8 @@ if [ ! -z "$PS1" ]; then
 
 
     export EDITOR=vim
-    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
-    export CLICOLOR=1
 
     # color grep commands
-    alias grep='grep --color=auto'
     alias la='ls -a'
     alias ls='ls -FG'
     alias ll='ls -ahl'
@@ -29,7 +26,10 @@ if [ ! -z "$PS1" ]; then
         alias vi='nvim'
         alias vim='nvim'
     fi
-    alias pytest='py.test'
+
+    if [ -x "$(command -v fzf)" ]; then
+        alias edit='vi $(fzf)'
+    fi
 
     extract () {
        if [ -f $1 ] ; then
@@ -182,8 +182,6 @@ if [ ! -z "$PS1" ]; then
 
     export PATH=$HOME/Documents/ESP-Toolchain/xtensa-esp32-elf/bin:$PATH
     export IDF_PATH=$HOME/Downloads/esp-idf
-
-    set -o vi
 
     [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 fi
