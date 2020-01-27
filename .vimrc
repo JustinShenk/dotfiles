@@ -221,7 +221,7 @@ syntax on
 " set omnifunc=syntaxcomplete#Complete
 
 set wildmenu
-set wildmode=list:longest,full
+set wildmode=list:longest
 
 " allow to switch buffers when unsaved changes in current buffer
 set hidden
@@ -330,3 +330,5 @@ set secure
 map <leader><C-f> :Files<CR>
 
 map <C-s> :wa<CR>
+set cursorcolumn
+set cursorline
