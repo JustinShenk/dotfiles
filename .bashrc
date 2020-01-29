@@ -193,5 +193,3 @@ case "$OSTYPE" in
   msys*)    echo "WINDOWS" ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
-
-source ~/.iterm2_shell_integration.bash
