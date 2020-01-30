@@ -6,11 +6,8 @@ if [ ! -z "$PS1" ]; then
 
 
     export EDITOR=vim
-    export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx # don't remember what this is for
-    export CLICOLOR=1
 
     # color grep commands
-    alias grep='grep --color=auto'
     alias la='ls -a'
     alias ls='ls -FG'
     alias ll='ls -ahl'
@@ -25,8 +22,14 @@ if [ ! -z "$PS1" ]; then
     alias .....="cd ../../../.."
 
     alias dick=git
-    alias vi='vim'
-    alias pytest='py.test'
+    if [ -x "$(command -v nvim)" ]; then
+        alias vi='nvim'
+        alias vim='nvim'
+    fi
+
+    if [ -x "$(command -v fzf)" ]; then
+        alias edit='vi $(fzf)'
+    fi
 
     extract () {
        if [ -f $1 ] ; then
@@ -121,14 +124,6 @@ if [ ! -z "$PS1" ]; then
         source /usr/local/etc/bash_completion.d/pass
     fi
 
-    function __setprompt {
-        PROMPT_DIRTRIM=2
-      local BLUE="\[\033[0;34m\]"
-      local NO_COLOUR="\[\033[0m\]"
-      PS1="[\u@\h:\w]> "
-    }
-    __setprompt
-
     if [ -f $HOME/tmux.completion.bash ]; then
         source ~/tmux.completion.bash
     fi
@@ -187,6 +182,8 @@ if [ ! -z "$PS1" ]; then
 
     export PATH=$HOME/Documents/ESP-Toolchain/xtensa-esp32-elf/bin:$PATH
     export IDF_PATH=$HOME/Downloads/esp-idf
+
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 fi
 
 case "$OSTYPE" in
@@ -197,4 +194,9 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
-source ~/.iterm2_shell_integration.bash
+if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+  eval `ssh-agent`
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+ssh-add -l > /dev/null || ssh-add

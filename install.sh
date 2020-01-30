@@ -47,7 +47,7 @@ install_file .tmux.conf
 install_file tmux.completion.bash
 install_file git-completion.bash
 install_file .vim
-install_file .iterm2_shell_integration.bash
+install_file .bash_logout
 
 # vim_version = $(vim --version | grep "Vi IMproved [0-9]\.[0-9]\+" | cut -d " " -f 5)
 if install_file .vimrc; then

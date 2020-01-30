@@ -2,17 +2,24 @@ if &compatible
     set nocompatible
 endif
 
+let mapleader="-"
+let maplocalleader="-"
+
 if v:version >= 800
     set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
 
     call dein#begin('$HOME/.vim/bundle/')
     " Let dein manage dein
     call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
-
+    call dein#add('vim-scripts/vim-auto-save')
+    let g:auto_save = 1
     call dein#add('vim-scripts/LargeFile')
     call dein#add('Konfekt/FastFold')
     set foldmethod=syntax
     set foldlevel=2
+    call dein#add('mildred/vim-bufmru')
+    map <leader>n :BufMRUPrev<CR>
+    map <leader>p :BufMRUNext<CR>
     call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
     let g:ale_python_pylint_executable = 'python'
     let g:ale_set_loclist = 0
@@ -33,7 +40,8 @@ if v:version >= 800
                 \ 'cpp': ['clang-format', 'cppcheck']
                 \}
 
-    let g:ale_linters_explicit=1
+    let g:ale_set_signs = 1
+    let g:ale_linters_explicit = 1
     let g:ale_sign_column_always = 1
     let g:ale_list_window_size = 15
     if has('python') || has('python3')
@@ -51,10 +59,14 @@ if v:version >= 800
     call dein#add('skywind3000/asyncrun.vim')
     call dein#add('tpope/vim-commentary')
     call dein#add('b4winckler/vim-angry')
-
+    call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
     call dein#add('scrooloose/nerdtree')
     " Show hidden stuff in nerdtree
     let NERDTreeShowHidden=1
+    autocmd VimEnter * NERDTree | wincmd p
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")  && b:NERDTree.isTabTree()) | q | endif
+    let NERDTreeQuitOnOpen=0
 
     call dein#add('tpope/vim-surround')
     call dein#add('godlygeek/tabular')
@@ -89,10 +101,10 @@ if v:version >= 800
     call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
     let g:vimtex_fold_enabled = 0
     call dein#add('altercation/vim-colors-solarized')
-    " Solarized colorscheme
+    call dein#add('NLKNguyen/papercolor-theme')
     set t_Co=256
-    set bg=light
-    colo solarized
+    set bg=dark
+    colo PaperColor
     call dein#add('mhinz/vim-startify')
     call dein#end()
 
@@ -198,11 +210,6 @@ nmap <space> viw
 " ... and then unselect with same key
 vmap <space> <esc>
 
-let mapleader="-"
-let maplocalleader="-"
-map <leader>n :bnext<CR>
-map <leader>p :bprevious<CR>
-
 " Capitalise each word in selection
 vmap gw :s/\%V\<./\u&/g<CR>
 
@@ -213,8 +220,8 @@ syntax on
 " not sure anymore what this does
 " set omnifunc=syntaxcomplete#Complete
 
-" not sure anymore what this does
-set wildmode=longest,list
+set wildmenu
+set wildmode=list:longest
 
 " allow to switch buffers when unsaved changes in current buffer
 set hidden
@@ -255,6 +262,9 @@ set smarttab
 set wildmenu
 set scrolloff=5
 
+" ignore case in filename tab completion
+set wildignorecase
+
 set laststatus=2
 
 nnoremap gV `[v`]
@@ -266,7 +276,6 @@ let g:NERDTreeWinPos = "right"
 
 " allow more than few open tabs
 set tabpagemax=100
-let g:goyo_width = 120
 
 " don't break within words
 " leads to word duplication
@@ -302,8 +311,24 @@ map <leader><C-d> :set bg=dark<C-m>
 map <leader><C-l> :set bg=light<C-m>
 map <leader><C-h> :YcmCompleter GoToDeclaration<CR>
 
-vnoremap <C-C> <Esc>
-inoremap <C-C> <Esc>
+map <C-c> <Esc>
+nmap <C-c> <Esc>
+vmap <C-c> <Esc>
+omap <C-c> <Esc>
+imap <C-c> <Esc>
+cmap <C-c> <Esc>
+smap <C-c> <Esc>
+xmap <C-c> <Esc>
+lmap <C-c> <Esc>
+tmap <C-c> <Esc>
 
 " for showing length of selection
 set showcmd
+
+set exrc
+set secure
+map <leader><C-f> :Files<CR>
+
+map <C-s> :wa<CR>
+set cursorcolumn
+set cursorline
