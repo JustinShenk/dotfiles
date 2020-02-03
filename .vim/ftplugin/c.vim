@@ -14,7 +14,7 @@ setlocal fo-=t fo+=croql
 nmap <leader><C-I> <C-]>
 set tags+=~/.vim/tags/cpp/tags
 
-function s:build_ctags()
+function! s:build_ctags()
     exec "AsyncRun! ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q ."
 endfunction
 
