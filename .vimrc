@@ -7,7 +7,6 @@ let maplocalleader="-"
 
 if v:version >= 800
     set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
-
     call dein#begin('$HOME/.vim/bundle/')
     " Let dein manage dein
     call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
@@ -72,7 +71,7 @@ if v:version >= 800
     call dein#add('godlygeek/tabular')
     call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp']})
 
-    call dein#add('SirVer/ultisnips')
+    call dein#add('SirVer/ultisnips', {'rev': '38b60d8e149fb38776854fa0f497093b21272884'})
     " For UltiSnips
     let g:UltiSnipsExpandTrigger="<C-J>"
     let g:UltiSnipsJumpForwardTrigger="<C-J>"
