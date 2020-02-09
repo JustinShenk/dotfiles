@@ -81,7 +81,7 @@ if v:version >= 800
     let g:ultisnips_python_quoting_style = "single"
     call dein#add('honza/vim-snippets')
 
-    call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
+    call dein#add('Valloric/YouCompleteMe')
     let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
