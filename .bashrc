@@ -190,6 +190,7 @@ if [ ! -z "$PS1" ]; then
       ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
     fi
     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+    ssh-add -l > /dev/null || ssh-add
 fi
 
 case "$OSTYPE" in
@@ -199,5 +200,3 @@ case "$OSTYPE" in
   msys*)    echo "WINDOWS" ;;
   *)        echo "unknown: $OSTYPE" ;;
 esac
-
-sh-add -l > /dev/null || ssh-add
