@@ -1,3 +1,5 @@
+# vim: ft=bash
+
 export CUDA_HOME=/usr/local/cuda
 export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
 export PATH=$PATH:"$CUDA_HOME/bin"
@@ -5,3 +7,4 @@ export PATH=$PATH:"$CUDA_HOME/bin"
 alias open="xdg-open"
 
 export CCACHE_DIR=/local/.ccache
+export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane/autocrane-core
