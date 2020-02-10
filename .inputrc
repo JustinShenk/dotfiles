@@ -2,3 +2,6 @@ set bind-tty-special-chars off
 "\C-u": kill-whole-line
 "\C-w": backward-kill-word
 "\C-l": clear-screen
+## enable Alt-arrows
+"\e[1;3D": backward-word ### Alt left
+"\e[1;3C": forward-word ### Alt right
