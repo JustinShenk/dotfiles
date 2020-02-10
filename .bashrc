@@ -177,7 +177,8 @@ if [ ! -z "$PS1" ]; then
         # else
             # echo -ne '\007' && sleep 0.2 && echo -ne '\007'
     }
-    alias make="make -j$(getconf _NPROCESSORS_ONLN)"
+
+    export MAKEFLAGS="-j$(getconf _NPROCESSORS_ONLN)"
 
     export PATH=$HOME/Documents/ESP-Toolchain/xtensa-esp32-elf/bin:$PATH
     export IDF_PATH=$HOME/Downloads/esp-idf
