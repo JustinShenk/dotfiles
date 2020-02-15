@@ -1,3 +1,12 @@
+
+case "$OSTYPE" in
+  darwin*)  source ~/.macrc ;;
+  linux*)   source ~/.ubunturc ;;
+  bsd*)     echo "BSD" ;;
+  msys*)    echo "WINDOWS" ;;
+  *)        echo "unknown: $OSTYPE" ;;
+esac
+
 # test if interactive
 if [ ! -z "$PS1" ]; then
     # Lang env variable
@@ -128,6 +137,7 @@ if [ ! -z "$PS1" ]; then
         source ~/tmux.completion.bash
     fi
 
+
     # must press ctrl-D twice to exit
     export IGNOREEOF="1"
 
@@ -193,10 +203,4 @@ if [ ! -z "$PS1" ]; then
     ssh-add -l > /dev/null || ssh-add
 fi
 
-case "$OSTYPE" in
-  darwin*)  source ~/.macrc ;;
-  linux*)   source ~/.ubunturc ;;
-  bsd*)     echo "BSD" ;;
-  msys*)    echo "WINDOWS" ;;
-  *)        echo "unknown: $OSTYPE" ;;
-esac
+export MAKEFLAGS="-j$(getconf _NPROCESSORS_ONLN)"
