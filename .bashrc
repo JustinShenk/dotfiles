@@ -7,6 +7,8 @@ case "$OSTYPE" in
   *)        echo "unknown: $OSTYPE" ;;
 esac
 
+export MAKEFLAGS="-j$(getconf _NPROCESSORS_ONLN)"
+
 # test if interactive
 if [ ! -z "$PS1" ]; then
     # Lang env variable
@@ -202,5 +204,3 @@ if [ ! -z "$PS1" ]; then
     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
     ssh-add -l > /dev/null || ssh-add
 fi
-
-export MAKEFLAGS="-j$(getconf _NPROCESSORS_ONLN)"
