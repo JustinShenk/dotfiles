@@ -1,5 +1,7 @@
 # vim: set ft=sh:
 
+export PROJDIR=/Users/rasmus/Documents/Psiori/Projects/AutoCrane/autocrane-core
+
 if [[ `hostname` == Falcon-9* ]]; then
     # ================================================================================
     # Change command line prompt into a penis with length proportional to the
