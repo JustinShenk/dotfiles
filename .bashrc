@@ -130,11 +130,6 @@ if [ ! -z "$PS1" ]; then
     # Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projects folder
     CDPATH="."
 
-    source ~/git-completion.bash
-    if [ -f /usr/local/etc/bash_completion.d/pass ]; then
-        source /usr/local/etc/bash_completion.d/pass
-    fi
-
     if [ -f $HOME/tmux.completion.bash ]; then
         source ~/tmux.completion.bash
     fi
