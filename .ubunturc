@@ -1,10 +1,15 @@
 # vim: ft=bash
 
-export CUDA_HOME=/usr/local/cuda
-export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
-export PATH=$PATH:"$CUDA_HOME/bin"
-
 alias open="xdg-open"
 
 export CCACHE_DIR=/local/.ccache
+
+if [ -f /etc/bash_completion ]; then
+    source /etc/bash_completion
+fi
+
+if [ -f $HOME/pass.bash_completion ]; then
+    source $HOME/pass.bash_completion
+fi
+
 export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane/autocrane-core
