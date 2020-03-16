@@ -63,7 +63,7 @@ if v:version >= 800
     call dein#add('scrooloose/nerdtree')
     " Show hidden stuff in nerdtree
     let NERDTreeShowHidden=1
-    autocmd VimEnter * NERDTree | wincmd p
+    " autocmd VimEnter * NERDTree | wincmd p
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")  && b:NERDTree.isTabTree()) | q | endif
     let NERDTreeQuitOnOpen=0
 
