@@ -102,7 +102,7 @@ if v:version >= 800
     call dein#add('altercation/vim-colors-solarized')
     call dein#add('NLKNguyen/papercolor-theme')
     set t_Co=256
-    set bg=dark
+    set bg=light
     colo PaperColor
     call dein#add('mhinz/vim-startify')
     call dein#end()
