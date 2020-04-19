@@ -170,19 +170,25 @@ if [ ! -z "$PS1" ]; then
     # To simplify javadoc generation
     alias javadoc='find ./src -name *.java > ./sources_list.txt;javadoc -author -version -d doc @sources_list.txt; rm -f ./sources_list.txt'
 
-
     try_make () {
-        say "Start compile"
+        case "$OSTYPE" in
+          darwin*)  say -v Anna "Der Kompilates beginnt";;
+          linux*)   spd-say "Start compile" ;;
+        esac
+
         make -j$(getconf _NPROCESSORS_ONLN)
         res=$?
         if [[ $res -eq 0 ]]; then
-            say "success"
+            case "$OSTYPE" in
+              darwin*)  say -v Anna "Erfolg";;
+              linux*)   spd-say "Success" ;;
+            esac
         else
-            say "fail"
+            case "$OSTYPE" in
+              darwin*)  say -v Anna "Misserfolg";;
+              linux*)   spd-say "Fail" ;;
+            esac
         fi
-            # echo -ne '\007'
-        # else
-            # echo -ne '\007' && sleep 0.2 && echo -ne '\007'
     }
 
     export MAKEFLAGS="-j$(getconf _NPROCESSORS_ONLN)"
