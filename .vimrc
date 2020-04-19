@@ -331,3 +331,6 @@ map <leader><C-f> :Files<CR>
 map <C-s> :wa<CR>
 set cursorcolumn
 set cursorline
+
+" solves clipboard not working with neovim on elementary. Does not work for vim
+set clipboard=unnamedplus
