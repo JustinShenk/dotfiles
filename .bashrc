@@ -69,6 +69,7 @@ if [ ! -z "$PS1" ]; then
 
     # dedup history
     export HISTCONTROL=ignoreboth:erasedups
+    export HISTTIMEFORMAT="%y-%m-%d %T "
 
     ################################################################################
     #                       Stuff from mrzool/bash-sensible                        #
