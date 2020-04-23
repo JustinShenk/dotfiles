@@ -100,7 +100,6 @@ if v:version >= 800
     call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
     let g:vimtex_fold_enabled = 0
     call dein#add('altercation/vim-colors-solarized')
-    call dein#add('NLKNguyen/papercolor-theme')
     set t_Co=256
     set bg=light
     call dein#add('mhinz/vim-startify')
