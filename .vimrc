@@ -99,9 +99,8 @@ if v:version >= 800
     let g:matchup_matchparen_deferred = 1
     call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
     let g:vimtex_fold_enabled = 0
-    call dein#add('altercation/vim-colors-solarized')
-    set t_Co=256
-    set bg=light
+    call dein#add('NLKNguyen/papercolor-theme')
+    colo PaperColor " works with iterm material theme
     call dein#add('mhinz/vim-startify')
     " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
     " call dein#add('ryvnf/readline.vim')
