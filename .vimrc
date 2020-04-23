@@ -103,8 +103,9 @@ if v:version >= 800
     call dein#add('NLKNguyen/papercolor-theme')
     set t_Co=256
     set bg=light
-    colo PaperColor
     call dein#add('mhinz/vim-startify')
+    " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
+    " call dein#add('ryvnf/readline.vim')
     call dein#end()
 
     call dein#save_state()
@@ -331,3 +332,7 @@ map <leader><C-f> :Files<CR>
 map <C-s> :wa<CR>
 set cursorcolumn
 set cursorline
+
+" this may mess up substitution
+set ignorecase
+set smartcase
