@@ -15,9 +15,6 @@ if [ ! -z "$PS1" ]; then
     export LC_ALL=en_US.UTF-8 # w/o this, can't import e.g. matplotlib? wtf?
     export LANG=en_US.UTF-8
 
-
-    export EDITOR=vim
-
     # color grep commands
     alias la='ls -a'
     alias ls='ls -FG'
@@ -36,11 +33,16 @@ if [ ! -z "$PS1" ]; then
     if [ -x "$(command -v nvim)" ]; then
         alias vi='nvim'
         alias vim='nvim'
+        export VISUAL=nvim
+    else
+        export VISUAL=vim
     fi
 
     if [ -x "$(command -v fzf)" ]; then
         alias edit='vi $(fzf)'
     fi
+    export EDITOR=$VISUAL
+
 
     extract () {
        if [ -f $1 ] ; then

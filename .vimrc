@@ -100,6 +100,7 @@ if v:version >= 800
     call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
     let g:vimtex_fold_enabled = 0
     call dein#add('NLKNguyen/papercolor-theme')
+    set bg=light
     colo PaperColor " works with iterm material theme
     call dein#add('mhinz/vim-startify')
     " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
