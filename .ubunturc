@@ -13,3 +13,4 @@ if [ -f $HOME/pass.bash_completion ]; then
 fi
 
 export PROJDIR=$HOME/Documents/Psiori/Projects/AutoCrane/autocrane-core
+export PATH=/usr/local/bin:$PATH

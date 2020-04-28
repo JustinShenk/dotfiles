@@ -49,6 +49,7 @@ install_file git-completion.bash
 install_file .vim
 install_file .bash_logout
 install_file .ctags
+install_file .alacritty.yml
 
 # vim_version = $(vim --version | grep "Vi IMproved [0-9]\.[0-9]\+" | cut -d " " -f 5)
 if install_file .vimrc; then
