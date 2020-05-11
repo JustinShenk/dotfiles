@@ -19,30 +19,30 @@ if v:version >= 800
     call dein#add('mildred/vim-bufmru')
     map <leader>n :BufMRUPrev<CR>
     map <leader>p :BufMRUNext<CR>
-    call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
-    let g:ale_python_pylint_executable = 'python'
-    let g:ale_set_loclist = 0
-    let g:ale_set_quickfix = 1
-    let g:ale_lint_on_text_changed = 'never'
-    let g:ale_lint_on_insert_leave = 0
-    let g:ale_lint_on_enter = 0
-    let g:ale_c_parse_compile_commands = 1
+    " call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
+    " let g:ale_python_pylint_executable = 'python'
+    " let g:ale_set_loclist = 0
+    " let g:ale_set_quickfix = 1
+    " let g:ale_lint_on_text_changed = 'never'
+    " let g:ale_lint_on_insert_leave = 0
+    " let g:ale_lint_on_enter = 0
+    " let g:ale_c_parse_compile_commands = 1
 
-    let g:ale_linters = {
-                \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
-                \ 'cpp': ['clang-format', 'cppcheck'],
-                \}
+    " let g:ale_linters = {
+    "             \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
+    "             \ 'cpp': ['clang-format', 'cppcheck'],
+    "             \}
 
-    let g:ale_fixers = {
-                \ 'python': ['add_blank_lines_for_python_control_statements',
-                \            'autopep8', 'isort', 'yapf', 'black'],
-                \ 'cpp': ['clang-format', 'cppcheck']
-                \}
+    " let g:ale_fixers = {
+    "             \ 'python': ['add_blank_lines_for_python_control_statements',
+    "             \            'autopep8', 'isort', 'yapf', 'black'],
+    "             \ 'cpp': ['clang-format', 'cppcheck']
+    "             \}
 
-    let g:ale_set_signs = 1
-    let g:ale_linters_explicit = 1
-    let g:ale_sign_column_always = 1
-    let g:ale_list_window_size = 15
+    " let g:ale_set_signs = 1
+    " let g:ale_linters_explicit = 1
+    " let g:ale_sign_column_always = 1
+    " let g:ale_list_window_size = 15
     if has('python') || has('python3')
         " call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'roslaunch', 'rosmsg', 'rosaction']})
         call dein#add('python-mode/python-mode', {'on_ft': ['python']})
@@ -82,14 +82,12 @@ if v:version >= 800
     call dein#add('honza/vim-snippets')
 
     call dein#add('Valloric/YouCompleteMe')
-    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
     let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
     let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
     let g:ycm_complete_in_comments = 1
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
-    let g:ycm_show_diagnostics_ui = 0
     let g:ycm_confirm_extra_conf = 0
     let g:ycm_semantic_triggers = {
                 \   'roslaunch' : ['="', '$(', '/'],
@@ -103,8 +101,8 @@ if v:version >= 800
     set bg=light
     colo PaperColor " works with iterm material theme
     call dein#add('mhinz/vim-startify')
-    " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
-    " call dein#add('ryvnf/readline.vim')
+    " " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
+    " " call dein#add('ryvnf/readline.vim')
     call dein#end()
 
     call dein#save_state()
