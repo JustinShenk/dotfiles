@@ -6,106 +6,108 @@ let mapleader="-"
 let maplocalleader="-"
 
 if v:version >= 800
-    set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
-    call dein#begin('$HOME/.vim/bundle/')
-    " Let dein manage dein
-    call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
-    call dein#add('vim-scripts/vim-auto-save')
-    let g:auto_save = 1
-    call dein#add('vim-scripts/LargeFile')
-    call dein#add('Konfekt/FastFold')
-    set foldmethod=syntax
-    set foldlevel=2
-    call dein#add('mildred/vim-bufmru')
-    map <leader>n :BufMRUPrev<CR>
-    map <leader>p :BufMRUNext<CR>
-    call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
-    let g:ale_python_pylint_executable = 'python'
-    let g:ale_set_loclist = 0
-    let g:ale_set_quickfix = 1
-    let g:ale_lint_on_text_changed = 'never'
-    let g:ale_lint_on_insert_leave = 0
-    let g:ale_lint_on_enter = 0
-    let g:ale_c_parse_compile_commands = 1
+   set runtimepath+=$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim
+   call dein#begin('$HOME/.vim/bundle/')
+   " Let dein manage dein
+   call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
+   call dein#add('vim-scripts/vim-auto-save')
+   let g:auto_save = 1
+   call dein#add('vim-scripts/LargeFile')
+   call dein#add('Konfekt/FastFold')
+   set foldmethod=syntax
+   set foldlevel=2
+   call dein#add('mildred/vim-bufmru')
+   map <leader>n :BufMRUPrev<CR>
+   map <leader>p :BufMRUNext<CR>
+   " call dein#add('w0rp/ale', {'on_ft': ['python', 'c', 'cpp']})
+   " let g:ale_python_pylint_executable = 'python'
+   " let g:ale_set_loclist = 0
+   " let g:ale_set_quickfix = 1
+   " let g:ale_lint_on_text_changed = 'never'
+   " let g:ale_lint_on_insert_leave = 0
+   " let g:ale_lint_on_enter = 0
+   " let g:ale_c_parse_compile_commands = 1
 
-    let g:ale_linters = {
-                \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
-                \ 'cpp': ['clang-format', 'cppcheck'],
-                \}
+   " let g:ale_linters = {
+   "             \ 'python': ['pycodestyle', 'flake8', 'pylint', 'autopep8'],
+   "             \ 'cpp': ['clang-format', 'cppcheck'],
+   "             \}
 
-    let g:ale_fixers = {
-                \ 'python': ['add_blank_lines_for_python_control_statements',
-                \            'autopep8', 'isort', 'yapf', 'black'],
-                \ 'cpp': ['clang-format', 'cppcheck']
-                \}
+   " let g:ale_fixers = {
+   "             \ 'python': ['add_blank_lines_for_python_control_statements',
+   "             \            'autopep8', 'isort', 'yapf', 'black'],
+   "             \ 'cpp': ['clang-format', 'cppcheck']
+   "             \}
 
-    let g:ale_set_signs = 1
-    let g:ale_linters_explicit = 1
-    let g:ale_sign_column_always = 1
-    let g:ale_list_window_size = 15
-    if has('python') || has('python3')
-        " call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'roslaunch', 'rosmsg', 'rosaction']})
-        call dein#add('python-mode/python-mode', {'on_ft': ['python']})
-        let g:pymode_folding = 0
-        let g:pymode_rope = 0
-        let g:pymode_rope_lookup_project = 0
-        let g:pymode_lint = 0
-    endif
-    call dein#add('tarekbecker/vim-yaml-formatter', {'on_ft': ['yaml']})
-    let g:yaml_formatter_indent_collection=1
-    call dein#add('mg979/vim-visual-multi')
-    call dein#add('sjl/gundo.vim')
-    call dein#add('skywind3000/asyncrun.vim')
-    call dein#add('tpope/vim-commentary')
-    call dein#add('b4winckler/vim-angry')
-    call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
-    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-    call dein#add('scrooloose/nerdtree')
-    " Show hidden stuff in nerdtree
-    let NERDTreeShowHidden=1
-    " autocmd VimEnter * NERDTree | wincmd p
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")  && b:NERDTree.isTabTree()) | q | endif
-    let NERDTreeQuitOnOpen=0
+   " let g:ale_set_signs = 1
+   " let g:ale_linters_explicit = 1
+   " let g:ale_sign_column_always = 1
+   " let g:ale_list_window_size = 15
+   if has('python') || has('python3')
+       " call dein#add('taketwo/vim-ros', {'on_ft': ['c', 'cpp', 'cmake', 'roslaunch', 'rosmsg', 'rosaction']})
+       call dein#add('python-mode/python-mode', {'on_ft': ['python']})
+       let g:pymode_folding = 0
+       let g:pymode_rope = 0
+       let g:pymode_rope_lookup_project = 0
+       let g:pymode_lint = 0
+   endif
+   call dein#add('tarekbecker/vim-yaml-formatter', {'on_ft': ['yaml']})
+   let g:yaml_formatter_indent_collection=1
+   call dein#add('mg979/vim-visual-multi')
+   call dein#add('sjl/gundo.vim')
+   call dein#add('skywind3000/asyncrun.vim')
+   call dein#add('tpope/vim-commentary')
+   call dein#add('b4winckler/vim-angry')
+   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+   call dein#add('scrooloose/nerdtree')
+   " Show hidden stuff in nerdtree
+   let NERDTreeShowHidden=1
+   " autocmd VimEnter * NERDTree | wincmd p
+   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")  && b:NERDTree.isTabTree()) | q | endif
+   let NERDTreeQuitOnOpen=0
 
-    call dein#add('tpope/vim-surround')
-    call dein#add('godlygeek/tabular')
-    call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp']})
+   call dein#add('tpope/vim-surround')
+   call dein#add('godlygeek/tabular')
+   call dein#add('vim-scripts/DoxygenToolkit.vim', {'on_ft': ['c', 'cpp']})
 
-    call dein#add('SirVer/ultisnips', {'rev': '38b60d8e149fb38776854fa0f497093b21272884'})
-    " For UltiSnips
-    let g:UltiSnipsExpandTrigger="<C-J>"
-    let g:UltiSnipsJumpForwardTrigger="<C-J>"
-    let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
-    let g:ultisnips_python_style = "numpy"
-    let g:ultisnips_python_triple_quoting_style = "single"
-    let g:ultisnips_python_quoting_style = "single"
-    call dein#add('honza/vim-snippets')
+   call dein#add('SirVer/ultisnips', {'rev': '38b60d8e149fb38776854fa0f497093b21272884'})
+   " For UltiSnips
+   let g:UltiSnipsExpandTrigger="<C-J>"
+   let g:UltiSnipsJumpForwardTrigger="<C-J>"
+   let g:UltiSnipsJumpBackwardTrigger="<C-K>" " not working
+   let g:ultisnips_python_style = "numpy"
+   let g:ultisnips_python_triple_quoting_style = "single"
+   let g:ultisnips_python_quoting_style = "single"
+   call dein#add('honza/vim-snippets')
 
-    call dein#add('Valloric/YouCompleteMe')
-    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-    let g:ycm_autoclose_preview_window_after_completion = 1
-    let g:ycm_autoclose_preview_window_after_insertion = 1
-    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-    let g:ycm_complete_in_comments = 1
-    let g:ycm_collect_identifiers_from_comments_and_strings = 1
-    let g:ycm_show_diagnostics_ui = 0
-    let g:ycm_confirm_extra_conf = 0
-    let g:ycm_semantic_triggers = {
-                \   'roslaunch' : ['="', '$(', '/'],
-                \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
-                \ }
-    call dein#add('andymass/vim-matchup')
-    let g:matchup_matchparen_deferred = 1
-    call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
-    let g:vimtex_fold_enabled = 0
-    call dein#add('NLKNguyen/papercolor-theme')
-    set bg=light
-    colo PaperColor " works with iterm material theme
-    call dein#add('mhinz/vim-startify')
-    " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
-    " call dein#add('ryvnf/readline.vim')
-    call dein#end()
+   call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
+   let g:ycm_autoclose_preview_window_after_completion = 1
+   let g:ycm_autoclose_preview_window_after_insertion = 1
+   let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+   let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+   let g:ycm_complete_in_comments = 1
+   let g:ycm_collect_identifiers_from_comments_and_strings = 1
+   let g:ycm_confirm_extra_conf = 0
+   let g:ycm_semantic_triggers = {
+               \   'roslaunch' : ['="', '$(', '/'],
+               \   'rosmsg,rossrv,rosaction' : ['re!^', '/'],
+               \ }
+   nmap <leader><C-o> :YcmCompleter GoToDefinition<CR>
+   nmap <leader><C-h> :YcmCompleter GoToDeclaration<CR>
+   nmap <leader><C-r> :YcmCompleter FixIt<CR>
+   nmap <leader><C-i> :YcmCompleter GetDoc<CR>
+   call dein#add('andymass/vim-matchup')
+   let g:matchup_matchparen_deferred = 1
+   call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
+   let g:vimtex_fold_enabled = 0
+   call dein#add('NLKNguyen/papercolor-theme')
+   set bg=light
+   colo PaperColor " works with iterm material theme
+   call dein#add('mhinz/vim-startify')
+   " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
+   " call dein#add('ryvnf/readline.vim')
+   call dein#end()
 
     call dein#save_state()
     " If you want to install not installed plugins on startup.
@@ -308,7 +310,6 @@ set modeline
 
 map <leader><C-d> :set bg=dark<C-m>
 map <leader><C-l> :set bg=light<C-m>
-map <leader><C-h> :YcmCompleter GoToDeclaration<CR>
 
 map <C-c> <Esc>
 nmap <C-c> <Esc>
