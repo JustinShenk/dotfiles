@@ -45,8 +45,8 @@ if [ ! -z "$PS1" ]; then
 
 
     extract () {
-       if [ -f $1 ] ; then
-           case $1 in
+       if [ -f "$1" ] ; then
+           case "$1" in
                *.tar.bz2)   tar xvjf $1    ;;
                *.tar.gz)    tar xvzf $1    ;;
                *.bz2)       bunzip2 $1     ;;
@@ -183,12 +183,12 @@ if [ ! -z "$PS1" ]; then
         res=$?
         if [[ $res -eq 0 ]]; then
             case "$OSTYPE" in
-              darwin*)  say -v Anna "Erfolg";;
+              darwin*)  say -v Anna "Erfolg" && osascript -e 'display notification "Erfolg" with title "Kompilates"';;
               linux*)   spd-say "Success" ;;
             esac
         else
             case "$OSTYPE" in
-              darwin*)  say -v Anna "Misserfolg";;
+              darwin*)  say -v Anna "Misserfolg" && osascript -e 'display notification "Misserfolg" with title "Kompilates"';;
               linux*)   spd-say "Fail" ;;
             esac
         fi
