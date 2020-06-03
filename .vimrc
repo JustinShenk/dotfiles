@@ -59,6 +59,12 @@ if v:version >= 800
    call dein#add('tpope/vim-commentary')
    call dein#add('b4winckler/vim-angry')
    call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+   map <leader><C-f> :Files<CR>
+   command! -bang -nargs=* GGrep
+               \ call fzf#vim#grep(
+               \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+               \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+   map <leader><C-g> :GGrep<CR>
    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
    call dein#add('scrooloose/nerdtree')
    " Show hidden stuff in nerdtree
@@ -327,7 +333,6 @@ set showcmd
 
 set exrc
 set secure
-map <leader><C-f> :Files<CR>
 
 map <C-s> :wa<CR>
 set cursorcolumn
