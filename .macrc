@@ -90,3 +90,4 @@ export PATH=$PATH:/usr/local/platform-tools
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
+export HOMEBREW_NO_AUTO_UPDATE=1
