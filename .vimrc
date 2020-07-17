@@ -79,6 +79,7 @@ if v:version >= 800
    let g:ultisnips_python_style = "numpy"
    let g:ultisnips_python_triple_quoting_style = "single"
    let g:ultisnips_python_quoting_style = "single"
+
    call dein#add('honza/vim-snippets')
 
    call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
@@ -97,13 +98,17 @@ if v:version >= 800
    nmap <leader><C-h> :YcmCompleter GoToDeclaration<CR>
    nmap <leader><C-r> :YcmCompleter FixIt<CR>
    nmap <leader><C-i> :YcmCompleter GetDoc<CR>
+
+   call dein#add("skielbasa/vim-material-monokai")
+   set background=dark
+   colorscheme material-monokai
+   let g:materialmonokai_italic=1
+
    call dein#add('andymass/vim-matchup')
    let g:matchup_matchparen_deferred = 1
    call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
    let g:vimtex_fold_enabled = 0
-   call dein#add('NLKNguyen/papercolor-theme')
-   set bg=light
-   colo PaperColor " works with iterm material theme
+
    call dein#add('mhinz/vim-startify')
    " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
    " call dein#add('ryvnf/readline.vim')
@@ -261,7 +266,6 @@ autocmd BufWrite * silent! :%s#\($\n\s*\)\+\%$##
 set backspace=indent,eol,start
 set smarttab
 set wildmenu
-set scrolloff=5
 
 " ignore case in filename tab completion
 set wildignorecase
@@ -330,11 +334,10 @@ set secure
 map <leader><C-f> :Files<CR>
 
 map <C-s> :wa<CR>
-set cursorcolumn
+" set cursorcolumn
 set cursorline
 
 " this may mess up substitution
 set ignorecase
 set smartcase
-" solves clipboard not working with neovim on elementary. Does not work for vim
-set clipboard=unnamedplus
+set scrolloff=999999
