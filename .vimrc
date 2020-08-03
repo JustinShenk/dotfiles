@@ -1,7 +1,7 @@
 if &compatible
     set nocompatible
 endif
-
+filetype plugin indent on
 let mapleader="-"
 let maplocalleader="-"
 
@@ -85,6 +85,7 @@ if v:version >= 800
    let g:ultisnips_python_style = "numpy"
    let g:ultisnips_python_triple_quoting_style = "single"
    let g:ultisnips_python_quoting_style = "single"
+
    call dein#add('honza/vim-snippets')
 
    call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
@@ -103,13 +104,21 @@ if v:version >= 800
    nmap <leader><C-h> :YcmCompleter GoToDeclaration<CR>
    nmap <leader><C-r> :YcmCompleter FixIt<CR>
    nmap <leader><C-i> :YcmCompleter GetDoc<CR>
+
+   syntax enable
+
+   call dein#add("skielbasa/vim-material-monokai")
+   set background=dark
+   colorscheme material-monokai
+   let g:materialmonokai_italic=1
+   " monokai colorscheme makes line numbers unreadable
+   highlight clear LineNr
+
    call dein#add('andymass/vim-matchup')
    let g:matchup_matchparen_deferred = 1
    call dein#add('lervag/vimtex', {'on_ft': ['tex', 'latex']})
    let g:vimtex_fold_enabled = 0
-   call dein#add('NLKNguyen/papercolor-theme')
-   set bg=light
-   colo PaperColor " works with iterm material theme
+
    call dein#add('mhinz/vim-startify')
    " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
    " call dein#add('ryvnf/readline.vim')
@@ -125,10 +134,6 @@ if v:version >= 800
 else
     echo "dein requires vim > 8, please upgrade and :call dein#update() manually."
 endif
-
-filetype plugin indent on
-syntax enable
-
 
 " highlight incremental matches while typing (you still need to press enter to get
 " there)
@@ -220,10 +225,6 @@ vmap <space> <esc>
 " Capitalise each word in selection
 vmap gw :s/\%V\<./\u&/g<CR>
 
-
-" Syntax highlighting
-syntax on
-
 " not sure anymore what this does
 " set omnifunc=syntaxcomplete#Complete
 
@@ -267,7 +268,6 @@ autocmd BufWrite * silent! :%s#\($\n\s*\)\+\%$##
 set backspace=indent,eol,start
 set smarttab
 set wildmenu
-set scrolloff=5
 
 " ignore case in filename tab completion
 set wildignorecase
@@ -335,7 +335,7 @@ set exrc
 set secure
 
 map <C-s> :wa<CR>
-set cursorcolumn
+" set cursorcolumn
 set cursorline
 
 " this may mess up substitution
