@@ -341,5 +341,6 @@ set cursorline
 " this may mess up substitution
 set ignorecase
 set smartcase
-" solves clipboard not working with neovim on elementary. Does not work for vim
-set clipboard=unnamedplus
+
+" keep current line vertically centered
+set scrolloff=9999999
