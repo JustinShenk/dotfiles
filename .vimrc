@@ -113,6 +113,9 @@ if v:version >= 800
    let g:materialmonokai_italic=1
    " monokai colorscheme makes line numbers unreadable
    highlight clear LineNr
+   " per default, monokai scheme uses same color for visual selection as for comments,
+   " rendering comments inside selectionn invisible
+   highlight Visual cterm=reverse ctermbg=NONE
 
    call dein#add('andymass/vim-matchup')
    let g:matchup_matchparen_deferred = 1
