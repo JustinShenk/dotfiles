@@ -125,6 +125,13 @@ if v:version >= 800
    call dein#add('mhinz/vim-startify')
    " this is cool, but ctrl-f in command mode stops working and is replaced by ctrl-x ctrl-e
    " call dein#add('ryvnf/readline.vim')
+   if has('nvim')
+       call dein#add('lambdalisue/suda.vim')
+   else
+       " when you forget to sudo
+       cmap w!! w !sudo tee > /dev/null %
+   endif
+
    call dein#end()
 
     call dein#save_state()
@@ -160,9 +167,6 @@ set expandtab
 
 " source this file whenever saved
 " autocmd BufWritePost .vimrc source %
-
-" when you forget to sudo
-cmap w!! w !sudo tee > /dev/null %
 
 " set encoding=utf-8
 set fileencoding=utf-8
