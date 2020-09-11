@@ -91,3 +91,9 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 export HOMEBREW_NO_AUTO_UPDATE=1
+export PATH="/usr/local/opt/python@3.7/bin:$PATH"
+
+
+# prefer homebrew clang over apple clang
+PATH="/usr/local/opt/llvm/bin:$PATH"
+LDFLAGS='-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib'

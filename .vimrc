@@ -107,15 +107,20 @@ if v:version >= 800
 
    syntax enable
 
-   call dein#add("skielbasa/vim-material-monokai")
-   set background=dark
-   colorscheme material-monokai
-   let g:materialmonokai_italic=1
+   set termguicolors
+   call dein#add('lifepillar/vim-solarized8')
+   colo solarized8
+   set bg=light
+
+   " call dein#add("skielbasa/vim-material-monokai")
+   " set background=dark
+   " colorscheme material-monokai
+   " let g:materialmonokai_italic=1
    " monokai colorscheme makes line numbers unreadable
-   highlight clear LineNr
+   " highlight clear LineNr
    " per default, monokai scheme uses same color for visual selection as for comments,
    " rendering comments inside selectionn invisible
-   highlight Visual cterm=reverse ctermbg=NONE
+   " highlight Visual cterm=reverse ctermbg=NONE
 
    call dein#add('andymass/vim-matchup')
    let g:matchup_matchparen_deferred = 1
