@@ -48,6 +48,10 @@ export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
+# prefer homebrew clang over apple clang
+# PATH="/usr/local/opt/llvm/bin:$PATH"
+# To use homebrew  version of libc++
+# LDFLAGS='-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib'
 
 # Change to current Finder directory
 cdf() {
@@ -92,8 +96,3 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 export HOMEBREW_NO_AUTO_UPDATE=1
 export PATH="/usr/local/opt/python@3.7/bin:$PATH"
-
-
-# prefer homebrew clang over apple clang
-PATH="/usr/local/opt/llvm/bin:$PATH"
-LDFLAGS='-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib'

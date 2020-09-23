@@ -1,6 +1,8 @@
 [user]
 	name = Rasmus Diederichsen
 	email = rasmus@psiori.com
+[pull]
+    rebase = true
 [push]
     default = current
 [alias]
