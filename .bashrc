@@ -20,7 +20,7 @@ if [ ! -z "$PS1" ]; then
     alias ls='ls -FG'
     alias ll='ls -ahl'
     # print large files
-    alias diskspace="du -S | sort -n -r |more"
+    alias diskspace="du -hS | sort -h -r | more"
     # show size of folders in current dir
     alias folders='du -a -h --max-depth=1 | sort -hr'
 
@@ -177,18 +177,18 @@ if [ ! -z "$PS1" ]; then
         case "$OSTYPE" in
           darwin*)  say -v Anna "Der Kompilates beginnt";;
           linux*)   spd-say "Start compile" ;;
-        esac
+        esac &
 
-        make -j$(getconf _NPROCESSORS_ONLN)
+        cmake --build . -j$(getconf _NPROCESSORS_ONLN) -- $@
         res=$?
         if [[ $res -eq 0 ]]; then
             case "$OSTYPE" in
-              darwin*)  say -v Anna "Erfolg" && osascript -e 'display notification "Erfolg" with title "Kompilates"';;
+              darwin*)  say -v Anna "Erfolg" & osascript -e 'display notification "Erfolg" with title "Kompilates"';;
               linux*)   spd-say "Success" ;;
             esac
         else
             case "$OSTYPE" in
-              darwin*)  say -v Anna "Misserfolg" && osascript -e 'display notification "Misserfolg" with title "Kompilates"';;
+              darwin*)  say -v Anna "Misserfolg" & osascript -e 'display notification "Misserfolg" with title "Kompilates"';;
               linux*)   spd-say "Fail" ;;
             esac
         fi
