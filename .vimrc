@@ -50,6 +50,7 @@ if v:version >= 800
        let g:pymode_rope = 0
        let g:pymode_rope_lookup_project = 0
        let g:pymode_lint = 0
+       let g:pymode_breakpoint_cmd = 'import ipdb; ipdb.set_trace()'
    endif
    call dein#add('tarekbecker/vim-yaml-formatter', {'on_ft': ['yaml']})
    let g:yaml_formatter_indent_collection=1
@@ -349,10 +350,6 @@ set secure
 map <C-s> :wa<CR>
 " set cursorcolumn
 set cursorline
-
-" this may mess up substitution
-set ignorecase
-set smartcase
 
 " keep current line vertically centered
 set scrolloff=9999999
