@@ -29,6 +29,8 @@ if [ ! -z "$PS1" ]; then
     alias ....="cd ../../.."
     alias .....="cd ../../../.."
 
+    alias vi="vim"
+
     alias dick=git
     if [ -x "$(command -v nvim)" ]; then
         alias vi='nvim'
@@ -39,7 +41,7 @@ if [ ! -z "$PS1" ]; then
     fi
 
     if [ -x "$(command -v fzf)" ]; then
-        alias edit='vi $(fzf)'
+        alias edit='vim $(fzf)'
     fi
     export EDITOR=$VISUAL
 
