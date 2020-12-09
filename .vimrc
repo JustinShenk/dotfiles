@@ -90,6 +90,7 @@ if v:version >= 800
    call dein#add('honza/vim-snippets')
 
    call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
+   let g:ycm_always_populate_location_list = 1
    let g:ycm_autoclose_preview_window_after_completion = 1
    let g:ycm_autoclose_preview_window_after_insertion = 1
    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -108,10 +109,18 @@ if v:version >= 800
 
    syntax enable
 
+   " this magic incantation makes colors work with tmux 3.1 and solarized8.
+   " Possibly the tmux config needs to contain
+   " set -g default-terminal "screen-256color"
+   " set -ga terminal-overrides ",xterm-256color:Tc"
+   " but sometimes works without
    set termguicolors
+   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
    call dein#add('lifepillar/vim-solarized8')
    colo solarized8
-   set bg=light
+   set bg=dark
 
    " call dein#add("skielbasa/vim-material-monokai")
    " set background=dark
