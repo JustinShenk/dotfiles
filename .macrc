@@ -17,21 +17,14 @@ if [[ `hostname` == Falcon-9* ]]; then
             echo 1
         else
             echo $(echo "$1/" | grep -o "/" | wc -l)
-                fi
+        fi
     }
     export PS1='`date +%H:%M:%S`: `repl 𝌆 $(depth "$(pwd)")`D:\W > '
     # ================================================================================
 fi
 
-export TEX=/users/rasmus/documents/latex/texnisches/
 export DROPBOX='/Volumes/Macintosh HD/Users/Rasmus/Dropbox'
 
-# Include scheme-listings
-export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/scheme-listings/:$TEXINPUTS
-export TEXINPUTS=/usr/local/texlive/texmf-local/tex/latex/atmega-listings/:$TEXINPUTS
-
-export UNI='/Users/Rasmus/Documents/Uni/'
-alias uni='cd "$UNI"'
 
 # Cheesus christ, why does pkg-config not know its own fckng standard directory,
 # what the actual fuck.
@@ -68,8 +61,6 @@ if [ -f $HOME/.iterm2_shell_integration.`basename $SHELL` ]; then
     source ~/.iterm2_shell_integration.`basename $SHELL`
 fi
 
-export SHELL=$BASH
-
 export HOMEBREW_VERBOSE=true
 
 function fuckblue {
@@ -89,10 +80,8 @@ function fuckblue {
     sudo renice -20 `pgrep blued`
 }
 
-export PATH=$PATH:/usr/local/platform-tools
-
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
 fi
 export HOMEBREW_NO_AUTO_UPDATE=1
-export PATH="/usr/local/opt/python@3.7/bin:$PATH"
+export PATH="/usr/local/opt/python@3.8/bin:$PATH"
