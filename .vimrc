@@ -90,6 +90,8 @@ if v:version >= 800
    call dein#add('honza/vim-snippets')
 
    call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
+   " disable annoying doc popup
+   let g:ycm_auto_hover=''
    let g:ycm_always_populate_location_list = 1
    let g:ycm_autoclose_preview_window_after_completion = 1
    let g:ycm_autoclose_preview_window_after_insertion = 1

@@ -1,6 +1,8 @@
 " Compile to pdf
 map <buffer> <C-k> :w<CR>:!pdflatex -synctex=1 "%"<CR>
-map <C-j> :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline <C-r>=line('.')<CR> "%<.pdf"<CR>
+
+" what does this do?
+" map <C-j> :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline <C-r>=line('.')<CR> "%<.pdf"<CR>
 
 " When using makefile
 map <buffer> <C-m> :wa<CR>:!make<CR>
@@ -15,7 +17,7 @@ map <buffer> <C-m> :wa<CR>:!make<CR>
 "inoremap <buffer> <Char-214> \"O
 
 " Open pdf
-map <buffer> <C-s> :!open -a /Applications/Skim.app "%<.pdf" <CR><CR>
+map <buffer> <C-s> :!open "%<.pdf" <CR><CR>
 
 " Autocompletion of dollar sign
 inoremap <buffer> $ $$<Esc>i
