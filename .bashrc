@@ -198,9 +198,6 @@ if [ ! -z "$PS1" ]; then
 
     export MAKEFLAGS="-j$(getconf _NPROCESSORS_ONLN)"
 
-    export PATH=$HOME/Documents/ESP-Toolchain/xtensa-esp32-elf/bin:$PATH
-    export IDF_PATH=$HOME/Downloads/esp-idf
-
     [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
     if [ ! -S ~/.ssh/ssh_auth_sock ]; then

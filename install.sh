@@ -19,7 +19,7 @@ install_file() {
         should_link="Yes"
     fi
     if [ $should_link == "Yes" ]; then
-        ln -s `pwd`/$1 $HOME/$1
+        ln -fs `pwd`/$1 $HOME/$1
         return 0
     else
         return 1

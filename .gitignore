@@ -1,5 +1,4 @@
 .ssh/
-Documents/Programming/
 .DS_Store
 .vim/bundle/
 .vim/undodir/
