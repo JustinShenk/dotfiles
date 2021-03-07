@@ -64,6 +64,11 @@ ZSH_THEME="robbyrussell"
 # dedup history
 export HISTCONTROL=ignoreboth:erasedups
 export HISTTIMEFORMAT="%y-%m-%d %T "
+
+# Huge history. Doesn't appear to slow things down, so why not?
+HISTSIZE=500000
+HISTFILESIZE=100000
+
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
