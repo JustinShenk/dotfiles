@@ -78,7 +78,7 @@ HISTFILESIZE=100000
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #export FZF_BASE='/usr/local/opt/fzf'
-plugins=(git ssh-agent colored-man-pages colorize pip python brew osx zsh-syntax-highlighting zsh-autosuggestions history docker docker-compose fzf github zsh-history-substring-search zsh-interactive-cd)
+plugins=(git aws ssh-agent colored-man-pages colorize pip python brew osx zsh-syntax-highlighting zsh-autosuggestions history docker docker-compose fzf github zsh-history-substring-search zsh-interactive-cd)
 
 DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
@@ -183,3 +183,13 @@ export NVM_DIR="$HOME/.nvm"
 
 # Java requires
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+alias ga.="git add . -p"
+alias gs="git status"
+
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+# Ruby
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
