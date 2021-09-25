@@ -112,7 +112,8 @@ ENABLE_CORRECTION="true"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-# export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
+export NUMEXPR_MAX_THREADS=12
+export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
 
 extract () {
     if [ -f "$1" ] ; then
@@ -151,7 +152,12 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-alias weather='curl wttr.in/Berlin'
+#alias weather='curl wttr.in/$/m'
+weather() {
+    local city
+    city=${1:-Berlin}
+    echo "wttr.in/$city/m"
+}
 
 # must press ctrl-D twice to exit
 export IGNOREEOF="1"
@@ -164,6 +170,9 @@ alias d="git diff"
 if [ -x "$(command -v fzf)" ]; then
         alias edit='vim $(fzf)'
 fi
+
+# bind ctrl + space to execute current auto suggestion
+bindkey '^ ' autosuggest-execute
 
 # print large files
 alias diskspace="du -hS | sort -h -r | more"
@@ -193,3 +202,7 @@ source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 # Ruby
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+export PATH="$PATH:/usr/local/texlive/2021basic/bin/universal-darwin"
+
+function gam() { "/Users/justinshenk/bin/gam/gam" "$@" ; }
