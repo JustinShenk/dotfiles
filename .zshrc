@@ -78,7 +78,7 @@ HISTFILESIZE=100000
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #export FZF_BASE='/usr/local/opt/fzf'
-plugins=(git aws ssh-agent colored-man-pages colorize pip python brew osx zsh-syntax-highlighting zsh-autosuggestions history docker docker-compose fzf github zsh-history-substring-search zsh-interactive-cd)
+plugins=(git ssh-agent colored-man-pages colorize pip python brew osx zsh-syntax-highlighting zsh-autosuggestions history docker docker-compose fzf github zsh-history-substring-search zsh-interactive-cd)
 
 DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
@@ -179,8 +179,9 @@ alias diskspace="du -hS | sort -h -r | more"
 # show size of folders in current dir
 alias folders='du -a -h --max-depth=1 | sort -hr'
 
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
+alias vi=nvim
 
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
@@ -205,4 +206,7 @@ eval "$(rbenv init -)"
 
 export PATH="$PATH:/usr/local/texlive/2021basic/bin/universal-darwin"
 
-function gam() { "/Users/justinshenk/bin/gam/gam" "$@" ; }
+function gam() { "/Users/justinshenk/installs/gam/gam" "$@" ; }
+
+#export GOOGLE_CLOUD_PROJECT=visiolab-afc-development
+#export GOOGLE_APPLICATION_CREDENTIALS=~/projects/repos/visiolab-afc-firebase/visiolab-afc-development-firebase-adminsdk-bogbn-7273418060.json
