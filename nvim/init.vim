@@ -178,14 +178,14 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/justinshenk/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin('/Users/justinshenk/.cache/dein')
+call dein#begin("$HOME/.cache/dein")
 
 " Let dein manage dein
 " Required:
-call dein#add('/Users/justinshenk/.cache/dein/repos/github.com/Shougo/dein.vim')
+call dein#add("$HOME/.cache/dein/repos/github.com/Shougo/dein.vim")
 
 " Functional
 call dein#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})

@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/justinshenk/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -112,7 +112,8 @@ ENABLE_CORRECTION="true"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-export NUMEXPR_MAX_THREADS=12
+
+#export NUMEXPR_MAX_THREADS=12
 export PATH="/usr/local/anaconda3/bin:$PATH"  # commented out by conda initialize
 
 extract () {
@@ -197,15 +198,15 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 alias ga.="git add . -p"
 alias gs="git status"
 
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # Ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if [ -x "$(rbenv -v)" ]
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
 
 export PATH="$PATH:/usr/local/texlive/2021basic/bin/universal-darwin"
 
-function gam() { "/Users/justinshenk/installs/gam/gam" "$@" ; }
+function gam() { "$HOME/installs/gam/gam" "$@" ; }
 
 export PATH="/usr/local/sbin:$PATH"

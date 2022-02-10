@@ -4,12 +4,15 @@ alias open="xdg-open"
 
 export CCACHE_DIR=/local/.ccache
 
-if [ -f /etc/bash_completion ]; then
-    source /etc/bash_completion
-fi
+#if [ -f /etc/bash_completion ]; then
+    #source /etc/bash_completion
+#fi
 
-if [ -f $HOME/pass.bash_completion ]; then
-    source $HOME/pass.bash_completion
-fi
+#if [ -f $HOME/pass.bash_completion ]; then
+    #source $HOME/pass.bash_completion
+#fi
 
 export PATH=/usr/local/bin:$PATH
+
+# ubuntu only
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
