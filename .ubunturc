@@ -13,4 +13,3 @@ if [ -f $HOME/pass.bash_completion ]; then
 fi
 
 export PATH=/usr/local/bin:$PATH
-export PROJDIR=$HOME/autocrane-core
