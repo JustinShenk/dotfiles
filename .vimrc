@@ -22,6 +22,10 @@ call dein#begin('$HOME/.vim/bundle/')
 call dein#add('$HOME/.vim/bundle/repos/github.com/Shougo/dein.vim')
 call dein#add('lifepillar/vim-solarized8')
 call dein#add('vim-scripts/vim-auto-save')
+"call dein#add('nvim-lua/plenary.nvim')
+"call dein#add('nvim-telescope/telescope.nvim')
+
+" add pywrite
 
 call dein#add('vim-scripts/LargeFile')
 call dein#add('Konfekt/FastFold')

@@ -210,3 +210,4 @@ function gam() { "/Users/justinshenk/installs/gam/gam" "$@" ; }
 
 #export GOOGLE_CLOUD_PROJECT=visiolab-afc-development
 #export GOOGLE_APPLICATION_CREDENTIALS=~/projects/repos/visiolab-afc-firebase/visiolab-afc-development-firebase-adminsdk-bogbn-7273418060.json
+export PATH="/usr/local/sbin:$PATH"
