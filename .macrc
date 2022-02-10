@@ -1,2 +1,5 @@
+# Java requires
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"endif
