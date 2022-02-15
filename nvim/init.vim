@@ -1,6 +1,51 @@
 if &compatible
   set nocompatible " Be iMproved
 endif
+filetype plugin indent on
+let mapleader = "," " map leader to comma
+
+"dein Scripts-----------------------------
+set runtimepath+=/home/justin/.cache/dein/repos/github.com/Shougo/dein.vim
+call dein#begin('/home/justin/.cache/dein')
+" Let dein manage dein
+call dein#add('/home/justin/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+" Functional
+call dein#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
+call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
+call dein#add('preservim/nerdcommenter')
+call dein#add('scrooloose/nerdtree')
+call dein#add('nvim-telescope/telescope.nvim')
+call dein#add('tpope/vim-fugitive')
+"call dein#add('altercation/vim-scheme-solarized')
+"call dein#add('shaunsingh/solarized')
+
+"call dein#add('taohexxx/lightline-solarized')
+
+" Look and feel
+"call dein#add('sainnhe/sonokai')
+"call dein#add('kyazdani42/nvim-web-devicons')
+call dein#add('itchyny/lightline.vim')
+call dein#add('lifepillar/vim-solarized8')
+call dein#add('vim-scripts/vim-auto-save')
+call dein#add('nvim-lua/plenary.nvim')
+call dein#add('vim-scripts/LargeFile')
+call dein#add('Konfekt/FastFold')
+
+" call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
+"call dein#add('Shougo/neosnippet.vim')
+"call dein#add('Shougo/neosnippet-snippets')
+
+call dein#end()
+
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
 
 " highlight incremental matches while typing (you still need to press enter to get
 " there)
@@ -18,7 +63,6 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 
-let mapleader = "," " map leader to comma
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -172,58 +216,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " allow to switch buffers when unsaved changes in current buffer
 set hidden
 
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin("$HOME/.cache/dein")
-
-" Let dein manage dein
-" Required:
-call dein#add("$HOME/.cache/dein/repos/github.com/Shougo/dein.vim")
-
-" Functional
-call dein#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
-call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
-call dein#add('preservim/nerdcommenter')
-call dein#add('scrooloose/nerdtree')
-call dein#add('nvim-telescope/telescope.nvim')
-call dein#add('tpope/vim-fugitive')
-"call dein#add('taohexxx/lightline-solarized')
-
-" Look and feel
-"call dein#add('sainnhe/sonokai')
-"call dein#add('kyazdani42/nvim-web-devicons')
-call dein#add('itchyny/lightline.vim')
-call dein#add('lifepillar/vim-solarized8')
-call dein#add('vim-scripts/vim-auto-save')
-call dein#add('nvim-lua/plenary.nvim')
-call dein#add('vim-scripts/LargeFile')
-call dein#add('Konfekt/FastFold')
-
-" call dein#add('Valloric/YouCompleteMe', {'build': './install.py --clang-completer'})
-"call dein#add('Shougo/neosnippet.vim')
-"call dein#add('Shougo/neosnippet-snippets')
-
-" Required:
-call dein#end()
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------
-
 set foldmethod=syntax
 set foldlevel=2
   " Show hidden stuff in nerdtree
@@ -258,7 +250,6 @@ endif
 "let g:sonokai_style = 'andromeda'
 "let g:sonokai_enable_italic = 1
 "let g:sonokai_disable_italic_comment = 1
-colorscheme solarized8
 
 " use lightline-solarized in lightline
 "let g:lightline = {
@@ -266,10 +257,12 @@ colorscheme solarized8
 	"\ }
 "let g:solarized_temcolors=16
 "colorscheme solarized
-let g:solarized_termtrans = 1
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans = 1
+"let g:solarized_visibility = "high"
+"let g:solarized_contrast = "high"
 
+colorscheme solarized8
 " Telescope
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -405,7 +398,7 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 se mouse+=a " prevent copying line numbers
 
-set clipboard=unnamedplus " copy to system clipboard
+set clipboard+=unnamedplus " copy to system clipboard
 
 " Autocomplete with dictionary words
 set complete+=kspell
