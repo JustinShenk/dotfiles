@@ -5,10 +5,10 @@ filetype plugin indent on
 let mapleader = "," " map leader to comma
 
 "dein Scripts-----------------------------
-set runtimepath+=/home/justin/.cache/dein/repos/github.com/Shougo/dein.vim
-call dein#begin('/home/justin/.cache/dein')
+set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+call dein#begin("$HOME/.cache/dein")
 " Let dein manage dein
-call dein#add('/home/justin/.cache/dein/repos/github.com/Shougo/dein.vim')
+call dein#add("$HOME/.cache/dein/repos/github.com/Shougo/dein.vim")
 
 " Functional
 call dein#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
