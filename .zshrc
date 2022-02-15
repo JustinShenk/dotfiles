@@ -1,4 +1,4 @@
-# If you come from bash you might have to change your $PATH.
+#call coc#util#install( If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -78,7 +78,9 @@ HISTFILESIZE=100000
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #export FZF_BASE='/usr/local/opt/fzf'
-plugins=(git ssh-agent colored-man-pages colorize pip python brew zsh-syntax-highlighting zsh-autosuggestions history docker docker-compose fzf github zsh-history-substring-search zsh-interactive-cd)
+plugins=(git ssh-agent colored-man-pages colorize pip python brew zsh-syntax-highlighting zsh-autosuggestions history docker docker-compose fzf github \
+    #zsh-history-substring-search \
+    zsh-interactive-cd)
 
 DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
@@ -173,7 +175,7 @@ if [ -x "$(command -v fzf)" ]; then
 fi
 
 # bind ctrl + space to execute current auto suggestion
-bindkey '^ ' autosuggest-execute
+# bindkey '^ ' autosuggest-execute # breaks on Ubuntu
 
 # print large files
 alias diskspace="du -hS | sort -h -r | more"
@@ -196,15 +198,12 @@ alias ga.="git add . -p"
 alias gs="git status"
 
 
-# Ruby
-if [ -x "$(rbenv -v)" ]
-then
-    export PATH="$HOME/.rbenv/bin:$PATH" && \
-    eval "$(rbenv init -)"
-fi
-
-export PATH="$PATH:/usr/local/texlive/2021basic/bin/universal-darwin"
-
 function gam() { "$HOME/installs/gam/gam" "$@" ; }
 
 export PATH="/usr/local/sbin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+if ! type "$direnv" > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
